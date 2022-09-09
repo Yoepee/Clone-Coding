@@ -8,7 +8,7 @@ const ChatPage = () => {
         <div>
             <ChatHeader/>
             <ChatList/>
-            <Footer/>
+            <Footer foot={3}/>
         </div>
     )
 }

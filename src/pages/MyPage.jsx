@@ -1,7 +1,11 @@
 // 나의 당근 페이지
+import Footer from "../components/footer/Footer";
+
 const MyPage = () => {
     return  (
-        <div></div>
+        <div>
+            <Footer foot={4}/>
+        </div>
     )
 }
 
