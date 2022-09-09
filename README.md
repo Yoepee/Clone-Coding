@@ -4,6 +4,7 @@
 src
 - shared
   - router ( 경로 지정 ) 
+
 - pages
   -TradeList ( 메인 페이지 )
   -TradeDetail ( 메인페이지 판매글 상세 )
