@@ -13,6 +13,7 @@ import PostAdd from "../pages/PostAdd";
 
 import ChatDetail from "../pages/ChatDetail";
 import ChatPage from "../pages/ChatPage";
+import Location from "../pages/Location";
 
 // 페이지별 기능은 페이지 폴더에 방문하여 확인해주세요.
 const Router = () => {
@@ -30,6 +31,7 @@ const Router = () => {
             <Route path="/chat" element={<ChatPage/>}/>
             <Route path="/chatdetail/:id" element={<ChatDetail/>}/>
             <Route path="/mypage" element={<MyPage/>}/>
+            <Route path="/location" element={<Location/>}/>
         </Routes>
         </>
     )
