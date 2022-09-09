@@ -3,7 +3,7 @@
 import TradeAddForm from "../components/trade/TradeAddForm";
 
 
-const TradeWrite = () => {
+const TradeAdd = () => {
     return  (
         <div>
             <TradeAddForm />

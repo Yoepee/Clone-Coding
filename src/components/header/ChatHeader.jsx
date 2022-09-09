@@ -40,9 +40,6 @@ const ChatHeader = () => {
 
 export default ChatHeader;
 
-const Headvar= styled.div`
-display:block;
-`
   
 const whiteTheme = createTheme({
   palette: {
