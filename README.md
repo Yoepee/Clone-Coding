@@ -1,5 +1,8 @@
 ## 당근 마켓 클론 코딩
 
+![daangn](https://user-images.githubusercontent.com/110077966/189301761-e41ac0eb-d94b-4469-823a-0397e400df3d.png)
+
+
 ### 폴더 구조
 src
 - shared
