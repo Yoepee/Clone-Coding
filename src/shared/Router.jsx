@@ -1,4 +1,5 @@
-import {Route, Routes} from "react-router-dom"
+import {Route, Routes, useNavigate} from "react-router-dom"
+import { useEffect } from "react";
 import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage"
 import MyPage from "../pages/MyPage";
@@ -17,6 +18,18 @@ import Location from "../pages/Location";
 
 // 페이지별 기능은 페이지 폴더에 방문하여 확인해주세요.
 const Router = () => {
+    let navigate = useNavigate();
+    useEffect(()=>{
+        let a = window.location.href.split("/")
+        if(a[a.length-1]!=="login"&&a[a.length-1]!=="signup" ){
+        if(localStorage.getItem("token1")===null){
+            navigate("/login")
+        }
+        if(localStorage.getItem("token2")===null){
+            navigate("/login")
+        }
+    }
+    },[])
     return  (
         <>
         <Routes>

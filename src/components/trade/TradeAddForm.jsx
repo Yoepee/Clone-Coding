@@ -1,6 +1,6 @@
 //http://localhost:3000/tradeadd
 
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom";
 const TradeAddForm = () => {
   const navigate = useNavigate();
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClick = () => {
     setOpen(!open);
