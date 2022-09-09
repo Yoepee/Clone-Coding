@@ -1,11 +1,13 @@
-// 홈(메인) 페이지 ( 판매글 리스트 )
-import Footer from "../components/footer/Footer";
-import Header from "../components/header/Header";
+// 홈(메인) 페이지 ( 판매글 리스트 ) -예솔
+
+import Trade from "../components/trade/Trade";
+
 const TradeList = () => {
     return  (
         <div>
-            <Header head={"home"}/>
-            <Footer foot={0}/>
+        <Header head={"home"}/>
+            <Trade />
+             <Footer foot={0}/>
         </div>
     )
 }

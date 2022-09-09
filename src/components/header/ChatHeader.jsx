@@ -1,4 +1,5 @@
 // 채팅 헤더
+
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import CropFreeIcon from '@mui/icons-material/CropFree';
 import { AppBar, Toolbar, IconButton, Typography, Box} from '@mui/material';
@@ -38,6 +39,10 @@ const ChatHeader = () => {
 }
 
 export default ChatHeader;
+
+const Headvar= styled.div`
+display:block;
+`
   
 const whiteTheme = createTheme({
   palette: {

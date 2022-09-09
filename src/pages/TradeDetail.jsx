@@ -1,7 +1,14 @@
-// 판매글 상세 페이지
+// 판매글 상세 페이지 - 예솔
+import TradeDetailCard from "../components/trade/TradeDetailCard";
+
+
 const TradeDetail = () => {
     return  (
-        <div></div>
+        <div>
+            <TradeDetailCard />
+
+
+        </div>
     )
 }
 
