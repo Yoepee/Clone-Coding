@@ -17,19 +17,18 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const useStyles = makeStyles(theme => ({  // style 요소 선언
     container:{                          // container이름의 객체에 스타일링 해주기
-        backgroundColor:'#212121',
+        backgroundColor:'white',
         position : "absolute",
         bottom:0,
         width:"100%",
         justifyContent:"space-between",
+        borderTop: "1.5px solid grey"
     },
     color:{
-        color:"white",
-        "&.selected": {
-            color:"white"
-        },
+        color:"black",
+
         "&.Mui-selected": {
-            color:"white",
+            color:"black",
             fontWeight: "bold"
         },
     }

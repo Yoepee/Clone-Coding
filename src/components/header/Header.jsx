@@ -7,28 +7,33 @@ import GradingRoundedIcon from '@mui/icons-material/GradingRounded';
 import CropFreeIcon from '@mui/icons-material/CropFree';
 import { AppBar, Toolbar, IconButton, Typography, Box, FormControl,MenuItem} from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
+
 
 const Header = ({head}) => {
     const [age, setAge] = useState('');
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const handleChange = (event) => {
     setAge(event.target.value);
   };
     return (
         <>
         <Box sx={{ flexGrow: 1 }}>
-        <ThemeProvider theme={darkTheme}>
-        <AppBar position="static" color="primary">
+        <ThemeProvider theme={whiteTheme}>
+        <AppBar position="static" color="primary" 
+        style={{outline:"none", boxShadow:"none", borderBottom:"1.5px solid grey"}}>
+
           <Toolbar>
           <FormControl>
         <Select
           value={age}
           onChange={handleChange}
           displayEmpty
-          inputProps={{ 'aria-label': 'Without label' }}
+          // labelId="demo-simple-select-standard-label"
+          // inputProps={{ 'aria-label': 'Without label' }}
+          style={{outline:"0 none", border:"none", borderStyle:"none", "&:focus":{outline:"none"}}}
         >
-          <MenuItem value="">
+          <MenuItem value="" >
             <em>강남동</em>
           </MenuItem>
           <MenuItem value={10}>교동</MenuItem>
@@ -72,11 +77,10 @@ const Header = ({head}) => {
 
 export default Header;
 
-const darkTheme = createTheme({
-    palette: {
-      mode: 'dark',
-      primary: {
-        main: '#1976d2',
-      },
+const whiteTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#ffffff',
     },
-  });
+  },
+});
