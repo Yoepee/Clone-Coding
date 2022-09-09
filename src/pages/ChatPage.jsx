@@ -1,4 +1,4 @@
-// 실시간 채팅 페이지
+// 채팅 목록 페이지
 const ChatPage = () => {
     return  (
         <div></div>
