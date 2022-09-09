@@ -7,8 +7,9 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 const MyHeader = () => {
     return  (
         <Box sx={{ flexGrow: 1 }}>
-        <ThemeProvider theme={darkTheme}>
-        <AppBar position="static" color="primary">
+        <ThemeProvider theme={whiteTheme}>
+        <AppBar position="static" color="primary"
+        style={{outline:"none", boxShadow:"none", borderBottom:"1.5px solid grey"}}>
           <Toolbar>
             <Typography
               variant="h5"
@@ -18,9 +19,6 @@ const MyHeader = () => {
             >
               나의 당근
             </Typography>
-            {/* <IconButton size="large" aria-label="search" color="inherit">
-              <CropFreeIcon />
-            </IconButton> */}
             <IconButton
               size="large"
               aria-label="display more actions"
@@ -38,11 +36,10 @@ const MyHeader = () => {
 
 export default MyHeader;
 
-const darkTheme = createTheme({
-    palette: {
-      mode: 'dark',
-      primary: {
-        main: '#1976d2',
-      },
+const whiteTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#ffffff',
     },
-  });
+  },
+});

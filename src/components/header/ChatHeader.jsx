@@ -7,8 +7,9 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 const ChatHeader = () => {
     return (
         <Box sx={{ flexGrow: 1 }}>
-        <ThemeProvider theme={darkTheme}>
-        <AppBar position="static" color="primary">
+        <ThemeProvider theme={whiteTheme}>
+        <AppBar position="static" color="primary"
+        style={{outline:"none", boxShadow:"none", borderBottom:"1.5px solid grey"}}>
           <Toolbar>
             <Typography
               variant="h5"
@@ -38,11 +39,10 @@ const ChatHeader = () => {
 
 export default ChatHeader;
   
-const darkTheme = createTheme({
-    palette: {
-      mode: 'dark',
-      primary: {
-        main: '#1976d2',
-      },
+const whiteTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#ffffff',
     },
-  });
+  },
+});
