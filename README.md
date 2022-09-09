@@ -1,25 +1,31 @@
 ## 당근 마켓 클론 코딩
 
+![daangn](https://user-images.githubusercontent.com/110077966/189301761-e41ac0eb-d94b-4469-823a-0397e400df3d.png)
+
+
 ### 폴더 구조
 src
 - shared
-  - router ( 경로 지정 ) 
+  - Router ( 경로 지정 ) 
 
 - pages
-  -TradeList ( 메인 페이지 )
-  -TradeDetail ( 메인페이지 판매글 상세 )
-  - 
-- components
-- db
-- redux
+	-  TradeList ( 메인 페이지 )
+	-  TradeDetail ( 메인페이지 판매글 상세 )
+	-  TradeAdd (메인 판매글 작성)
+	-  PostPage (게시글 페이지)
+	-  PostDetail ( 게시글 상세 )
+	-  PostAdd ( 게시글 작성 )
+	- ChatPage( 채팅 목록 페이지 )
+	- ChatDetail ( 채팅 주고 받는 페이지 )
+	- SignUpPage (회원가입)
+	- Login(로그인)
+	- MyPage(나의정보)
 
 ### 와이어 프레임
 ![KakaoTalk_20220909_134100465](https://user-images.githubusercontent.com/110077966/189274670-ffe6687e-ded4-4b8a-8e65-67994dcab9ee.jpg)
 
 # 9/9 ~ 9/15 클론 코딩 주간 계획
 
-- SA 작성
-- FE단 BE단 API작성
 - 9/9
     - S.A.작성
     - API 설계

@@ -5,7 +5,9 @@ import Trade from "../components/trade/Trade";
 const TradeList = () => {
     return  (
         <div>
+        <Header head={"home"}/>
             <Trade />
+             <Footer foot={0}/>
         </div>
     )
 }

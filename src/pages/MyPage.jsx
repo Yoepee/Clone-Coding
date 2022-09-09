@@ -1,7 +1,13 @@
 // 나의 당근 페이지
+import Footer from "../components/footer/Footer";
+import MyHeader from "../components/header/MyHeader";
+
 const MyPage = () => {
     return  (
-        <div></div>
+        <div>
+            <MyHeader/>
+            <Footer foot={4}/>
+        </div>
     )
 }
 

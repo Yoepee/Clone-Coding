@@ -11,4 +11,4 @@ const TradeWrite = () => {
     )
 }
 
-export default TradeWrite;
+export default TradeAdd;
