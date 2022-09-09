@@ -17,6 +17,7 @@ import ChatPage from "../pages/ChatPage";
 // 페이지별 기능은 페이지 폴더에 방문하여 확인해주세요.
 const Router = () => {
     return  (
+        <>
         <Routes>
             <Route path="/" element={<TradeList/>}/>
             <Route path="/login" element={<LoginPage/>}/>
@@ -30,6 +31,7 @@ const Router = () => {
             <Route path="/chatdetail/:id" element={<ChatDetail/>}/>
             <Route path="/mypage" element={<MyPage/>}/>
         </Routes>
+        </>
     )
 }
 
