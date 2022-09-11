@@ -9,6 +9,7 @@ const MyInfo = () => {
     const navigate = useNavigate();
     return (
         <Infodiv>
+            <div style={{height:"60px"}}/>
             <TradeContainer>
                 <ChatImg
                     width={70}

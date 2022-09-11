@@ -4,13 +4,15 @@ import {useEffect} from "react"
 import {socket, SocketContext} from "./service/socket";
 
 function App() {
-  useEffect(()=>{
-    return ()=>{
-      socket.disconnect();
-    } 
-  },[])
+  // useEffect(()=>{
+  //   return ()=>{
+  //     socket.disconnect();
+  //   } 
+  // },[])
   return (
+    // <SocketContext.Provider value={socket}>
       <Router/>
+    // </SocketContext.Provider>
   );
 }
 
