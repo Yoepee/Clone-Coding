@@ -1,7 +1,11 @@
+import PostCard from "./PostCard";
+
 // 게시글
 const Post = () => {
     return  (
-        <div></div>
+        <div>
+            <PostCard />
+        </div>
     )
 }
 
