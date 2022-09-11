@@ -28,9 +28,7 @@ const TradeAddForm = () => {
 
   return (
     <form>
-      <Container
-        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
-      >
+      <IconContainer>
         <ArrowBackIcon
           onClick={() => {
             navigate("/");
@@ -38,27 +36,27 @@ const TradeAddForm = () => {
         />
         <h3 style={{ marginLeft: "10px" }}>중고거래 글쓰기</h3>
         <h3 style={{marginLeft:"auto",color:"#dee2e6"}}>완료</h3>
-      </Container>
+      </IconContainer>
 
-      <Container>
+      <Image>
         <div>
           <IconButton aria-label="upload picture" component="label">
             <input hidden accept="image/*" type="file" />
             <AddAPhotoIcon />
           </IconButton>
         </div>
-      </Container>
+      </Image>
 
-      <Container>
+      <Title>
       <TextField 
        multiline
        placeholder="제목" variant="standard"
           InputProps={{
             disableUnderline: true,
           }}/>
-      </Container>
+      </Title>
 
-      <Container>
+      <Category>
         <ListItemButton onClick={handleClick}>
           <ListItemText primary="카테고리" />
           {open ? <ExpandLess /> : <ExpandMore />}
@@ -90,9 +88,9 @@ const TradeAddForm = () => {
             </ListItemButton>
           </List>
         </Collapse>
-      </Container>
+      </Category>
 
-      <Container>
+      <Price>
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <TextField 
            multiline
@@ -107,9 +105,9 @@ const TradeAddForm = () => {
             label="가격제안받기"
           />
         </Box>
-      </Container>
+      </Price>
 
-      <Container>
+      <Content>
         <TextField
         placeholder="OO동에 올릴 게시글 내용을 작성해주세요."
         multiline
@@ -118,19 +116,57 @@ const TradeAddForm = () => {
             disableUnderline: true,
           }}
           fullWidth
-          style={{height:"400px",display:"block"}}
+          // style={{display:"block"}}
           id="fullWidth" />
-      </Container>
+      </Content>
     </form>
   );
 };
 
 export default TradeAddForm;
 
-const Container = styled.div`
+const IconContainer = styled.div`
+  border-bottom: 1px solid #dee2e6;
+  display: flex;
+  flex-direction: row;
+  min-height: 60px;
+  margin: 20px;
+  align-items:center;
+`;
+
+const Image = styled.div`
   border-bottom: 1px solid #dee2e6;
   display: flex;
   flex-direction: column;
   min-height: 60px;
   margin: 20px;
+`;
+
+const Title = styled.div`
+  border-bottom: 1px solid #dee2e6;
+  display: flex;
+  flex-direction: column;
+  min-height: 60px;
+  margin: 20px;
+`;
+const Category = styled.div`
+  border-bottom: 1px solid #dee2e6;
+  display: flex;
+  flex-direction: column;
+  min-height: 60px;
+  margin: 20px;
+`;
+const Price = styled.div`
+  border-bottom: 1px solid #dee2e6;
+  display: flex;
+  flex-direction: column;
+  min-height: 60px;
+  margin: 20px;
+`;
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 60px;
+  margin: 20px;
+  
 `;

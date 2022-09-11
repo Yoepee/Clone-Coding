@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const SellerCard = () => {
   return (
-    <div style={{display:"flex", alignItems:"center", margin:"10px" }}>
+    <div style={{display:"flex", alignItems:"center", marginTop:"10px" }}>
     <div>
       <img
         style={{width:"170px", height:"100px"}}
