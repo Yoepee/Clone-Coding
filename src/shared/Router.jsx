@@ -23,10 +23,10 @@ const Router = () => {
         let a = window.location.href.split("/")
         if(a[a.length-1]!=="login"&&a[a.length-1]!=="signup" ){
         if(localStorage.getItem("token1")===null){
-            navigate("/login")
+            // navigate("/login")
         }
         if(localStorage.getItem("token2")===null){
-            navigate("/login")
+            // navigate("/login")
         }
     }
     },[])
