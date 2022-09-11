@@ -31,7 +31,7 @@ const Header = ({head}) => {
           displayEmpty
           // labelId="demo-simple-select-standard-label"
           // inputProps={{ 'aria-label': 'Without label' }}
-          style={{outline:"0 none", border:"none", borderStyle:"none", "&:focus":{outline:"none"}}}
+          // style={{outline:"0 none", border:"none", borderStyle:"none", "&:focus":{outline:"none"}}}
         >
           <MenuItem value="" >
             <em>강남동</em>
@@ -48,10 +48,10 @@ const Header = ({head}) => {
               sx={{ flexGrow: 1, alignSelf: 'center' }}
             />
 
-            <IconButton size="large" aria-label="search" color="inherit">
+            <IconButton size="large" aria-label="search" color="inherit" style={{margin:"0px 30px 0px 0px"}}>
               <SearchIcon />
             </IconButton>
-            <IconButton size="large" aria-label="search" color="inherit">
+            <IconButton size="large" aria-label="search" color="inherit" style={{margin:"0px 30px 0px 0px"}}>
             {head==="home"?
               <MenuIcon />
               :head==="post"?
