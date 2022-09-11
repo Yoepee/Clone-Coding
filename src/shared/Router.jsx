@@ -23,10 +23,10 @@ const Router = () => {
     useEffect(()=>{
         let a = window.location.href.split("/")
         if(a[a.length-1]!=="login"&&a[a.length-1]!=="signup" && a[a.length-1]!=="intro" ){
-        if(localStorage.getItem("token1")===null){
+        if(localStorage.getItem("Authorization")===null){
             navigate("/intro")
         }
-        if(localStorage.getItem("token2")===null){
+        if(localStorage.getItem("Refreshtoken")===null){
             navigate("/intro")
         }
     }

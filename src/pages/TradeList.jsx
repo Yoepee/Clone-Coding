@@ -5,11 +5,11 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer"
 
 const TradeList = () => {
-    return  (
+    return (
         <div>
-        <Header head={"home"}/>
+            <Header head={"home"} />
             <Trade />
-             <Footer foot={0}/>
+            <Footer foot={0} />
         </div>
     )
 }
