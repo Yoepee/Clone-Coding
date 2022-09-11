@@ -26,7 +26,7 @@ const Router = () => {
         if(localStorage.getItem("Authorization")===null){
             navigate("/intro")
         }
-        if(localStorage.getItem("Refreshtoken")===null){
+        if(localStorage.getItem("RefreshToken")===null){
             navigate("/intro")
         }
     }

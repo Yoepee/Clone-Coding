@@ -44,7 +44,7 @@ const TradeAddForm = () => {
     let a = await axios.post("http://3.34.5.30/api/post/image", formData,{
       headers: {
         Authorization: localStorage.getItem("Authorization"),
-        RefreshToken: localStorage.getItem("Refreshtoken"),
+        RefreshToken: localStorage.getItem("RefreshToken"),
         "Content-Type": "multipart/form-data"
       }
     });

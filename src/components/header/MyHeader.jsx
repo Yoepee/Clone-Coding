@@ -11,18 +11,18 @@ const MyHeader = () => {
 
   const logout = async () => {
     if (window.confirm("로그아웃 하시겠습니까?") === true) {
-      let a = await axios.post("http://3.34.5.30/api/logout",{
+      let a = await axios.post("http://3.34.5.30/api/logout", null ,{
         headers: {
-            Authorization: localStorage.getItem('Authorization'),
-            RefreshToken: localStorage.getItem('Refreshtoken'),
+            authorization: localStorage.getItem('Authorization'),
+            refreshtoken: localStorage.getItem('RefreshToken'),
       }});
+      console.log(a);
       if (a?.data?.success === false) {
         alert(a?.data?.data)
         return
       }
-      console.log(a);
       localStorage.removeItem("Authorization")
-      localStorage.removeItem("Refreshtoken")
+      localStorage.removeItem("RefreshToken")
       localStorage.removeItem("name")
       navigate("/intro");
     } else { return false; }

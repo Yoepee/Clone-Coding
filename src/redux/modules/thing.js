@@ -11,7 +11,7 @@ export const __getThing = createAsyncThunk(
             const data =  await axios.get(`http://3.34.5.30:8080/api/view/post`, {
               headers: {
                   authorization: localStorage.getItem('Authorization'),
-                  refreshtoken: localStorage.getItem('Refreshtoken'),
+                  refreshtoken: localStorage.getItem('RefreshToken'),
             }});
             console.log(data)
             return thunkAPI.fulfillWithValue(data.data);
