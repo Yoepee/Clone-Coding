@@ -1,10 +1,11 @@
 // 홈 (판매 게시글)   "http://localhost:3000"
 import React, {useEffect} from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __getThing } from "../../redux/modules/thing";
+import { positions } from "@mui/system";
 
 const Trade = () => {
   const navigate = useNavigate();
@@ -17,7 +18,9 @@ const Trade = () => {
 
   console.log(thing?.data);
   return (
+    <>
     <div style={{display:"relative"}}>
+      <div style={{height:"60px"}}/>
     <TradeContainer onClick={() => {
       navigate(`/tradedetail/1`);                  //임시 라우터
     }}>
@@ -43,6 +46,7 @@ const Trade = () => {
       <IconBtn onClick={()=>{navigate("tradeadd")}}><AddIcon/></IconBtn>
     </Plus>
     </div>
+    </>
   );
 };
 
@@ -82,7 +86,7 @@ const InfoBox = styled.div`
 `;
 
 const Plus = styled.div`
-position : absolute;
+position : fixed;
 bottom : 0;
 right: 5%;
 margin-bottom:80px

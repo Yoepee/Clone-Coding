@@ -28,7 +28,7 @@ const MyHeader = () => {
     } else { return false; }
   }
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} style={{position:"fixed", width:"100%"}}>
       <ThemeProvider theme={whiteTheme}>
         <AppBar position="static" color="primary"
           style={{ outline: "none", boxShadow: "none", borderBottom: "1.5px solid grey" }}>
