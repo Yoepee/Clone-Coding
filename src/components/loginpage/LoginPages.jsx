@@ -20,9 +20,13 @@ export default function SignIn() {
   };
 
   const login = async (payload) => {
+        if(user.phoneNumber==="" || user.password===""){
+          alert("입력정보를 확인해주세요.");
+          return;
+        }
         let a = await axios.post("http://3.34.5.30/api/member/login", payload);
-        if(a.data.data === null){
-          alert("잘못된 비밀번호 입니다.")
+        if(a?.data?.success===false){
+          alert(a?.data?.data)
           return
         }
         localStorage.setItem("Authorization", a.headers.authorization);
