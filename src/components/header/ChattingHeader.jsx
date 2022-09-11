@@ -1,41 +1,44 @@
 //나의 당근 헤더
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
 import { AppBar, Toolbar, IconButton, Typography, Box} from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 
 
-const MyHeader = () => {
-    const navigate = useNavigate() 
+const ChattingHeader = () => {
+    const navigate = useNavigate();
     return  (
         <Box sx={{ flexGrow: 1 }}>
         <ThemeProvider theme={whiteTheme}>
         <AppBar position="static" color="primary"
         style={{outline:"none", boxShadow:"none", borderBottom:"1.5px solid grey"}}>
           <Toolbar>
+          <IconButton 
+          size="large" 
+          aria-label="search" 
+          color="inherit" 
+          onClick={()=>{navigate(-1)}}>
+              <ArrowBackIosNewIcon/>
+            </IconButton>
             <Typography
               variant="h5"
               noWrap
               component="div"
               sx={{ flexGrow: 1, alignSelf: 'center' }}
             >
-              나의 당근
             </Typography>
+            <IconButton size="large" aria-label="search" color="inherit" style={{margin:"0px 30px 0px 0px"}}>
+              <CallOutlinedIcon />
+            </IconButton>
             <IconButton
               size="large"
               aria-label="display more actions"
               edge="end"
               color="inherit"
-              onClick={()=>{
-                if(window.confirm("로그아웃 하시겠습니까?")===true){
-                  localStorage.removeItem("Authorization")
-                  localStorage.removeItem("Refreshtoken")
-                  localStorage.removeItem("name")
-                navigate("/intro");
-            }else{return false;}
-              }}
             >
-              <SettingsOutlinedIcon />
+              <MoreVertIcon />
             </IconButton>
           </Toolbar>
         </AppBar>
@@ -44,7 +47,7 @@ const MyHeader = () => {
     )
 }
 
-export default MyHeader;
+export default ChattingHeader;
 
 const whiteTheme = createTheme({
   palette: {
