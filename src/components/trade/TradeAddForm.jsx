@@ -15,18 +15,52 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { createThing } from "../../redux/modules/thing";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { __getDetailThing } from "../../redux/modules/detailThing";
 
 const TradeAddForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const {id} = useParams();
   var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
-  let a
+  const detail = useSelector((state)=>state.detailThing);
+  const initialState = {
+    title:"",
+    price:"",
+    category:"카테고리",
+    imageUrl:"",
+    content:""
+  }
 
+  useEffect(()=>{
+    if(id!==undefined)
+      dispatch(__getDetailThing())
+  },[dispatch])
+  console.log(detail)
+  if(id!==undefined){
+    initialState = {
+      title:detail?.data?.data?.title,
+      price:detail?.data?.data?.price,
+      category:detail?.data?.data?.category,
+      imageUrl:detail?.data?.data?.imageUrl,
+      content:detail?.data?.data?.content
+    }
+  }
+  let a;
+  const [post, setPost] = useState(initialState);
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
     setOpen(!open);
+  };
+
+  const onChangeHandler = (event) => {
+    const { value, name } = event.target;
+    setPost({ ...post, [name]: value });
   };
 
   const onChange = async(e) => {
@@ -50,11 +84,27 @@ const TradeAddForm = () => {
       }
     });
     console.log(a);
+    console.log(formData);
+    setPost({...post, imageUrl: a?.data?.data})
     // 사진을 선택하고 사진선택기능 숨기기
     // 폼데이터 들어가는 형식을 보기위한 내용
     for (var pair of formData.entries()) {
         console.log(pair[0] + ', ' + pair[1]);
     }
+}
+const Selecthandler = (category)=>{
+  setPost({...post, category: category})
+  setOpen(!open);
+}
+
+const submit = async() =>{
+  let b = await axios.post("http://3.34.5.30/api/post", post, {
+    headers: {
+      Authorization: localStorage.getItem("Authorization"),
+      RefreshToken: localStorage.getItem("RefreshToken"),
+    }})
+  dispatch(createThing(b?.data?.data))
+  navigate("/")
 }
 
   return (
@@ -66,7 +116,8 @@ const TradeAddForm = () => {
           }}
         />
         <h3 style={{ marginLeft: "10px" }}>중고거래 글쓰기</h3>
-        <h3 style={{marginLeft:"auto",color:"#dee2e6"}}>완료</h3>
+        <h3 style={{marginLeft:"auto",color:"#dee2e6", cursor:"pointer"}}
+        onClick={()=>submit()}>완료</h3>
       </IconContainer>
 
       <Image>
@@ -79,7 +130,12 @@ const TradeAddForm = () => {
       </Image>
 
       <Title>
-      <TextField 
+      <TextField
+        name="title"
+        value={post.title}
+        type="text"
+        ip="title"
+        onChange={onChangeHandler}
        multiline
        placeholder="제목" variant="standard"
           InputProps={{
@@ -87,35 +143,63 @@ const TradeAddForm = () => {
           }}/>
       </Title>
 
-      <Category>
+      <Category >
         <ListItemButton onClick={handleClick}>
-          <ListItemText primary="카테고리" />
+          <ListItemText primary={post.category} />
           {open ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemText primary="디지털 기기" />
+            <ListItemButton sx={{ pl: 4 }} onClick={()=>Selecthandler("가전")}>
+              <ListItemText primary="가전" />
             </ListItemButton>
 
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemText primary="생활가전" />
+            <ListItemButton sx={{ pl: 4 }} onClick={()=>Selecthandler("가구")}>
+              <ListItemText primary="가구"/>
             </ListItemButton>
 
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemText primary="가구/인테리어" />
+            <ListItemButton sx={{ pl: 4 }} onClick={()=>Selecthandler("생활")}>
+              <ListItemText primary="생활"/>
             </ListItemButton>
 
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemText primary="생활/주방" />
+            <ListItemButton sx={{ pl: 4 }} onClick={()=>Selecthandler("도서")}>
+              <ListItemText primary="도서"/>
             </ListItemButton>
 
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemText primary="의류" />
+            <ListItemButton sx={{ pl: 4 }}  onClick={()=>Selecthandler("의류")}>
+              <ListItemText primary="의류"/>
             </ListItemButton>
 
-            <ListItemButton sx={{ pl: 4 }}>
-              <ListItemText primary="잡화" />
+            <ListItemButton sx={{ pl: 4 }} onClick={()=>Selecthandler("스포츠")}>
+              <ListItemText primary="스포츠"/>
+            </ListItemButton>
+            
+            <ListItemButton sx={{ pl: 4 }} onClick={()=>Selecthandler("티켓")}>
+              <ListItemText primary="티켓"/>
+            </ListItemButton>
+            
+            <ListItemButton sx={{ pl: 4 }} onClick={()=>Selecthandler("미용")}>
+              <ListItemText primary="미용"/>
+            </ListItemButton>
+
+            <ListItemButton sx={{ pl: 4 }} onClick={()=>Selecthandler("디지털")}>
+              <ListItemText primary="디지털"/>
+            </ListItemButton>
+
+            <ListItemButton sx={{ pl: 4 }} onClick={()=>Selecthandler("인테리어")}>
+              <ListItemText primary="인테리어"/>
+            </ListItemButton>
+            
+            <ListItemButton sx={{ pl: 4 }} onClick={()=>Selecthandler("주방")}>
+              <ListItemText primary="주방"/>
+            </ListItemButton>
+
+            <ListItemButton sx={{ pl: 4 }} onClick={()=>Selecthandler("기타")}>
+              <ListItemText primary="기타"/>
+            </ListItemButton>
+
+            <ListItemButton sx={{ pl: 4 }} onClick={()=>Selecthandler("삽니다")}>
+              <ListItemText primary="삽니다"/>
             </ListItemButton>
           </List>
         </Collapse>
@@ -123,7 +207,12 @@ const TradeAddForm = () => {
 
       <Price>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <TextField 
+          <TextField
+          name="price"
+          value={post.price}
+          type="text"
+          ip="price"
+          onChange={onChangeHandler}
            multiline
            placeholder="가격(선택사항)"
           variant="standard"
@@ -140,6 +229,11 @@ const TradeAddForm = () => {
 
       <Content>
         <TextField
+        name="content"
+        value={post.content}
+        type="text"
+        ip="content"
+        onChange={onChangeHandler}
         placeholder="OO동에 올릴 게시글 내용을 작성해주세요."
         multiline
           variant="standard"
