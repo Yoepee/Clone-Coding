@@ -33,27 +33,28 @@ const SignUp = () => {
 
     const checkPhone = async () => {
         let a = await axios.post("http://3.34.5.30/api/member/chkPhonenum", { value: user.phoneNumber });
-        if (a?.data?.success === true) {
+        // if (a?.data?.success === true) {
             alert(a?.data?.data);
-        } else {
-            alert(a?.data?.data)
-        }
-        console.log(a);
+        // } else {
+        //     alert(a?.data?.data)
+        // }
+        // console.log(a);
     }
 
     const checkName = async () => {
         let a = await axios.post("http://3.34.5.30/api/member/chkNickname", { value: user.nickname });
-        if (a?.data?.success === true) {
+        // if (a?.data?.success === true) {
             alert(a?.data?.data);
-        } else {
-            alert(a?.data?.data)
-        }
-        console.log(a);
+        // } else {
+        //     alert(a?.data?.data)
+        // }
+        // console.log(a);
     }
 
     const signUp = async () => {
         // if (chkphone && chkname && chkpw) {
             let a = await axios.post("http://3.34.5.30/api/member/signup", user);
+
             console.log(a);
             if(a?.data?.success){
                 alert(a?.data?.data)
@@ -61,6 +62,7 @@ const SignUp = () => {
             }else{
                 alert(a?.data?.data)
             }
+
         // }
     }
 
