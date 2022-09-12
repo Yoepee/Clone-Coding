@@ -1,5 +1,5 @@
 // 홈 (판매 게시글)   "http://localhost:3000"
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from "react-router-dom";
@@ -9,48 +9,46 @@ import { __getThing } from "../../redux/modules/thing";
 const Trade = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const thing = useSelector((state)=>state.thing)
+  const thing = useSelector((state) => state.thing)
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(__getThing());
-  },[dispatch])
+  }, [dispatch])
 
   return (
     <>
-    <div style={{display:"relative"}}>
-      <div style={{height:"60px"}}/>
-    {thing?.data?.data?.map((post)=>{
-      return (
-    <TradeContainer key={post.id} onClick={() => {
-      navigate(`/tradedetail/${post.id}`);                  //임시 라우터
-    }}>
-     
-      <ImageBox 
-        width={50}
-        src={post.imgUrl}
-      ></ImageBox>
-      {/* <div style={{ marginLeft: "10px" }}> */}
-        {/* <div style={{ display: "flex", flexDirection: "column" }}> */}
-          <Contet style={{ fontSize: "20px" }}>{post.title}</Contet>
-          <InfoBox>
-            일산동 3분전
-            <div style={{fontWeight:"600"}}>{post.price}</div>
-          </InfoBox>
-          
-        {/* </div> */}
-      {/* </div> */}
-      <LikeBox>
-      {post.numOfChat!==0?
-        <p>💬{post.numOfWish}</p>:null}
-      {post.numOfWish!==0?
-        <p>🤍{post.numOfWish}</p>:null}
-      </LikeBox>
-    </TradeContainer>
-    )})}
-    <Plus>
-      <IconBtn onClick={()=>{navigate("tradeadd")}}><AddIcon/></IconBtn>
-    </Plus>
-    </div>
+      <div style={{ display: "relative" }}>
+        <div style={{ height: "60px" }} />
+        {thing?.data?.data?.map((post) => {
+          return (
+            <TradeContainer key={post.id} onClick={() => {
+              navigate(`/tradedetail/${post.id}`);                  //임시 라우터
+            }}>
+              <div style={{ width: "50%", height: "100px" }}>
+                <ImageBox
+                  src={post.imgUrl}
+                ></ImageBox>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <Contet style={{ fontSize: "20px" }}>{post.title}</Contet>
+                <InfoBox>
+                  일산동 3분전
+                  <div style={{ fontWeight: "600" }}>{post.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원</div>
+                </InfoBox>
+              </div>
+              <LikeBox>
+                {post.numOfChat !== 0 ?
+                  <p>💬{post.numOfWish}</p> : null}
+                {post.numOfWish !== 0 ?
+                  <p>🤍{post.numOfWish}</p> : null}
+              </LikeBox>
+            </TradeContainer>
+          )
+        })}
+        <Plus>
+          <IconBtn onClick={() => { navigate("tradeadd") }}><AddIcon /></IconBtn>
+        </Plus>
+      </div>
     </>
   );
 };
@@ -64,10 +62,7 @@ min-width: auto;
 max-height: auto;
 margin: 15px;
 display: grid ;
-grid-template-areas: 
-'image content content'
-'image infoBox infoBox'
-'image likeBox likeBox';
+grid-template-colunm: 1fr 1fr 1fr
 
 `
 const Contet = styled.div`
@@ -78,7 +73,8 @@ const ImageBox = styled.img`
   grid-area: image;
   object-fit: fill;
   width: 100%;
-  max-height: 100px;
+  height: 100%;
+  border-radius:5px
 `
 
 const LikeBox = styled.div`

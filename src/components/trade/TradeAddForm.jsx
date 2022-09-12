@@ -28,16 +28,15 @@ const TradeAddForm = () => {
   const {id} = useParams();
   var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
   const detail = useSelector((state)=>state.detailThing);
-  const [initialState, setInitial] = useState({
+  const initialState= useState({
     title:"",
     price:"",
     category:"카테고리",
     imageUrl:"",
     content:""
   })
-
   useEffect(()=>{
-    if(id!==undefined)
+    if(id!==undefined){
       dispatch(__getDetailThing(id));
       if(detail?.data?.success===true){
         setPost({
@@ -48,6 +47,10 @@ const TradeAddForm = () => {
           content:detail?.data?.data?.content
         })
       }
+    }
+    else{
+      setPost(initialState);
+    }
   },[dispatch])
   let a;
   const [post, setPost] = useState(initialState);
@@ -103,21 +106,25 @@ const submit = async() =>{
       Authorization: localStorage.getItem("Authorization"),
       RefreshToken: localStorage.getItem("RefreshToken"),
     }})
-  dispatch(createThing(b?.data?.data))
-    navigate("/")
+  // dispatch(createThing(b?.data?.data))
+  setPost(initialState);
+  navigate("/");
   }else{
+    if(!post.imageUrl)
+      setPost({...post,imageUrl:detail?.data?.data?.imageUrl})
     let b = await axios.put(`http://3.34.5.30/api/post/${id}`, post, {
     headers: {
       Authorization: localStorage.getItem("Authorization"),
       RefreshToken: localStorage.getItem("RefreshToken"),
-    }})
-    console.log(b)
+    }});
+    console.log(b);
     if(b?.data?.success===false){
       alert(b?.data?.data);
       return
     }
-    dispatch(updateThing(b?.data?.data))
-    navigate(`/tradedetail/${id}`)
+    // dispatch(updateThing(b?.data?.data));
+    setPost(initialState);
+    navigate(`/tradedetail/${id}`);
   }
 }
 
