@@ -13,5 +13,6 @@ import thing from "./modules/thing"
 export default configureStore({
     reducer: {
       thing:thing.reducer,
+      detailThing:detailThing.reducer
     }
 });

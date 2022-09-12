@@ -21,6 +21,7 @@ import axios from "axios";
 const TradeAddForm = () => {
   const navigate = useNavigate();
   var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
+  let a
 
   const [open, setOpen] = useState(false);
 
@@ -41,18 +42,20 @@ const TradeAddForm = () => {
     // api에서 요구하는 key값과 value값 지정 (key : "image", value: 이미지파일)
     formData.append('image',img);
     // 이미지만 보내면되기때문에 더이상 append하지않고 이미지파일 전송
-    let a = await axios.post("http://3.34.5.30/api/post/image", formData,{
+    a = await axios.post("http://3.34.5.30/api/post/image", formData,{
       headers: {
         Authorization: localStorage.getItem("Authorization"),
         RefreshToken: localStorage.getItem("RefreshToken"),
         "Content-Type": "multipart/form-data"
       }
     });
+    console.log(a);
+    console.log(formData)
     // 사진을 선택하고 사진선택기능 숨기기
     // 폼데이터 들어가는 형식을 보기위한 내용
-    // for (var pair of formData.entries()) {
-    //     console.log(pair[0] + ', ' + pair[1]);
-    // }
+    for (var pair of formData.entries()) {
+        console.log(pair[0] + ', ' + pair[1]);
+    }
 }
 
   return (
