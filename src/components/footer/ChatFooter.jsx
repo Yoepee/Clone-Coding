@@ -2,7 +2,6 @@
 import { useState, use } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { BottomNavigation, BottomNavigationAction, Box } from '@material-ui/core/';
 import AddIcon from '@mui/icons-material/Add';
 import SendIcon from '@mui/icons-material/Send';
 import { makeStyles } from "@material-ui/core/styles"
@@ -31,8 +30,7 @@ const ChatFooter = () => {
     const navigate = useNavigate();
     return (
         <>
-        <div>
-        <ChatFoot>
+        <ChatFoot style={{position:"fixed", width:"100%", bottom:"0"}}>
             <div style={{width:"5%",cursor:"pointer", margin:"10px"}}>
                 <AddIcon/>
             </div>
@@ -49,7 +47,6 @@ const ChatFooter = () => {
                 <SendIcon/>
             </div>
         </ChatFoot>
-        </div>
         </>
     )
 }
