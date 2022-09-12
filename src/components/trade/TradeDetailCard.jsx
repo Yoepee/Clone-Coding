@@ -116,6 +116,7 @@ const TradeDetailCard = () => {
         <br />
         <div>{detail?.data?.data?.content}</div>
         <br />
+        <div>{detail?.data?.data?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원</div>
         {/* 관심, 조회수 인데 채팅수가 왔네유 */}
         <div>관심 {detail?.data?.data?.numOfWish} 채팅 {detail?.data?.data?.numOfChat}</div>
         <br />

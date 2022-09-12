@@ -5,27 +5,46 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import GradingRoundedIcon from '@mui/icons-material/GradingRounded';
 import CropFreeIcon from '@mui/icons-material/CropFree';
-import { AppBar, Toolbar, IconButton, Typography, Box, FormControl,MenuItem} from '@mui/material';
+import { AppBar, Toolbar, IconButton, Typography, Box, FormControl, MenuItem } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Select from '@mui/material/Select';
 
 
-const Header = ({head}) => {
-    const [age, setAge] = useState('');
+const Header = ({ head }) => {
+  const [place, setPlace] = useState("강남동");
+  const [chk, setChk] = useState(false);
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-    return (
-        <>
-        <Box sx={{ flexGrow: 1 }} style={{position:"fixed", width:"100%"}}>
+  return (
+    <>
+      <Box sx={{ flexGrow: 1 }} style={{ position: "fixed", width: "100%" }}>
         <ThemeProvider theme={whiteTheme}>
-        <AppBar position="static" color="primary" 
-        style={{outline:"none", boxShadow:"none", borderBottom:"1.5px solid grey"}}>
+          <AppBar position="static" color="primary"
+            style={{ outline: "none", boxShadow: "none", borderBottom: "1.5px solid grey" }}>
 
-          <Toolbar>
-          <FormControl>
-        <Select
+            <Toolbar>
+              <FormControl>
+                {!chk ?
+                  <div onClick={() => { setChk(!chk) }} style={{cursor:"pointer"}}>{place} ▼</div>
+                  : <>
+                    <div onClick={() => { setChk(!chk) }} style={{cursor:"pointer"}}>{place} ▲</div>
+                    <div style={{
+                      width: "120px",
+                      position: "absolute",
+                      backgroundColor: "white",
+                      top: "35px", left: "-10px",
+                      textAlign: "center",
+                      borderRadius: "5px",
+                      border: "1px solid black"
+                    }}>
+                      <div style={{borderBottom:"1px solid black", padding:"3px", cursor:"pointer"}}
+                      onClick={()=>{setPlace("강남동"); setChk(!chk);}}>강남동</div>
+                      <div style={{borderBottom:"1px solid black", padding:"3px", cursor:"pointer"}}
+                      onClick={()=>{setPlace("태장1동"); setChk(!chk)}}>태장1동</div>
+                      <div style={{ padding:"3px", cursor:"pointer"}}>내 동네 설정</div>
+                    </div>
+                  </>
+                }
+                {/* <Select
           value={age}
           onChange={handleChange}
           displayEmpty
@@ -39,40 +58,40 @@ const Header = ({head}) => {
           <MenuItem value={10}>교동</MenuItem>
           <MenuItem value={20}>입암동</MenuItem>
           <MenuItem value={30}>내 동네 설정</MenuItem>
-        </Select>
-      </FormControl>
-            <Typography
-              variant="h5"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, alignSelf: 'center' }}
-            />
+        </Select> */}
+              </FormControl>
+              <Typography
+                variant="h5"
+                noWrap
+                component="div"
+                sx={{ flexGrow: 1, alignSelf: 'center' }}
+              />
 
-            <IconButton size="large" aria-label="search" color="inherit" style={{margin:"0px 30px 0px 0px"}}>
-              <SearchIcon />
-            </IconButton>
-            <IconButton size="large" aria-label="search" color="inherit" style={{margin:"0px 30px 0px 0px"}}>
-            {head==="home"?
-              <MenuIcon />
-              :head==="post"?
-                <GradingRoundedIcon/>
-                :<CropFreeIcon/>
-            }
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="display more actions"
-              edge="end"
-              color="inherit"
-            >
-              <NotificationsNoneIcon />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
+              <IconButton size="large" aria-label="search" color="inherit" style={{ margin: "0px 30px 0px 0px" }}>
+                <SearchIcon />
+              </IconButton>
+              <IconButton size="large" aria-label="search" color="inherit" style={{ margin: "0px 30px 0px 0px" }}>
+                {head === "home" ?
+                  <MenuIcon />
+                  : head === "post" ?
+                    <GradingRoundedIcon />
+                    : <CropFreeIcon />
+                }
+              </IconButton>
+              <IconButton
+                size="large"
+                aria-label="display more actions"
+                edge="end"
+                color="inherit"
+              >
+                <NotificationsNoneIcon />
+              </IconButton>
+            </Toolbar>
+          </AppBar>
         </ThemeProvider>
       </Box>
-        </>
-    )
+    </>
+  )
 }
 
 export default Header;

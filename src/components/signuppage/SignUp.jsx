@@ -54,8 +54,15 @@ const SignUp = () => {
     const signUp = async () => {
         // if (chkphone && chkname && chkpw) {
             let a = await axios.post("http://3.34.5.30/api/member/signup", user);
-            // console.log(a);
-            navigate("/login");
+
+            console.log(a);
+            if(a?.data?.success){
+                alert(a?.data?.data)
+                navigate("/login");
+            }else{
+                alert(a?.data?.data)
+            }
+
         // }
     }
 
