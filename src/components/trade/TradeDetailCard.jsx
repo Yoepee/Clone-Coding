@@ -21,12 +21,14 @@ const TradeDetailCard = () => {
         <First >
           <ArrowBackIcon
            sx={{ color: "#ffffff",fontSize: 30 }} 
+           style={{margin:"0px 20px 0px 0px"}}
           onClick={() => {
             navigate(-1);
           }}
         />
         <HomeIcon
         sx={{ color: "#ffffff",fontSize: 30 }}
+        style={{margin:"0px 30px 0px 0px"}}
           onClick={() => {
             navigate("/");
           }}
@@ -34,9 +36,10 @@ const TradeDetailCard = () => {
         </First>
        
         <Second>
-        <ShareIcon sx={{ color: "#ffffff",fontSize: 30 }}
+        <ShareIcon sx={{ color: "#ffffff",fontSize: 30 }} 
+        style={{margin:"0px 30px 0px 0px"}}
         />
-        <MenuRoundedIcon sx={{ color: "#ffffff",fontSize: 30 }}/>
+        <MenuRoundedIcon sx={{ color: "#ffffff",fontSize: 30 }} />
         </Second >
       </MenuContainer>
 

@@ -1,27 +1,36 @@
-// 채팅 헤더
-
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import CropFreeIcon from '@mui/icons-material/CropFree';
+//나의 당근 헤더
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
 import { AppBar, Toolbar, IconButton, Typography, Box} from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 
-const ChatHeader = () => {
-    return (
-        <Box sx={{ flexGrow: 1 }} style={{position:"fixed", width:"100%"}}>
+
+const ChattingHeader = () => {
+    const navigate = useNavigate();
+    return  (
+        <Box sx={{ flexGrow: 1 }}>
         <ThemeProvider theme={whiteTheme}>
         <AppBar position="static" color="primary"
         style={{outline:"none", boxShadow:"none", borderBottom:"1.5px solid grey"}}>
           <Toolbar>
+          <IconButton 
+          size="large" 
+          aria-label="search" 
+          color="inherit" 
+          onClick={()=>{navigate(-1)}}>
+              <ArrowBackIosNewIcon/>
+            </IconButton>
             <Typography
               variant="h5"
               noWrap
               component="div"
               sx={{ flexGrow: 1, alignSelf: 'center' }}
             >
-              채팅
             </Typography>
             <IconButton size="large" aria-label="search" color="inherit" style={{margin:"0px 30px 0px 0px"}}>
-              <CropFreeIcon />
+              <CallOutlinedIcon />
             </IconButton>
             <IconButton
               size="large"
@@ -29,7 +38,7 @@ const ChatHeader = () => {
               edge="end"
               color="inherit"
             >
-              <NotificationsNoneIcon />
+              <MoreVertIcon />
             </IconButton>
           </Toolbar>
         </AppBar>
@@ -38,9 +47,8 @@ const ChatHeader = () => {
     )
 }
 
-export default ChatHeader;
+export default ChattingHeader;
 
-  
 const whiteTheme = createTheme({
   palette: {
     primary: {

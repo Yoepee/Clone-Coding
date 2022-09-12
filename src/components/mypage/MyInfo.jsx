@@ -4,10 +4,12 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ShoppingBagRoundedIcon from '@mui/icons-material/ShoppingBagRounded';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ReceiptIcon from '@mui/icons-material/Receipt';
+import bg from "../../img/당근페이.png"
 const MyInfo = () => {
     const navigate = useNavigate();
     return (
         <Infodiv>
+            <div style={{height:"60px"}}/>
             <TradeContainer>
                 <ChatImg
                     width={70}
@@ -24,7 +26,7 @@ const MyInfo = () => {
             border: "2px dashed #ff5722",
             borderRadius:"10px"
             }}>
-                <div>당근페이</div>
+                <LogoImg src={bg}/>
                 <p style={{marginLeft:"auto", marginRight:"10px"}}>중고거래는 이제 당근페이로 해보세요!</p>
             </div>
             <BtnSet>
@@ -98,4 +100,11 @@ width: 70px;
 height: 70px;
 color:#ff5722;
 cursor:pointer;
+`
+
+
+const LogoImg = styled.img`
+width : 110px;
+height: 50px;
+margin-left : 5px;
 `

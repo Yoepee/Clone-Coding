@@ -1,18 +1,33 @@
 // 홈 (판매 게시글)   "http://localhost:3000"
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
+import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from "react-router-dom";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useDispatch, useSelector } from "react-redux";
+import { __getThing } from "../../redux/modules/thing";
+import { positions } from "@mui/system";
 
 const Trade = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const thing = useSelector((state)=>state.thing)
+
+  useEffect(()=>{
+    dispatch(__getThing());
+  },[dispatch])
+
+  // console.log(thing?.data);
   return (
+    <>
+    <div style={{display:"relative"}}>
+      <div style={{height:"60px"}}/>
     <TradeContainer onClick={() => {
       navigate(`/tradedetail/1`);                  //임시 라우터
     }}>
      
       <ImageBox 
         // width={50}
+
         src="https://t1.daumcdn.net/cfile/tistory/202FA7334ED73EDD10"
       ></ImageBox>
       {/* <div style={{ marginLeft: "10px" }}> */}
@@ -27,6 +42,11 @@ const Trade = () => {
       {/* </div> */}
       <LikeBox>🤍1</LikeBox>
     </TradeContainer>
+    <Plus>
+      <IconBtn onClick={()=>{navigate("tradeadd")}}><AddIcon/></IconBtn>
+    </Plus>
+    </div>
+    </>
   );
 };
 
@@ -64,3 +84,21 @@ grid-area: likeBox;
 const InfoBox = styled.div`
  grid-area: infoBox;
 `;
+
+const Plus = styled.div`
+position : fixed;
+bottom : 0;
+right: 5%;
+margin-bottom:80px
+`
+const IconBtn = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:50%;
+background-color: #ff5722;
+width: 50px;
+height: 50px;
+color:white;
+cursor:pointer;
+`

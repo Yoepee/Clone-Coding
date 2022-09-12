@@ -10,9 +10,10 @@ export const __getThing = createAsyncThunk(
         try {
             const data =  await axios.get(`http://3.34.5.30:8080/api/view/post`, {
               headers: {
-                  Authorization: localStorage.getItem('token1'),
-                  RefreshToken: localStorage.getItem('token2'),
+                  authorization: localStorage.getItem('Authorization'),
+                  refreshtoken: localStorage.getItem('RefreshToken'),
             }});
+            console.log(data)
             return thunkAPI.fulfillWithValue(data.data);
           } catch (error) {
             return thunkAPI.rejectWithValue(error);

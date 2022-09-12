@@ -5,6 +5,7 @@ const ChatList = () => {
     const navigate = useNavigate();
     return (
         <Chatdiv>
+            <div style={{height:"60px"}}/>
             <TradeContainer>
                 <ChatImg
                     width={70}

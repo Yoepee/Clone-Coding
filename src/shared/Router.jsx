@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage"
 import MyPage from "../pages/MyPage";
+import IntroPage from "../pages/IntroPage";
 
 import TradeList from "../pages/TradeList"
 import TradeDetail from "../pages/TradeDetail"
@@ -21,12 +22,12 @@ const Router = () => {
     let navigate = useNavigate();
     useEffect(()=>{
         let a = window.location.href.split("/")
-        if(a[a.length-1]!=="login"&&a[a.length-1]!=="signup" ){
-        if(localStorage.getItem("token1")===null){
-            // navigate("/login")
+        if(a[a.length-1]!=="login"&&a[a.length-1]!=="signup" && a[a.length-1]!=="intro" ){
+        if(localStorage.getItem("Authorization")===null){
+            navigate("/intro")
         }
-        if(localStorage.getItem("token2")===null){
-            // navigate("/login")
+        if(localStorage.getItem("RefreshToken")===null){
+            navigate("/intro")
         }
     }
     },[])
@@ -34,6 +35,7 @@ const Router = () => {
         <>
         <Routes>
             <Route path="/" element={<TradeList/>}/>
+            <Route path="/intro" element={<IntroPage/>}/>
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/signup" element={<SignUpPage/>}/>
             <Route path="/tradeadd" element={<TradeAdd/>}/>
