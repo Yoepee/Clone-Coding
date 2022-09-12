@@ -1,6 +1,6 @@
 //http://localhost:3000/tradeadd
 
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -26,6 +26,20 @@ const TradeAddForm = () => {
     setOpen(!open);
   };
 
+
+  const [imageSrc, setImageSrc] = useState("");                //
+
+  const encodeFileToBase64 = (fileBlob) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(fileBlob);
+    return new Promise((resolve) => {
+      reader.onload = () => {
+        setImageSrc(reader.result);
+        resolve();
+      };
+    });
+  };
+
   return (
     <form>
       <IconContainer>
@@ -35,25 +49,33 @@ const TradeAddForm = () => {
           }}
         />
         <h3 style={{ marginLeft: "10px" }}>중고거래 글쓰기</h3>
-        <h3 style={{marginLeft:"auto",color:"#dee2e6"}}>완료</h3>
+        <h3 style={{ marginLeft: "auto", color: "#dee2e6" }}>완료</h3>
       </IconContainer>
 
       <Image>
         <div>
           <IconButton aria-label="upload picture" component="label">
-            <input hidden accept="image/*" type="file" />
+            <input hidden accept="image/*" type="file" onChange={(e) => {
+              encodeFileToBase64(e.target.files[0]);
+            }}/>
             <AddAPhotoIcon />
           </IconButton>
+          <div className="preview">
+            {imageSrc && <img style={{width:"100%"}} src={imageSrc} alt="preview-img" />}
+
+          </div>
         </div>
       </Image>
 
       <Title>
-      <TextField 
-       multiline
-       placeholder="제목" variant="standard"
+        <TextField
+          multiline
+          placeholder="제목"
+          variant="standard"
           InputProps={{
             disableUnderline: true,
-          }}/>
+          }}
+        />
       </Title>
 
       <Category>
@@ -92,13 +114,14 @@ const TradeAddForm = () => {
 
       <Price>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <TextField 
-           multiline
-           placeholder="가격(선택사항)"
-          variant="standard"
-          InputProps={{
-            disableUnderline: true,
-          }}/>
+          <TextField
+            multiline
+            placeholder="가격(선택사항)"
+            variant="standard"
+            InputProps={{
+              disableUnderline: true,
+            }}
+          />
           <FormControlLabel
             style={{ float: "right", marginLeft: "auto" }}
             control={<Checkbox name="gilad" />}
@@ -109,15 +132,16 @@ const TradeAddForm = () => {
 
       <Content>
         <TextField
-        placeholder="OO동에 올릴 게시글 내용을 작성해주세요."
-        multiline
+          placeholder="OO동에 올릴 게시글 내용을 작성해주세요."
+          multiline
           variant="standard"
           InputProps={{
             disableUnderline: true,
           }}
           fullWidth
           // style={{display:"block"}}
-          id="fullWidth" />
+          id="fullWidth"
+        />
       </Content>
     </form>
   );
@@ -131,7 +155,7 @@ const IconContainer = styled.div`
   flex-direction: row;
   min-height: 60px;
   margin: 20px;
-  align-items:center;
+  align-items: center;
 `;
 
 const Image = styled.div`
@@ -168,5 +192,4 @@ const Content = styled.div`
   flex-direction: column;
   min-height: 60px;
   margin: 20px;
-  
 `;
