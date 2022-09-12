@@ -1,6 +1,6 @@
 //http://localhost:3000/tradedetail/1     게시글 상세페이지
-
-import React, {useEffect} from "react";
+import axios from "axios";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SellerCard from "./SellerCard";
@@ -20,9 +20,30 @@ const TradeDetailCard = () => {
   const detail = useSelector((state) =>state.detailThing);
   const {id} = useParams();
 
+  const [chk, setChk] = useState(false);
+
   useEffect(()=>{
     dispatch(__getDetailThing(id))
   },[dispatch])
+
+  const postUpdate = () =>{ 
+    navigate(`/tradeadd/${id}`);
+  }
+  const postRemove = async() =>{
+    if (window.confirm("게시글을 삭제하시겠습니까?") === true) {
+      let a = await axios.delete(`http://3.34.5.30/api/post/${id}`, {
+        headers: {
+            authorization: localStorage.getItem('Authorization'),
+            refreshtoken: localStorage.getItem('RefreshToken'),
+      }});
+      console.log(a);
+      if (a?.data?.success === false) {
+        alert(a?.data?.data)
+        return
+      }
+      navigate("/");
+    } else { return false; }
+  }
 
   return (
     <div>
@@ -51,10 +72,25 @@ const TradeDetailCard = () => {
         />
         <MenuRoundedIcon sx={{ color: "#ffffff",fontSize: 30 }} 
         style={{cursor:"pointer"}}
-        onClick={()=>{}}/>
+        onClick={()=>{setChk(!chk)}}/>
         </Second >
       </MenuContainer>
-
+      {chk?
+        <div style={{width:"120px", 
+        position: "absolute" , 
+        backgroundColor:"white",
+        top:"35px", right:"0",
+        textAlign:"center",
+        borderRadius:"5px"}}>
+          <div style={{borderBottom:"1px solid black", padding:"3px", cursor:"pointer"}}
+          onClick={()=>{postUpdate()}}
+          >게시글 수정</div>
+          <div style={{ padding:"3px", cursor:"pointer"}}
+          onClick={()=>{postRemove()}}
+          >게시글 삭제</div>
+        </div>
+        :null
+      }
       <img
         style={{width:"100%", height: "auto"}}
         src={detail?.data?.data?.imgUrl}
