@@ -49,7 +49,9 @@ const TradeDetailCard = () => {
         <ShareIcon sx={{ color: "#ffffff",fontSize: 30 }} 
         style={{margin:"0px 30px 0px 0px"}}
         />
-        <MenuRoundedIcon sx={{ color: "#ffffff",fontSize: 30 }} />
+        <MenuRoundedIcon sx={{ color: "#ffffff",fontSize: 30 }} 
+        style={{cursor:"pointer"}}
+        onClick={()=>{}}/>
         </Second >
       </MenuContainer>
 

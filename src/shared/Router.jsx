@@ -39,6 +39,7 @@ const Router = () => {
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/signup" element={<SignUpPage/>}/>
             <Route path="/tradeadd" element={<TradeAdd/>}/>
+            <Route path="/tradeadd/:id" element={<TradeAdd/>}/>
             <Route path="/tradedetail/:id" element={<TradeDetail/>}/>
             <Route path="/post" element={<PostPage/>}/>
             <Route path="/postadd" element={<PostAdd/>}/>
