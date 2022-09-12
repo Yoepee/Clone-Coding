@@ -5,7 +5,6 @@ import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __getThing } from "../../redux/modules/thing";
-import { positions } from "@mui/system";
 
 const Trade = () => {
   const navigate = useNavigate();
@@ -16,32 +15,38 @@ const Trade = () => {
     dispatch(__getThing());
   },[dispatch])
 
-  console.log(thing?.data);
   return (
     <>
     <div style={{display:"relative"}}>
       <div style={{height:"60px"}}/>
-    <TradeContainer onClick={() => {
-      navigate(`/tradedetail/1`);                  //임시 라우터
+    {thing?.data?.data?.map((post)=>{
+      return (
+    <TradeContainer key={post.id} onClick={() => {
+      navigate(`/tradedetail/${post.id}`);                  //임시 라우터
     }}>
      
       <ImageBox 
-        // width={50}
-
-        src="https://t1.daumcdn.net/cfile/tistory/202FA7334ED73EDD10"
+        width={50}
+        src={post.imgUrl}
       ></ImageBox>
       {/* <div style={{ marginLeft: "10px" }}> */}
         {/* <div style={{ display: "flex", flexDirection: "column" }}> */}
-          <Contet style={{ fontSize: "20px" }}>에어팟 프로</Contet>
+          <Contet style={{ fontSize: "20px" }}>{post.title}</Contet>
           <InfoBox>
             일산동 3분전
-            <div style={{fontWeight:"600"}}>80,000원</div>
+            <div style={{fontWeight:"600"}}>{post.price}</div>
           </InfoBox>
           
         {/* </div> */}
       {/* </div> */}
-      <LikeBox>🤍1</LikeBox>
+      <LikeBox>
+      {post.numOfChat!==0?
+        <p>💬{post.numOfWish}</p>:null}
+      {post.numOfWish!==0?
+        <p>🤍{post.numOfWish}</p>:null}
+      </LikeBox>
     </TradeContainer>
+    )})}
     <Plus>
       <IconBtn onClick={()=>{navigate("tradeadd")}}><AddIcon/></IconBtn>
     </Plus>
@@ -79,6 +84,7 @@ const ImageBox = styled.img`
 const LikeBox = styled.div`
 margin-left: auto; 
 grid-area: likeBox;
+display:flex;
 `;
 
 const InfoBox = styled.div`

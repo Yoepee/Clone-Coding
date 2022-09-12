@@ -5,18 +5,19 @@ import ShoppingBagRoundedIcon from '@mui/icons-material/ShoppingBagRounded';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import bg from "../../img/당근페이.png"
+
 const MyInfo = () => {
     const navigate = useNavigate();
     return (
         <Infodiv>
             <div style={{height:"60px"}}/>
-            <TradeContainer>
+            <TradeContainer onClick={()=>{navigate("/")}}>
                 <ChatImg
                     width={70}
                     src="https://t1.daumcdn.net/cfile/tistory/202FA7334ED73EDD10"
                 ></ChatImg>
-                <div style={{marginLeft:"20px"}} onClick={()=>{navigate("/chatdetail/:id")}}>
-                    <h3>당근이</h3>
+                <div style={{marginLeft:"20px"}}>
+                    <h3>{localStorage.getItem('name')}</h3>
                     <p>동네이름#코드</p>
                 </div>
               <p style={{marginLeft:"auto"}}><ArrowForwardIosIcon/></p>
