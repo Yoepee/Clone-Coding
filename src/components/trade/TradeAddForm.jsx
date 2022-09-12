@@ -17,7 +17,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { createThing } from "../../redux/modules/thing";
+import { createThing, updateThing } from "../../redux/modules/thing";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { __getDetailThing } from "../../redux/modules/detailThing";
@@ -28,28 +28,30 @@ const TradeAddForm = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|pdf)$/;
-  const detail = useSelector((state) => state.detailThing);
-  const initialState = {
-    title: "",
-    price: "",
-    category: "카테고리",
-    imageUrl: "",
-    content: "",
-  };
 
-  useEffect(() => {
-    if (id !== undefined) dispatch(__getDetailThing());
-  }, [dispatch]);
-  console.log(detail);
-  if (id !== undefined) {
-    initialState = {
-      title: detail?.data?.data?.title,
-      price: detail?.data?.data?.price,
-      category: detail?.data?.data?.category,
-      imageUrl: detail?.data?.data?.imageUrl,
-      content: detail?.data?.data?.content,
-    };
-  }
+  const detail = useSelector((state)=>state.detailThing);
+  const [initialState, setInitial] = useState({
+    title:"",
+    price:"",
+    category:"카테고리",
+    imageUrl:"",
+    content:""
+  })
+
+  useEffect(()=>{
+    if(id!==undefined)
+      dispatch(__getDetailThing(id));
+      if(detail?.data?.success===true){
+        setPost({
+          title:detail?.data?.data?.title,
+          price:detail?.data?.data?.price,
+          category:detail?.data?.data?.category,
+          imageUrl:detail?.data?.data?.imageUrl,
+          content:detail?.data?.data?.content
+        })
+      }
+  },[dispatch])
+
   let a;
   const [post, setPost] = useState(initialState);
   const [open, setOpen] = useState(false);
@@ -100,23 +102,38 @@ const TradeAddForm = () => {
     for (var pair of formData.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     }
-  };
 
-  const Selecthandler = (category) => {
-    setPost({ ...post, category: category });
-    setOpen(!open);
-  };
+}
+const Selecthandler = (category)=>{
+  setPost({...post, category: category})
+  setOpen(!open);
+}
 
-  const submit = async () => {
+const submit = async() =>{
+  if(id===undefined){
     let b = await axios.post("http://3.34.5.30/api/post", post, {
-      headers: {
-        Authorization: localStorage.getItem("Authorization"),
-        RefreshToken: localStorage.getItem("RefreshToken"),
-      },
-    });
-    dispatch(createThing(b?.data?.data));
-    navigate("/");
-  };
+    headers: {
+      Authorization: localStorage.getItem("Authorization"),
+      RefreshToken: localStorage.getItem("RefreshToken"),
+    }})
+  dispatch(createThing(b?.data?.data))
+    navigate("/")
+  }else{
+    let b = await axios.put(`http://3.34.5.30/api/post/${id}`, post, {
+    headers: {
+      Authorization: localStorage.getItem("Authorization"),
+      RefreshToken: localStorage.getItem("RefreshToken"),
+    }})
+    console.log(b)
+    if(b?.data?.success===false){
+      alert(b?.data?.data);
+      return
+    }
+    dispatch(updateThing(b?.data?.data))
+    navigate(`/tradedetail/${id}`)
+  }
+}
+
 
   return (
     <form encType="multipart/form-data">
