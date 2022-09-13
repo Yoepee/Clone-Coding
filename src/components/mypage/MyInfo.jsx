@@ -31,7 +31,7 @@ const MyInfo = () => {
                 <p style={{marginLeft:"auto", marginRight:"10px"}}>중고거래는 이제 당근페이로 해보세요!</p>
             </div>
             <BtnSet>
-                <Btn>
+                <Btn  onClick={()=>{navigate("/saleslist")}}>
                 <label>
                     <IconBtn><ReceiptIcon/></IconBtn>
                     <p>판매내역</p>
