@@ -13,17 +13,26 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import { useDispatch, useSelector } from "react-redux";
 import { __getDetailThing } from "../../redux/modules/detailThing";
 import { DetailsSharp } from "@material-ui/icons";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { __getLike, __Like, __UnLike, ThingLike } from "../../redux/modules/like";
 
 const TradeDetailCard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const detail = useSelector((state) =>state.detailThing);
+  const like = useSelector((state) => state.like);
   const {id} = useParams();
   console.log(detail)
   const [chk, setChk] = useState(false);
+  const [count,setCount] = useState(0);
 
   useEffect(()=>{
-    dispatch(__getDetailThing(id))
+    dispatch(__getDetailThing(id));
+    let a= setTimeout(()=>dispatch(__getLike(id)),1000);
+    return(()=>{
+      clearTimeout(a);
+    })
   },[dispatch])
 
   const postUpdate = () =>{ 
@@ -45,14 +54,48 @@ const TradeDetailCard = () => {
     } else { return false; }
   }
   const createChat = async() => {
-    let a = await axios.post(`http://3.34.5.30/api/chat/${id}`,{roomName:"바보"},{
+    let search = await axios.get(`http://3.34.5.30/api/chat/${id}`, {
+      headers: {
+          authorization: localStorage.getItem('Authorization'),
+          refreshtoken: localStorage.getItem('RefreshToken'),
+    }});
+    if(search?.data?.data === 0){
+    let create = await axios.post(`http://3.34.5.30/api/chat/${id}`,{roomName:localStorage.getItem("name")},{
+      headers: {
+          authorization: localStorage.getItem('Authorization'),
+          refreshtoken: localStorage.getItem('RefreshToken'),
+    }}).then(()=>{
+      navigate(`/chatdetail/${create?.data?.data?.roomId}`);
+    })
+    }else{
+      navigate(`/chatdetail/${search?.data?.data}`);
+    }
+  }
+  const likeThing = async() => {
+    let a = await axios.post(`http://3.34.5.30/api/addwishlist/${id}`,null,{
       headers: {
           authorization: localStorage.getItem('Authorization'),
           refreshtoken: localStorage.getItem('RefreshToken'),
     }})
-    console.log(a);
-}
-
+    if(a?.data?.success){
+      alert(a?.data?.data);
+    }else{
+      alert(a?.data?.data);
+    }
+  }
+  const unlikeThing = async() => {
+    let a = await axios.post(`http://3.34.5.30/api/removewishlist/${id}`,null,{
+      headers: {
+          authorization: localStorage.getItem('Authorization'),
+          refreshtoken: localStorage.getItem('RefreshToken'),
+    }})
+    if(a?.data?.success){
+      alert(a?.data?.data);
+    }else{
+      alert(a?.data?.data);
+    }
+  }
+  console.log(like?.data);
   return (
     <div>
       <MenuContainer>
@@ -103,7 +146,6 @@ const TradeDetailCard = () => {
         style={{width:"100%", height: "auto"}}
         src={detail?.data?.data?.imgUrl}
       ></img>
-      <button onClick={()=>{createChat()}}>채팅방생성</button>
       <Container style={{ display: "flex", flexDirection: "row" }}>
         <AccountCircleIcon
           style={{ width: "50px", height: "50px", marginRight: "10px" }}
@@ -145,6 +187,15 @@ const TradeDetailCard = () => {
         </div>
         <RelationCard />
       </Container>
+      <Plus>
+        {like?.data?.data?
+          <p onClick={()=>{unlikeThing();dispatch(likeThing(false))}}
+          style={{display:"inline-block", marginLeft:"3%", color:"#ff5722"}}><FavoriteIcon/></p>
+          :<p onClick={()=>{likeThing();dispatch(likeThing(false))}}
+          style={{display:"inline-block", marginLeft:"3%"}}><FavoriteBorderIcon/></p>
+        }
+          <IconBtn onClick={()=>{createChat()}}>채팅하기</IconBtn>
+      </Plus>
     </div>
   );
 };
@@ -183,4 +234,27 @@ const Second = styled.div`
   right: 0;
   top: 0;
   display: flex;
+`
+const Plus = styled.div`
+position : fixed;
+width:100%;
+bottom : 0;
+margin-bottom:10px
+justify-content:center;
+align-items:center;
+display:flex;
+background-color:white;
+`
+const IconBtn = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:10px;
+background-color: #ff5722;
+width: 85%;
+height: 50px;
+color:white;
+cursor:pointer;
+float:right;
+margin: 10px;
 `
