@@ -11,12 +11,14 @@ import thing from "./modules/thing"
 import chat from "./modules/chat";
 
 import salesList from "./modules/salesList";
+import like from "./modules/like";
 
 export default configureStore({
     reducer: {
       thing:thing.reducer,
       detailThing:detailThing.reducer,
       salesList:salesList.reducer,
-      chat: chat.reducer
+      chat: chat.reducer,
+      like: like.reducer
     }
 });

@@ -5,6 +5,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __getThing } from "../../redux/modules/thing";
+import { PostAddTwoTone } from "@material-ui/icons";
 
 const Trade = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Trade = () => {
     dispatch(__getThing());
   }, [dispatch])
 
+  console.log(thing)
 
   // console.log(thing?.data);
 
@@ -36,7 +38,10 @@ const Trade = () => {
               <div style={{  marginLeft:"15px", marginTop:"10px"}}>
                 <Contet style={{ fontSize: "20px" }}>{post.title}</Contet>
                 <InfoBox>
-                  일산동 3분전
+                  {post.status==="판매중"?
+                  <p>{post.address} {post.time}</p>
+                  :<p>{post.state} {post.address} {post.time}</p>
+                  }
                   <div style={{ fontWeight: "600" }}>{post.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원</div>
                 </InfoBox>
               </div>

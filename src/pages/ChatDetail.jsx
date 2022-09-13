@@ -82,7 +82,6 @@ const ChatDetail = () => {
                 {!live &&
                     <div>
                         <>Chrome Extension Chatting Application</>
-                        <input className="chatting_urlInput" type='text' placeholder="URL을 입력해주세요" onChange={setChatServerURL} value={serverUrl} />
                         <button className="chatting_connectBtn" onClick={onClickConnectBtn}>연결</button>
                     </div>
                 }
