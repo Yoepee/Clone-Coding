@@ -2,7 +2,6 @@ import ChattingHeader from "../components/header/ChattingHeader";
 import ChatFooter from "../components/footer/ChatFooter"
 import React, { useEffect, useState } from "react";
 // import './Chatting.css'
-import * as SockJS from 'sockjs-client';
 
 
 // 실시간 채팅 페이지
