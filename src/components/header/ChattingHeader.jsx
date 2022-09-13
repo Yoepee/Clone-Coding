@@ -7,8 +7,14 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 
 
-const ChattingHeader = () => {
-    const navigate = useNavigate();
+const ChattingHeader = (onClickDisconnectBtn) => {
+  const navigate= useNavigate();
+  const chatout = () => {
+    if (window.confirm("채팅방을 나가시겠습니까?") === true) {
+      onClickDisconnectBtn();
+      navigate("/chat");
+    } else { return false; }
+  }
     return  (
         <Box sx={{ flexGrow: 1 }}>
         <ThemeProvider theme={whiteTheme}>
@@ -37,6 +43,7 @@ const ChattingHeader = () => {
               aria-label="display more actions"
               edge="end"
               color="inherit"
+              onClick={()=>{chatout()}}
             >
               <MoreVertIcon />
             </IconButton>
