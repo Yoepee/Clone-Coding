@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sales from "./Sales";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { __getSalesList } from "../../redux/modules/salesList";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
@@ -14,22 +12,20 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import styled from "styled-components";
 
 const SalesList = () => {
-  const { salesList } = useSelector((state) => state);
-  // console.log(salesList.data.data);
+  const salesList = useSelector((state) => state.salesList);
 
   const dispatch = useDispatch();
   const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(__getSalesList());
-  }, []);
+  }, [dispatch]);
 
-  const [value, setValue] = React.useState('1');
+  const [value, setValue] = useState('1');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   return (
     <div>
      <Box sx={{ width: '100%', typography: 'body1' }}>
@@ -46,17 +42,23 @@ const SalesList = () => {
           </Tabs>
         </Box>
         <TabPanel value="1">
-          {salesList?.data?.data?.map((list) => {
+        {salesList?.data?.success?
+          salesList?.data?.data?.map((list) => {
         return <Sales list={list} key={list?.id} />;
-      })}
+      })
+      :<p>{salesList?.data?.data}</p>}
       </TabPanel>
         <TabPanel value="2">
+        {salesList?.data?.success?
           <p>상태가 거래완료인 thing 찾아서 map</p>
+        :<p>{salesList?.data?.data}</p>}
       </TabPanel>
         <TabPanel value="3">
-          {/* {salesList?.data?.data?.map((list) => {
+        {salesList?.data?.success?
+          salesList?.data?.data?.map((list) => {
         return <Sales list={list} key={list?.id} />;
-      })} */}
+      })
+      :<p>{salesList?.data?.data}</p>}
       </TabPanel>
       </TabContext>
     </Box>
