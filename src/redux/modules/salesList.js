@@ -13,7 +13,7 @@ export const __getSalesList = createAsyncThunk(
                 refreshtoken: localStorage.getItem('RefreshToken'),
           }});
           return thunkAPI.fulfillWithValue(data.data);
-          console.log(data.data)
+          // console.log(data.data)
         } catch (error) {
           return thunkAPI.rejectWithValue(error);
         }
