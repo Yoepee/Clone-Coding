@@ -4,6 +4,8 @@ import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage"
 import MyPage from "../pages/MyPage";
 import IntroPage from "../pages/IntroPage";
+import Profile from "../pages/Profile";
+import EditFile from "../pages/EditFile";
 
 import TradeList from "../pages/TradeList"
 import TradeDetail from "../pages/TradeDetail"
@@ -47,6 +49,8 @@ const Router = () => {
             <Route path="/chat" element={<ChatPage/>}/>
             <Route path="/chatdetail/:id" element={<ChatDetail/>}/>
             <Route path="/mypage" element={<MyPage/>}/>
+            <Route path="/profile" element={<Profile/>}/>
+            <Route path="/edit" element={<EditFile/>}/>
             <Route path="/location" element={<Location/>}/>
         </Routes>
         </>
