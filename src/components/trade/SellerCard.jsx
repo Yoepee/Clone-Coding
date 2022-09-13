@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const SellerCard = () => {
+
+const SellerCard = ({data}) => {
   return (
     <div style={{display:"flex", alignItems:"center", marginTop:"10px" }}>
     <div>
@@ -15,7 +16,7 @@ const SellerCard = () => {
         <div>가격</div>
       </div>
     </div>
-    
+
     </div>
     
   );

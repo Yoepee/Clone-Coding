@@ -19,7 +19,7 @@ const TradeDetailCard = () => {
   const dispatch = useDispatch();
   const detail = useSelector((state) =>state.detailThing);
   const {id} = useParams();
-
+  console.log(detail)
   const [chk, setChk] = useState(false);
 
   useEffect(()=>{
@@ -136,7 +136,7 @@ const TradeDetailCard = () => {
         <div style={{ fontWeight: "bolder", fontSize: "19px" }}>
           OO님의 판매상품
         </div>
-        <SellerThingList />
+        <SellerThingList id={detail?.data?.data?.sellerId} />                     
       </Container>
 
       <Container>
