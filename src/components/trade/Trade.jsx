@@ -27,12 +27,13 @@ const Trade = () => {
             <TradeContainer key={post.id} onClick={() => {
               navigate(`/tradedetail/${post.id}`);                  //임시 라우터
             }}>
-              <div style={{ width: "50%", height: "100px" }}>
+              <div style={{ height: "100px", alignItems:"center" }}>
                 <ImageBox
                   src={post.imgUrl}
                 ></ImageBox>
               </div>
-              <div style={{ display: "flex", flexDirection: "column" }}>
+              <div>
+              <div style={{  marginLeft:"15px", marginTop:"10px"}}>
                 <Contet style={{ fontSize: "20px" }}>{post.title}</Contet>
                 <InfoBox>
                   일산동 3분전
@@ -44,7 +45,10 @@ const Trade = () => {
                   <p>💬{post.numOfWish}</p> : null}
                 {post.numOfWish !== 0 ?
                   <p>🤍{post.numOfWish}</p> : null}
+                {post.numOfChat===0 && post.numOfWish===0?
+                <p>　</p>:null}
               </LikeBox>
+              </div>
             </TradeContainer>
           )
         })}
@@ -59,14 +63,12 @@ const Trade = () => {
 export default Trade;
 
 const TradeContainer = styled.div`
-border-bottom: 1px solid #dee2e6;
 align-items: center;
 min-width: auto;
 max-height: auto;
-margin: 15px;
-display: grid ;
-grid-template-colunm: 1fr 1fr 1fr
-
+display: grid;
+grid-template-columns: 1fr 2fr;
+border-bottom: 1px solid #dee2e6;
 `
 const Contet = styled.div`
   grid-area: content;
@@ -77,13 +79,15 @@ const ImageBox = styled.img`
   object-fit: fill;
   width: 100%;
   height: 100%;
-  border-radius:5px
+  border-radius:5px;
 `
 
 const LikeBox = styled.div`
-margin-left: auto; 
 grid-area: likeBox;
+width:100%
 display:flex;
+float:right;
+margin-right:10px;
 `;
 
 const InfoBox = styled.div`
