@@ -15,7 +15,6 @@ const BackHeader = () => {
         style={{outline:"none", boxShadow:"none", borderBottom:"1.5px solid grey"}}>
           <Toolbar>
           <IconButton 
-          margin="10px"
           size="large" 
           aria-label="search" 
           color="inherit" 

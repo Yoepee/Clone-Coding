@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({  // style 요소 선언
     }
 
 }));
-const ChatFooter = () => {
+const ChatFooter = ({inputMessage, onEnter, message, sendMessage}) => {
     const classes = useStyles();
     const [chat, setChat] = useState("");
     const navigate = useNavigate();
@@ -37,13 +37,14 @@ const ChatFooter = () => {
             <div style={{width:"85%", height:"100%", textAlign:"center", alignItems:"center", display:"flex"}}>
             <input
             type="text"
-            value={chat}
+            value={message}
             placeholder="메세지를 입력하세요"
             style={{width:"100%",height:"100%", borderRadius:"30px", height:"30px"}}
-            onChange={(e)=>{setChat(e.target.value)}}
+            onChange={inputMessage}
+            onKeyDown={onEnter}
             />
             </div>
-            <div style={{width:"5%", cursor:"pointer", margin:"10px"}}>
+            <div style={{width:"5%", cursor:"pointer", margin:"10px"}} onClick={sendMessage}>
                 <SendIcon/>
             </div>
         </ChatFoot>
