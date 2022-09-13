@@ -3,7 +3,7 @@ import axios from "axios";
 import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import SellerCard from "./SellerCard";
+import SellerThingList from "./SellerThingList";
 import { useNavigate, useParams } from "react-router-dom";
 import RelationCard from "./RelationCard";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -23,7 +23,7 @@ const TradeDetailCard = () => {
   const detail = useSelector((state) =>state.detailThing);
   const like = useSelector((state) => state.like);
   const {id} = useParams();
-
+  console.log(detail)
   const [chk, setChk] = useState(false);
   const [count,setCount] = useState(0);
 
@@ -178,7 +178,7 @@ const TradeDetailCard = () => {
         <div style={{ fontWeight: "bolder", fontSize: "19px" }}>
           OO님의 판매상품
         </div>
-        <SellerCard />
+        <SellerThingList id={detail?.data?.data?.sellerId} />                     
       </Container>
 
       <Container>
