@@ -2,13 +2,17 @@ import { useEffect, useState } from "react"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
+import Address from "./Address";
 
 const SignUp = () => {
     const navigate = useNavigate();
+    const [chkadd, setChkadd] = useState(false);
+    const [addr,setAddr] = useState("");
     const initialState = {
         phoneNumber: "",
         nickname: "",
-        password: ""
+        password: "",
+        address: addr
     }
     const [user, setUser] = useState(initialState)
     const [pw, setPw] = useState("")
@@ -33,28 +37,28 @@ const SignUp = () => {
 
     const checkPhone = async () => {
         let a = await axios.post("http://3.34.5.30/api/member/chkPhonenum", { value: user.phoneNumber });
-        // if (a?.data?.success === true) {
+        if (a?.data?.success === true) {
             alert(a?.data?.data);
-        // } else {
-        //     alert(a?.data?.data)
-        // }
-        // console.log(a);
+        } else {
+            alert(a?.data?.data)
+        }
+        console.log(a);
     }
 
     const checkName = async () => {
         let a = await axios.post("http://3.34.5.30/api/member/chkNickname", { value: user.nickname });
-        // if (a?.data?.success === true) {
+        if (a?.data?.success === true) {
             alert(a?.data?.data);
-        // } else {
-        //     alert(a?.data?.data)
-        // }
-        // console.log(a);
+        } else {
+            alert(a?.data?.data)
+        }
+        console.log(a);
     }
 
     const signUp = async () => {
         // if (chkphone && chkname && chkpw) {
-            let a = await axios.post("http://3.34.5.30/api/member/signup", user);
-
+            console.log({...user, address:addr})
+            let a = await axios.post("http://3.34.5.30/api/member/signup", {...user, address:addr});
             console.log(a);
             if(a?.data?.success){
                 alert(a?.data?.data)
@@ -65,9 +69,10 @@ const SignUp = () => {
 
         // }
     }
-
     return (
-        <Container>
+        <>
+        {!chkadd? <Address setAddr={setAddr} setChkadd={setChkadd} />
+        :<Container>
             <StHeader>회원가입</StHeader>
             <DivInput>
                 <Label>
@@ -119,6 +124,8 @@ const SignUp = () => {
             <StSignBtn onClick={() => { signUp() }}>회원가입</StSignBtn>
             <p style={{ cursor: "pointer" }} onClick={() => { navigate("/intro") }}>취소</p>
         </Container>
+        }
+        </>
     )
 }
 
