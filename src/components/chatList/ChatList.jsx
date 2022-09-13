@@ -1,9 +1,23 @@
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux";
+import { __getChat } from "../../redux/modules/chat";
+import { useEffect } from "react";
+import axios from "axios";
 
 const ChatList = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const chat = useSelector((state)=>state.chat);
+
+    useEffect(()=>{
+        dispatch(__getChat());
+    },[dispatch])
+
+    console.log(chat);
     return (
+        <>
         <Chatdiv>
             <div style={{height:"60px"}}/>
             <TradeContainer>
@@ -16,7 +30,9 @@ const ChatList = () => {
                     <p>코찡님, 노암동 근처에서 다양한 물품들이 ...</p>
                 </div>
             </TradeContainer>
+            
         </Chatdiv>
+        </>
     )
 }
 

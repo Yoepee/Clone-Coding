@@ -44,6 +44,14 @@ const TradeDetailCard = () => {
       navigate("/");
     } else { return false; }
   }
+  const createChat = async() => {
+    let a = await axios.post(`http://3.34.5.30/api/chat/${id}`,{roomName:"바보"},{
+      headers: {
+          authorization: localStorage.getItem('Authorization'),
+          refreshtoken: localStorage.getItem('RefreshToken'),
+    }})
+    console.log(a);
+}
 
   return (
     <div>
@@ -95,7 +103,7 @@ const TradeDetailCard = () => {
         style={{width:"100%", height: "auto"}}
         src={detail?.data?.data?.imgUrl}
       ></img>
-
+      <button onClick={()=>{createChat()}}>채팅방생성</button>
       <Container style={{ display: "flex", flexDirection: "row" }}>
         <AccountCircleIcon
           style={{ width: "50px", height: "50px", marginRight: "10px" }}

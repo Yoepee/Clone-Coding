@@ -8,11 +8,13 @@ import comment from "./modules/commnet"
 
 import detailThing from "./modules/detailThing"
 import thing from "./modules/thing"
+import chat from "./modules/chat";
 
 
 export default configureStore({
     reducer: {
       thing:thing.reducer,
-      detailThing:detailThing.reducer
+      detailThing:detailThing.reducer,
+      chat: chat.reducer
     }
 });
