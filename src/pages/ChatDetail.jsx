@@ -7,8 +7,8 @@ import React, { useEffect, useState } from "react";
 // 실시간 채팅 페이지
 const ChatDetail = () => {
     const initialState={
-        roomId: 1,
-        sender: "asdf",
+        roomId: 5,
+        sender: localStorage.getItem("name"),
         message:""
     }
     // chatting 토클 상태

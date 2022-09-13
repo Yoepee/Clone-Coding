@@ -239,12 +239,13 @@ const Plus = styled.div`
 position : fixed;
 width:100%;
 bottom : 0;
-margin-bottom:10px
+margin-bottom:10px;
 justify-content:center;
 align-items:center;
 display:flex;
 background-color:white;
 `
+
 const IconBtn = styled.div`
 display:flex;
 justify-content:center;
