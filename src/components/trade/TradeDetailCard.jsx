@@ -29,10 +29,10 @@ const TradeDetailCard = () => {
 
   useEffect(()=>{
     dispatch(__getDetailThing(id));
-    let a= setTimeout(()=>dispatch(__getLike(id)),1000);
-    return(()=>{
-      clearTimeout(a);
-    })
+    // let a= setTimeout(()=>dispatch(__getLike(id)),1000);
+    // return(()=>{
+    //   clearTimeout(a);
+    // })
   },[dispatch])
 
   const postUpdate = () =>{ 
@@ -95,7 +95,6 @@ const TradeDetailCard = () => {
       alert(a?.data?.data);
     }
   }
-  console.log(like?.data);
   return (
     <div>
       <MenuContainer>
@@ -178,7 +177,7 @@ const TradeDetailCard = () => {
         <div style={{ fontWeight: "bolder", fontSize: "19px" }}>
           OO님의 판매상품
         </div>
-        <SellerThingList id={detail?.data?.data?.sellerId} />                     
+        <SellerThingList id={detail?.data?.data?.sellerId} />        
       </Container>
 
       <Container>

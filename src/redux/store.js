@@ -21,8 +21,7 @@ export default configureStore({
       detailThing:detailThing.reducer,
       salesList:salesList.reducer,
       chat: chat.reducer,
-      sellerThing:sellerThing.reducer
-
+      sellerThing:sellerThing.reducer,
       like: like.reducer
     }
 });

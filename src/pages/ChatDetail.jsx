@@ -1,14 +1,16 @@
 import ChattingHeader from "../components/header/ChattingHeader";
 import ChatFooter from "../components/footer/ChatFooter"
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 // import './Chatting.css'
 
 
 // 실시간 채팅 페이지
 const ChatDetail = () => {
+    const {id} = useParams();
     const initialState={
-        roomId: 1,
-        sender: "asdf",
+        roomId: id,
+        sender: localStorage.getItem("name"),
         message:""
     }
     // chatting 토클 상태
