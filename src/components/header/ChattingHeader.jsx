@@ -7,7 +7,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 
 
-const ChattingHeader = (onClickDisconnectBtn) => {
+const ChattingHeader = ({onClickDisconnectBtn}) => {
   const navigate= useNavigate();
   const chatout = () => {
     if (window.confirm("채팅방을 나가시겠습니까?") === true) {
