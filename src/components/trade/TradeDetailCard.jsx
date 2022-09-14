@@ -36,9 +36,17 @@ const TradeDetailCard = () => {
   },[dispatch])
 
   const postUpdate = () =>{ 
+    if(localStorage.getItem("name")!==detail?.data?.data?.nickname){
+      alert("본인 게시물만 수정할 수 있습니다.");
+      return;
+    }
     navigate(`/tradeadd/${id}`);
   }
   const postRemove = async() =>{
+    if(localStorage.getItem("name")!==detail?.data?.data?.nickname){
+      alert("본인 게시물만 삭제할 수 있습니다.");
+      return;
+    }
     if (window.confirm("게시글을 삭제하시겠습니까?") === true) {
       let a = await axios.delete(`http://3.34.5.30/api/post/${id}`, {
         headers: {
@@ -186,6 +194,7 @@ const TradeDetailCard = () => {
         </div>
         <RelationCard />
       </Container>
+      {localStorage.getItem("name")!==detail?.data?.data?.nickname?
       <Plus>
         {like?.data?.data?
           <p onClick={()=>{unlikeThing();dispatch(likeThing(false))}}
@@ -195,6 +204,7 @@ const TradeDetailCard = () => {
         }
           <IconBtn onClick={()=>{createChat()}}>채팅하기</IconBtn>
       </Plus>
+      :null}
     </div>
   );
 };
