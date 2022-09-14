@@ -17,6 +17,7 @@ const SalesList = () => {
 // console.log(salesList?.data.data)
   const dispatch = useDispatch();
   const navigate = useNavigate()
+  
   useEffect(() => {
     dispatch(__getSalesList());
   }, [dispatch]);
