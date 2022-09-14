@@ -10,6 +10,7 @@ const TradeList = () => {
             <Header head={"home"} />
             <Trade />
             <Footer foot={0} />
+            <div style={{height:"50px"}}></div>
         </div>
     )
 }
