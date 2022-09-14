@@ -6,11 +6,11 @@ const RelationCard = ({data}) => {
     <div>
       <img
         style={{width:"170px", height:"100px"}}
-        src={data.imgUrl}
+        src={data?.imgUrl}
       ></img>
 
       <div style ={{marginLeft:"15px"}}>
-        <div>{data.title}</div>
+        <div>{data?.title}</div>
         <div>가격</div>
       </div>
     </div>
