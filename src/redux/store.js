@@ -28,7 +28,7 @@ export default configureStore({
       sellerThing:sellerThing.reducer,
       like: like.reducer,
       relationThing:relationThing.reducer,
-      getBuyers:getBuyers.reducer
+      getBuyers:getBuyers.reducer,
       user:user.reducer,
       thing:thing.reducer
 
