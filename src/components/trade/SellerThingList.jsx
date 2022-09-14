@@ -13,7 +13,6 @@ const data = useSelector((state)=>state.sellerThing)
     }
   },[id])
 
-  console.log(data);
   return (
     <div>
       {/* <SellerCard data = {data} key ={data.id} /> */}
