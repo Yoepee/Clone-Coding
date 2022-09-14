@@ -12,7 +12,7 @@ const Profile = () => {
         <Infodiv>
             <div style={{height:"80px"}}/>
 
-            <TradeContainer onClick={()=>{navigate("/")}}>
+            <div style={{display:"flex", marginLeft:"20px"}}>
 
                 <ChatImg width={200}src="https://t1.daumcdn.net/cfile/tistory/202FA7334ED73EDD10"></ChatImg>
 
@@ -21,20 +21,18 @@ const Profile = () => {
                 </div>
 
 
-              <p style={{marginLeft:"auto"}}><ArrowForwardIosIcon/></p>
-            </TradeContainer>
+            </div>
 
 
-
-  
-
-
-            <div style={{display:"flex", 
+            <div onClick={()=>{navigate("/edit")}}  
+            style={{display:"flex", 
             margin:"20px", 
             border: "2px solid #665760",
-            borderRadius:"10px"
+            borderRadius:"10px",
+            cursor:"pointer"
             }}>
-                <p style={{marginLeft:"auto", marginRight:"auto"}}>프로필 수정</p>
+                <p
+                style={{marginLeft:"auto", marginRight:"auto"}}>프로필 수정</p>
             </div>
 
 

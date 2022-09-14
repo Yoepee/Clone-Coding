@@ -11,7 +11,7 @@ const MyInfo = () => {
     return (
         <Infodiv>
             <div style={{height:"60px"}}/>
-            <TradeContainer onClick={()=>{navigate("/")}}>
+            <TradeContainer onClick={()=>{navigate("/profile")}}>
                 <ChatImg
                     width={70}
                     src="https://t1.daumcdn.net/cfile/tistory/202FA7334ED73EDD10"

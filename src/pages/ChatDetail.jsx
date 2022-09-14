@@ -1,24 +1,38 @@
 import ChattingHeader from "../components/header/ChattingHeader";
 import ChatFooter from "../components/footer/ChatFooter"
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { __getChatContent } from "../redux/modules/chatContent";
 // import './Chatting.css'
 
 
 // 실시간 채팅 페이지
 const ChatDetail = () => {
-    const {id} = useParams();
-    const initialState={
-        roomId: id,
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const content = useSelector((state)=>state.chatContent);
+
+    useEffect(()=>{
+        dispatch(__getChatContent(id))
+    },[dispatch])
+
+    useEffect(()=>{
+        onClickConnectBtn();
+    },[])
+
+    console.log(content)
+
+    const { id } = useParams();
+    const initialState = {
+        roomId: Number(id),
         sender: localStorage.getItem("name"),
-        message:""
+        message: ""
     }
     // chatting 토클 상태
     const [live, setLive] = useState(false);
     // 메세지 유저 및 내용
     const [message, setMessage] = useState('');
-    //서버 url
-    const [serverUrl, setServerUrl] = useState('');
     // 서버로 부터 받아온 내용
     const [chat, setChat] = useState([]);
 
@@ -27,29 +41,29 @@ const ChatDetail = () => {
 
     const [mal, setMal] = useState(initialState);
 
-    useEffect(() => { console.log(chat) }, [chat])
+    // useEffect(() => { console.log(chat) }, [chat])
 
     useEffect(() => {
         if (receivedData === '') return;
-        setChat([...chat, { name: "Server", message: receivedData }])
+        setChat([...chat, { name: JSON.parse(receivedData).sender, message: JSON.parse(receivedData).message }]);
     }, [receivedData])
 
     const onClickConnectBtn = () => {
         const sock = new WebSocket('ws://3.34.5.30:8080/ws/chat');
         sock.onmessage = function (e) {
             setReceivedData(e.data)
-            console.log(e.data)
         }
         setSockjs(sock);
-        setChat([...chat, { name: "testUser", message: "님이 입장하셨습니다." }])
+        setChat([...chat, { name: localStorage.getItem("name"), message: "님이 입장하셨습니다." }])
         setLive(true);
     }
     const onClickDisconnectBtn = () => {
         setLive(false);
+        navigate(-1);
     }
     const inputMessage = (e) => {
         setMessage(e.target.value);
-        setMal({...mal, message:e.target.value});
+        setMal({ ...mal, message: e.target.value });
     }
     const onEnter = (e) => {
         if (e.keyCode === 13) {
@@ -58,7 +72,7 @@ const ChatDetail = () => {
     }
     const sendMessage = () => {
         if (message === '') return;
-        setChat([...chat, { name: "testUser", message: message }])
+        // setChat([...chat, { name: "testUser", message: message }])
         console.log(message)
         console.log(sockjs)
         console.log(JSON.stringify(mal))
@@ -66,36 +80,61 @@ const ChatDetail = () => {
         // sockjs.send(message);
         setMessage('');
     }
-    const setChatServerURL = (e) => {
-        setServerUrl(e.target.value);
-    }
     const renderChat = () => {
         // console.log(chat)
-        return chat.map(({ name, message }, index) => (
-            <div key={index}>
-                <>{name}: <>{message}</></>
-            </div>
-        ));
+        return chat.map(({ name, message }, index) => {
+            return (
+                <>
+                    {name === localStorage.getItem("name") ?
+                        <div key={index} style={{ width:"100%" }}>
+                            <div style={{ margin: "10px", maxWidth: "50%", marginLeft: "auto" }}>
+                            <p style={{ width: "100%", float: "right", textAlign:"right" }}>{name}</p>
+                            <p style={{
+                                backgroundColor: "#FF7E36",
+                                color: "white",
+                                maxWidth: "100%",
+                                width: "fit-content",
+                                borderRadius: "10px",
+                                padding: "10px",
+                                float: "right"
+                            }}
+                            >{message}</p>
+                            </div>
+                        </div>
+                        :<div key={index} style={{ width:"100%" }}> 
+                        <div key={index} style={{ margin: "10px", maxWidth: "50%" }}>
+                            <p style={{ margin: "10px" }}>{name}</p>
+                            <p style={{
+                                backgroundColor: "#e0e0e0",
+                                color: "black",
+                                maxWidth: "100%",
+                                width: "fit-content",
+                                borderRadius: "10px",
+                                padding: "10px"
+                            }}
+                            >{message}</p>
+                        </div>
+                        </div>
+                    }
+                </>
+            )
+        });
     }
     return (
         <>
             <ChattingHeader onClickDisconnectBtn={onClickDisconnectBtn} />
             <div className="chatting_container">
-                {!live &&
-                    <div>
-                        <>Chrome Extension Chatting Application</>
-                        <button className="chatting_connectBtn" onClick={onClickConnectBtn}>연결</button>
-                    </div>
-                }
                 {
                     live &&
                     <div>
                         <div className="chatting_Room">
                             <div>{renderChat()}</div>
+                            <div style={{height:"50px"}}></div>
                         </div>
                         <br />
                     </div>
                 }
+                <div style={{height:"50px"}}></div>
                 <ChatFooter inputMessage={inputMessage} onEnter={onEnter} message={message} sendMessage={sendMessage} />
             </div>
         </>)

@@ -9,6 +9,7 @@ const MyPage = () => {
             <MyHeader/>
             <MyInfo/>
             <Footer foot={4}/>
+            <div style={{height:"50px"}}></div>
         </div>
     )
 }
