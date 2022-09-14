@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { useDispatch } from "react-redux";
+
 import {__putChangeIng, __putChangeDone } from "../../redux/modules/salesList";
 import { useSelector } from 'react-redux';
+
 import { useState } from "react";
 import SaleDoneList from "./SaleDoneList";
 
@@ -26,14 +27,17 @@ const changeState = () => {
 
 
 //예약중으로 변경
+
 const data = useSelector((state)=>state.salesList)
 // console.log(data)
+
 const ChangeReserveStatus = () => {
   dispatch(__putChangeIng({id:id, status:"예약중"}))
 }
 //판매중으로 변경
 const ChangeIngStatus = () => {
   dispatch(__putChangeIng({id:id, status:"판매중"}))
+
 }
 
 const toSaleDonePage = () => {
@@ -43,6 +47,7 @@ const toSaleDonePage = () => {
       post:post
     },
   });
+
 }
 
 
@@ -88,6 +93,7 @@ const toSaleDonePage = () => {
         <DoneBox>
           <div 
           onClick={toSaleDonePage}
+
           >거래완료로 변경</div>
         </DoneBox>
       </ChangeBox>

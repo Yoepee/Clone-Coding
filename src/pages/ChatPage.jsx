@@ -9,6 +9,7 @@ const ChatPage = () => {
             <ChatHeader/>
             <ChatList/>
             <Footer foot={3}/>
+            <div style={{height:"50px"}}></div>
         </div>
     )
 }
