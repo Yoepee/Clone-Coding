@@ -7,7 +7,7 @@ export const __getUser = createAsyncThunk(
     "/api/view/post",
     async (payload, thunkAPI) => {
         try {
-            const data =  await axios.get(`http://3.34.5.30:8080/api/view/post`, {
+            const data =  await axios.get(`http://3.34.5.30:8080/api/user`, {
               headers: {
                   authorization: localStorage.getItem('Authorization'),
                   refreshtoken: localStorage.getItem('RefreshToken'),

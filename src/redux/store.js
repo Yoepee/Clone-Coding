@@ -19,7 +19,6 @@ import like from "./modules/like";
 
 export default configureStore({
     reducer: {
-      thing:thing.reducer,
       detailThing:detailThing.reducer,
       salesList:salesList.reducer,
       chat: chat.reducer,
@@ -27,6 +26,7 @@ export default configureStore({
       sellerThing:sellerThing.reducer,
       like: like.reducer,
       relationThing:relationThing.reducer,
-
+      user:user.reducer,
+      thing:thing.reducer
     }
 });
