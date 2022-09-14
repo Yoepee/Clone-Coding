@@ -54,16 +54,22 @@ export const __putChangeIng = createAsyncThunk(
 );
 
 export const __putChangeDone = createAsyncThunk(
-  "api/post/status/${id}",
+  "api/post/status/done/${id}",
   async (payload, thunkAPI) => {
       try {
+
+
+        // console.log(payload)
           const data =  await axios.put(`http://3.34.5.30/api/post/status/done/${payload}`,{status: "판매완료"},{
+
             headers: {
               Authorization: localStorage.getItem("Authorization"),
               RefreshToken: localStorage.getItem("RefreshToken"),
             }} );
-            // console.log(data)
-          return thunkAPI.fulfillWithValue(data.data);
+            console.log(data)
+
+          return thunkAPI.fulfillWithValue(payload);
+
         } catch (error) {
           return thunkAPI.rejectWithValue(error);
         }
@@ -116,21 +122,21 @@ export const salesList = createSlice({
         state.error = action.payload; 
       },
 
-      //  //판매완료로 변경
-      //  [__putChangeDone.pending]: (state) => {
-      //   state.isLoading = true; 
-      // },
-      // [__putChangeDone.fulfilled]: (state, action) => {
-      //   state.isLoading = false; 
-      //   console.log(state.data)
-      //   console.log(action.payload)
-      //   // console.log(state)
-      //   // state.data = action.payload; 
-      // },
-      // [__putChangeDone.rejected]: (state, action) => {
-      //   state.isLoading = false; 
-      //   state.error = action.payload; 
-      // },
+       //판매완료로 변경
+       [__putChangeDone.pending]: (state) => {
+        state.isLoading = true; 
+      },
+      [__putChangeDone.fulfilled]: (state, action) => {
+        state.isLoading = false; 
+        console.log(state.data)
+        console.log(action.payload)
+        // console.log(state)
+        // state.data = action.payload; 
+      },
+      [__putChangeDone.rejected]: (state, action) => {
+        state.isLoading = false; 
+        state.error = action.payload; 
+      },
     },
 })
 
