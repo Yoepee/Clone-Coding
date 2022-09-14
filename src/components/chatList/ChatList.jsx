@@ -3,7 +3,6 @@ import {useNavigate} from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import { __getChat } from "../../redux/modules/chat";
 import { useEffect } from "react";
-import axios from "axios";
 
 const ChatList = () => {
     const navigate = useNavigate();
@@ -51,6 +50,7 @@ const TradeContainer = styled.div`
   max-width: 100%;
   height: 100px;
   border-bottom: 1.5px solid grey;
+  cursor:pointer;
 `;
 
 const ChatImg = styled.img`
