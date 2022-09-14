@@ -3,11 +3,10 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import {__putChangeIng, __putChangeDone } from "../../redux/modules/salesList";
+import {__putChangeIng} from "../../redux/modules/salesList";
 import { useSelector } from 'react-redux';
 
 import { useState } from "react";
-import SaleDoneList from "./SaleDoneList";
 
 
 const Sales = ({ list }) => {
@@ -50,11 +49,6 @@ const toSaleDonePage = () => {
 
 }
 
-
-
-
-
-
   return (
     <div>
       <Container>
@@ -74,9 +68,7 @@ const toSaleDonePage = () => {
       <ChangeBox>
         <IngBox >
 
-          {list.status == "판매중"
-          
-          ?
+          {list.status == "판매중" ?
 
           <div 
           onClick={()=>{ChangeReserveStatus();changeState()}} 

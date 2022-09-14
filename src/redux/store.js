@@ -1,7 +1,7 @@
 import { configureStore} from "@reduxjs/toolkit";
 import user from "./modules/user"
 
-import post from "./modules/post"
+import  getPost from "./modules/post"
 import detailPost from "./modules/detailPost"
 
 import comment from "./modules/commnet"
@@ -30,7 +30,8 @@ export default configureStore({
       relationThing:relationThing.reducer,
       getBuyers:getBuyers.reducer,
       user:user.reducer,
-      thing:thing.reducer
+      thing:thing.reducer,
+      getPost:getPost.reducer,
 
     }
 });

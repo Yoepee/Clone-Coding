@@ -4,7 +4,7 @@ import axios from 'axios';
 // 댓글 받아오는 내용
 // async를 통한 비동기로 데이터를 받아오는 과정 (미들웨어 공부하시면 좋을듯)
 export const __getUser = createAsyncThunk(
-    "/api/view/post",
+    "/api/user",
     async (payload, thunkAPI) => {
         try {
             const data =  await axios.get(`http://3.34.5.30:8080/api/user`, {

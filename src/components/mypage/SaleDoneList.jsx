@@ -7,15 +7,16 @@ import { __getBuyers } from "../../redux/modules/saleDone";
 import { useSelector } from "react-redux";
 
 const SaleDoneList = () => {
-  //게시글 id를 props로 전달받음
+  //게시글 id와 정보를 props로 전달받음
   const location = useLocation();
   const { id, post } = location.state;
-  console.log(id);
-  console.log(post);
 
   //buyers정보 조회
   const buyers = useSelector((state) => state.getBuyers.data.data);
   console.log(buyers);
+
+  console.log(post)
+  console.log(id)
 
   const dispatch = useDispatch();
 
@@ -34,9 +35,10 @@ const SaleDoneList = () => {
           </div>
           {post.list.price}원
         </div>
+        
       </div>
-
-      <SaleDone />
+      {buyers?.map((data)=>{ return <SaleDone postId ={id} data = {data} key={data.roomId} />})}
+      
     </div>
   );
 };
