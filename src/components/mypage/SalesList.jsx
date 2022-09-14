@@ -30,7 +30,7 @@ const SalesList = () => {
   let filterdIngList = salesList?.data?.data?.filter(function (x) {
     return x.status== "판매중"||"예약중";
   });
-  console.log(filterdIngList)
+  // console.log(filterdIngList)
 
   let filterdDoneList = salesList?.data?.data?.filter(function (x) {
     return x.status== "판매완료";

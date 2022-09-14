@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { __putChangeReserve, __putChangeIng, __putChangeDone } from "../../redux/modules/salesList";
+import {__putChangeIng, __putChangeDone } from "../../redux/modules/salesList";
 import { useSelector } from 'react-redux';
 import { useState } from "react";
 
@@ -24,14 +24,14 @@ const changeState = () => {
 
 
 //예약중으로 변경
-const data = useSelector((state)=>state)
-
+const data = useSelector((state)=>state.salesList)
+// console.log(data)
 const ChangeReserveStatus = () => {
-  dispatch(__putChangeReserve(id))
+  dispatch(__putChangeIng({id:id, status:"예약중"}))
 }
 //판매중으로 변경
 const ChangeIngStatus = () => {
-  dispatch(__putChangeIng(id))
+  dispatch(__putChangeIng({id:id, status:"판매중"}))
 }
 
 
