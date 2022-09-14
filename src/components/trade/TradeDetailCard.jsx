@@ -63,44 +63,22 @@ const TradeDetailCard = () => {
       headers: {
           authorization: localStorage.getItem('Authorization'),
           refreshtoken: localStorage.getItem('RefreshToken'),
-    }});
-    if(search?.data?.data === 0){
-    let create = await axios.post(`http://3.34.5.30/api/chat/${id}`,{roomName:localStorage.getItem("name")},{
-      headers: {
-          authorization: localStorage.getItem('Authorization'),
-          refreshtoken: localStorage.getItem('RefreshToken'),
-    }}).then(()=>{
-      navigate(`/chatdetail/${create?.data?.data?.roomId}`);
-    })
-    }else{
-      navigate(`/chatdetail/${search?.data?.data}`);
-    }
+    }}).then(async(search)=>{
+      console.log(search)
+      if(search?.data?.data === 0){
+        let create = await axios.post(`http://3.34.5.30/api/chat/${id}`,{roomName:localStorage.getItem("name")},{
+          headers: {
+              authorization: localStorage.getItem('Authorization'),
+              refreshtoken: localStorage.getItem('RefreshToken'),
+        }}).then((create)=>{
+          navigate(`/chatdetail/${create?.data?.data?.id}`);
+        })
+        }else{
+          navigate(`/chatdetail/${search?.data?.data}`);
+        }
+    });
   }
-  const likeThing = async() => {
-    let a = await axios.post(`http://3.34.5.30/api/addwishlist/${id}`,null,{
-      headers: {
-          authorization: localStorage.getItem('Authorization'),
-          refreshtoken: localStorage.getItem('RefreshToken'),
-    }})
-    if(a?.data?.success){
-      alert(a?.data?.data);
-    }else{
-      alert(a?.data?.data);
-    }
-  }
-  const unlikeThing = async() => {
-    let a = await axios.post(`http://3.34.5.30/api/removewishlist/${id}`,null,{
-      headers: {
-          authorization: localStorage.getItem('Authorization'),
-          refreshtoken: localStorage.getItem('RefreshToken'),
-    }})
-    if(a?.data?.success){
-      alert(a?.data?.data);
-    }else{
-      alert(a?.data?.data);
-    }
-  }
-  console.log(like?.data)
+  
   return (
     <div>
       <MenuContainer>

@@ -84,7 +84,7 @@ const ChatDetail = () => {
         // console.log(chat)
         return chat.map(({ name, message }, index) => {
             return (
-                <>
+                <div key={index}>
                     {name === localStorage.getItem("name") ?
                         <div key={index} style={{ width:"100%" }}>
                             <div style={{ margin: "10px", maxWidth: "50%", marginLeft: "auto" }}>
@@ -116,7 +116,7 @@ const ChatDetail = () => {
                         </div>
                         </div>
                     }
-                </>
+                </div>
             )
         });
     }
