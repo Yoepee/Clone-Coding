@@ -5,6 +5,7 @@ import styled from "styled-components";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SellerThingList from "./SellerThingList";
 import { useNavigate, useParams } from "react-router-dom";
+import RelationCard from "./RelationCard";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import HomeIcon from "@mui/icons-material/Home";
 import ShareIcon from "@mui/icons-material/Share";
@@ -14,11 +15,7 @@ import { __getDetailThing } from "../../redux/modules/detailThing";
 import { DetailsSharp } from "@material-ui/icons";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-
-import RelationThingList from "./RelationThingList";
-
 import { __getLike, __LikeThing, __UnLikeThing } from "../../redux/modules/like";
-
 
 const TradeDetailCard = () => {
   const navigate = useNavigate();
@@ -171,7 +168,7 @@ const TradeDetailCard = () => {
         <div style={{ fontWeight: "bolder", fontSize: "19px" }}>
           OO님, 이건 어때요?
         </div>
-        <RelationThingList />
+        <RelationCard data={detail?.data?.data}/>
       </Container>
       {localStorage.getItem("name")!==detail?.data?.data?.nickname?
       <Plus>
@@ -227,13 +224,12 @@ const Plus = styled.div`
 position : fixed;
 width:100%;
 bottom : 0;
-margin-bottom:10px;
+margin-bottom:10px
 justify-content:center;
 align-items:center;
 display:flex;
 background-color:white;
 `
-
 const IconBtn = styled.div`
 display:flex;
 justify-content:center;

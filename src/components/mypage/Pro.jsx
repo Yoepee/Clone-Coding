@@ -39,13 +39,6 @@ const Profile = () => {
             </div>
             <p style={{marginLeft:"20px"}}>매너온도 : {user?.data?.data?.temperature}</p>
 
-
-
-      
-
-
-
-
             <div style={{display:"flex", 
             margin:"20px", 
             border: "2px #665760",
@@ -86,53 +79,9 @@ const Infodiv = styled.div`
 border-bottom: 2px solid #e0e0e0;
 cursor:pointer;
 `
-const TradeContainer = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 0;
-  padding: 20px;
-  max-width: 100%;
-  height: 100px;
-  cursor:pointer;
-  &:hover{
-    background-color:#eeeeee;
-  }
-`;
 
 const ChatImg = styled.img`
 width: 70px;
 height: 70px;
 border-radius:50%
-`
-
-const BtnSet = styled.div`
-display: grid;
-align-items: center;
-width:100%;
-grid-template-columns: repeat(3, 1fr);
-place-content:center;
-`
-const Btn = styled.div`
-display:flex;
-justify-content:center;
-align-items:center;
-`
-
-const IconBtn = styled.div`
-display:flex;
-justify-content:center;
-align-items:center;
-border-radius:50%;
-background-color: #ffccbc;
-width: 70px;
-height: 70px;
-color:#ff5722;
-cursor:pointer;
-`
-
-
-const LogoImg = styled.img`
-width : 110px;
-height: 50px;
-margin-left : 5px;
 `
