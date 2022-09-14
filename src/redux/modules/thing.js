@@ -23,7 +23,7 @@ export const __getThing = createAsyncThunk(
 // 리덕스를 통한 댓글의 자연스러운 state변화 출력하도록 생성
 // createSlice를 통한 redux 생성 - store에서 사용할 수 있는 내용들을 담고 있음
 export const thing = createSlice({
-    name:"comment",
+    name:"thing",
     initialState: {
         data: [],
         success: false,

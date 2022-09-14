@@ -4,7 +4,7 @@ import axios from 'axios'
 
 // 판매글 목록 받아오는 내용
 export const __getChatContent = createAsyncThunk(
-  "/api/view/sellerproduct/{id}",
+  "/api/chat/message/{id}",
   async (payload, thunkAPI) => {
       try {
           const data =  await axios.get(`http://3.34.5.30:8080/api/chat/message/${payload}`, {
@@ -22,7 +22,7 @@ export const __getChatContent = createAsyncThunk(
 // 리덕스를 통한 댓글의 자연스러운 state변화 출력하도록 생성
 // createSlice를 통한 redux 생성 - store에서 사용할 수 있는 내용들을 담고 있음
 export const chatContent = createSlice({
-  name:"sellerThing",
+  name:"chatContent",
   initialState: {
       data: [],
       success: false,

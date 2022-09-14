@@ -1,12 +1,7 @@
 import styled from "styled-components";
-import {useNavigate} from "react-router-dom"
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ShoppingBagRoundedIcon from '@mui/icons-material/ShoppingBagRounded';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ReceiptIcon from '@mui/icons-material/Receipt';
 
 
-const Edit = () => {
+const Edit = ({name, setName}) => {
     return (
         <Infodiv >
             <div style={{height:"60px"}}/>
@@ -24,15 +19,19 @@ const Edit = () => {
             </div>
 
 
-            <div style={{display:"flex",
-                    marginLeft:"20px",
-                    margin:"20px", 
+            <input 
+            value={name}
+            onChange={(e)=>{setName(e.target.value)}}
+            style={{display:"flex",
+                    marginLeft:"auto",
+                    marginRight:"auto", 
                     border: "2px solid #665760",
-                    borderRadius:"10px"
-            }}>
-                    <p style={{marginLeft:"50px"}}>{localStorage.getItem('name')}</p>
+                    borderRadius:"10px",
+                    width:"95%",
+                    padding:"10px"}}>
+                    {/* <p style={{marginLeft:"50px"}}>{localStorage.getItem('name')}</p> */}
                    
-                </div>
+                </input>
 
 
 
