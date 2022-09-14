@@ -20,8 +20,8 @@ const ChatList = () => {
         <>
         <Chatdiv>
             <div style={{height:"60px"}}/>
-            {chat?.data?.data?.map((item)=>{
-                return (<TradeContainer>
+            {chat?.data?.data?.map((item,i)=>{
+                return (<TradeContainer key={i}>
                     <ChatImg
                         width={70}
                         src="https://t1.daumcdn.net/cfile/tistory/202FA7334ED73EDD10"

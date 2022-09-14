@@ -54,7 +54,7 @@ const ChatDetail = () => {
             setReceivedData(e.data)
         }
         setSockjs(sock);
-        setChat([...chat, { name: localStorage.getItem("name"), message: "님이 입장하셨습니다." }])
+        // setChat([...chat, { name: localStorage.getItem("name"), message: "님이 입장하셨습니다." }])
         setLive(true);
     }
     const onClickDisconnectBtn = () => {
@@ -81,7 +81,7 @@ const ChatDetail = () => {
         setMessage('');
     }
     const renderChat = () => {
-        // console.log(chat)
+        console.log(chat)
         return chat.map(({ name, message }, index) => {
             return (
                 <div key={index}>
@@ -119,6 +119,7 @@ const ChatDetail = () => {
                 </div>
             )
         });
+        
     }
     return (
         <>
@@ -126,16 +127,61 @@ const ChatDetail = () => {
             <div className="chatting_container">
                 {
                     live &&
+                    <>
+                    <div style={{textAlign:"center"}}>
+                        {localStorage.getItem("name")}님이 입장하셨습니다.</div>
                     <div>
-                        <div className="chatting_Room">
+                    <div>
+                        {content?.data?.data?.map((a, i)=>{
+                            return (
+                                <div key={i}>
+                                    {a.type === "구매자" ?
+                                        // <div style={{ width:"100%" }}>
+                                            <div style={{ margin: "10px", maxWidth: "100%", marginLeft: "auto" }}>
+                                            <p style={{ width: "100%", float: "right", textAlign:"right" }}>{a.nickname}</p>
+                                            <p style={{
+                                                backgroundColor: "#FF7E36",
+                                                color: "white",
+                                                maxWidth: "100%",
+                                                width: "fit-content",
+                                                borderRadius: "10px",
+                                                padding: "10px",
+                                                float: "right"
+                                            }}
+                                            >{a.message}</p>
+                                            </div>
+                                        // </div>
+                                        :<div  style={{ width:"100%" }}> 
+                                        <div style={{ margin: "10px", maxWidth: "50%" }}>
+                                            <p style={{ margin: "10px" }}>{a.nickname}</p>
+                                            <p style={{
+                                                backgroundColor: "#e0e0e0",
+                                                color: "black",
+                                                maxWidth: "100%",
+                                                width: "fit-content",
+                                                borderRadius: "10px",
+                                                padding: "10px"
+                                            }}
+                                            >{a.message}</p>
+                                        </div>
+                                        </div>
+                                    }
+                                </div>
+                            )
+                        })
+
+                        }
+                    </div>
+                        <div>
                             <div>{renderChat()}</div>
-                            <div style={{height:"50px"}}></div>
                         </div>
                         <br />
+                        
                     </div>
+                    </>
                 }
-                <div style={{height:"50px"}}></div>
                 <ChatFooter inputMessage={inputMessage} onEnter={onEnter} message={message} sendMessage={sendMessage} />
+                <div style={{height:"50px"}}></div>
             </div>
         </>)
 };

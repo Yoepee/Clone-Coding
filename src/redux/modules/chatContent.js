@@ -6,14 +6,12 @@ import axios from 'axios'
 export const __getChatContent = createAsyncThunk(
   "/api/view/sellerproduct/{id}",
   async (payload, thunkAPI) => {
-    console.log(payload)
       try {
           const data =  await axios.get(`http://3.34.5.30:8080/api/chat/message/${payload}`, {
             headers: {
                 authorization: localStorage.getItem('Authorization'),
                 refreshtoken: localStorage.getItem('RefreshToken'),
           }});
-          console.log(data)
           return thunkAPI.fulfillWithValue(data.data);
         } catch (error) {
           return thunkAPI.rejectWithValue(error);
