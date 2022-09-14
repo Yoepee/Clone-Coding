@@ -2,12 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import MapsUgcOutlinedIcon from "@mui/icons-material/MapsUgcOutlined";
+import { useNavigate } from "react-router-dom";
 
 const PostCard = () => {
+  const navigate = useNavigate();
   return (
     <> 
     
-    <Container>
+    <Container onClick={()=>{navigate("/postdetail/id")}}>
       <LocationBox>동네질문</LocationBox>
       <ContentBox>
         <div style={{color:"orange"}}>Q.</div>
@@ -136,6 +138,7 @@ const Container = styled.div`
   flex-direction: column;
   min-height: 60px;
   padding: 20px;
+  cursor:pointer;
 `;
 
 const LocationBox = styled.div`

@@ -30,7 +30,7 @@ export default configureStore({
       relationThing:relationThing.reducer,
       getBuyers:getBuyers.reducer,
       user:user.reducer,
-      thing:thing.reducer
-
+      thing:thing.reducer,
+      comment:comment.reducer
     }
 });

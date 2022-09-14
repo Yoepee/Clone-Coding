@@ -1,13 +1,15 @@
 // 나의 당근 페이지
 
 import ProEditHeader from "../components/header/ProEditHeader";
-import Pro from "../components/mypage/Edit";
+import  Edit from "../components/mypage/Edit";
+import { useState } from "react";
 
 const EditFile = () => {
+    const [name, setName] = useState(localStorage.getItem("name"))
     return  (
         <div>
-            <ProEditHeader/>
-            <Pro/>
+            <ProEditHeader name={name}/>
+            <Edit name={name} setName={setName}/>
 
         </div>
     )

@@ -4,7 +4,7 @@ import axios from 'axios';
 // 댓글 받아오는 내용
 // async를 통한 비동기로 데이터를 받아오는 과정 (미들웨어 공부하시면 좋을듯)
 export const __getUser = createAsyncThunk(
-    "/api/view/post",
+    "/api/user",
     async (payload, thunkAPI) => {
         try {
             const data =  await axios.get(`http://3.34.5.30:8080/api/user`, {
@@ -30,20 +30,7 @@ export const user = createSlice({
         isLoading: false
       },
     reducers:{
-        // 댓글 작성
-        createUser(state, action){
-          state.data.data.push(action.payload);
-        },
-        // 댓글 삭제
-        removeUser(state, action){
-          let  index = state.data.data.findIndex(post =>  post.id === action.payload);
-			    state.data.data.splice(index,1);
-        },
-        // 댓글 수정
-        updateUser(state, action){
-          let  index = state.data.data.findIndex(post =>  post.id === action.payload.id);
-			    state.data.data.splice(index, 1, action.payload);
-        },
+      
     },
     // 내부에서 동작하는 함수 외 외부에서 선언해준 함수 동작을 보조하는 기능
     extraReducers: {
@@ -60,7 +47,5 @@ export const user = createSlice({
         },
       },
 })
-
-export let {createUser, removeUser, updateUser } = user.actions;
 
 export default user;
