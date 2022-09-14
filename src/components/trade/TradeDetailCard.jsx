@@ -15,7 +15,7 @@ import { __getDetailThing } from "../../redux/modules/detailThing";
 import { DetailsSharp } from "@material-ui/icons";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { __getLike, __Like, __UnLike, ThingLike } from "../../redux/modules/like";
+import { __getLike, __LikeThing, __UnLikeThing } from "../../redux/modules/like";
 
 const TradeDetailCard = () => {
   const navigate = useNavigate();
@@ -23,16 +23,13 @@ const TradeDetailCard = () => {
   const detail = useSelector((state) =>state.detailThing);
   const like = useSelector((state) => state.like);
   const {id} = useParams();
-  console.log(detail)
   const [chk, setChk] = useState(false);
   const [count,setCount] = useState(0);
 
   useEffect(()=>{
     dispatch(__getDetailThing(id));
-    // let a= setTimeout(()=>dispatch(__getLike(id)),1000);
-    // return(()=>{
-    //   clearTimeout(a);
-    // })
+    dispatch(__getLike(id))
+
   },[dispatch])
 
   const postUpdate = () =>{ 
@@ -103,6 +100,7 @@ const TradeDetailCard = () => {
       alert(a?.data?.data);
     }
   }
+  console.log(like?.data)
   return (
     <div>
       <MenuContainer>
@@ -197,9 +195,9 @@ const TradeDetailCard = () => {
       {localStorage.getItem("name")!==detail?.data?.data?.nickname?
       <Plus>
         {like?.data?.data?
-          <p onClick={()=>{unlikeThing();dispatch(likeThing(false))}}
+          <p onClick={()=>{dispatch(__UnLikeThing(id))}}
           style={{display:"inline-block", marginLeft:"3%", color:"#ff5722"}}><FavoriteIcon/></p>
-          :<p onClick={()=>{likeThing();dispatch(likeThing(false))}}
+          :<p onClick={()=>{dispatch(__LikeThing(id))}}
           style={{display:"inline-block", marginLeft:"3%"}}><FavoriteBorderIcon/></p>
         }
           <IconBtn onClick={()=>{createChat()}}>채팅하기</IconBtn>
