@@ -1,5 +1,5 @@
 //판매내역 목록 저장소
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, current  } from "@reduxjs/toolkit";
 import axios from 'axios'
 
 // 판매내역 목록 받아오는 내용
@@ -19,22 +19,7 @@ export const __getSalesList = createAsyncThunk(
         }
   }
 );
-// export const __putChangeReserve = createAsyncThunk(
-//   "api/post/status/${id}",
-//   async (payload, thunkAPI) => {
-//       try {
-//           const data =  await axios.put(`http://3.34.5.30/api/post/status/${payload}`,{status: "예약중"},{
-//             headers: {
-//               Authorization: localStorage.getItem("Authorization"),
-//               RefreshToken: localStorage.getItem("RefreshToken"),
-//             }} );
-//             console.log(data.data)
-//           return thunkAPI.fulfillWithValue(payload);
-//         } catch (error) {
-//           return thunkAPI.rejectWithValue(error);
-//         }
-//   }
-// );
+
 
 export const __putChangeIng = createAsyncThunk(
   "api/post/status/${id}",
@@ -53,17 +38,23 @@ export const __putChangeIng = createAsyncThunk(
   }
 );
 
+
 export const __putChangeDone = createAsyncThunk(
   "api/post/status/${id}",
   async (payload, thunkAPI) => {
       try {
-          const data =  await axios.put(`http://3.34.5.30/api/post/status/done/${payload}`,{status: "판매완료"},{
+
+        // console.log(payload)
+          const data =  await axios.put(`http://3.34.5.30/api/post/status/${payload.id}`,{status: payload.status},{
+
             headers: {
               Authorization: localStorage.getItem("Authorization"),
               RefreshToken: localStorage.getItem("RefreshToken"),
             }} );
             // console.log(data)
-          return thunkAPI.fulfillWithValue(data.data);
+
+          return thunkAPI.fulfillWithValue(payload);
+
         } catch (error) {
           return thunkAPI.rejectWithValue(error);
         }
@@ -93,23 +84,25 @@ export const salesList = createSlice({
       [__getSalesList.fulfilled]: (state, action) => {
         state.isLoading = false; 
         state.data = action.payload;
-        // console.log(state.data.data)
-
       },
       [__getSalesList.rejected]: (state, action) => {
         state.isLoading = false; 
         state.error = action.payload; 
       },
-      
 
-      //판매중으로 변경
+    
+      //상태변경
+
       [__putChangeIng.pending]: (state) => {
         state.isLoading = true; 
       },
       [__putChangeIng.fulfilled]: (state, action) => {
         state.isLoading = false; 
-        let index = state.data.data.findIndex(sale=>sale.id === action.payload.id)
-        state.data.data.splice(index,1,{...state.data.data[index], status:action.payload.status})
+        // console.log(action.payload)
+        let index = state.data.data.findIndex(sale => sale.id === action.payload.id);
+        // console.log(index)
+        state.data.data.splice(index, 1, {...state.data.data[index], status:action.payload.status})
+
       },
       [__putChangeIng.rejected]: (state, action) => {
         state.isLoading = false; 

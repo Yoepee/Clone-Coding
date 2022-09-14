@@ -17,6 +17,8 @@ import relationThing from "./modules/relationThing";
 
 import like from "./modules/like";
 
+import getBuyers from "./modules/saleDone";
+
 export default configureStore({
     reducer: {
       detailThing:detailThing.reducer,
@@ -26,7 +28,9 @@ export default configureStore({
       sellerThing:sellerThing.reducer,
       like: like.reducer,
       relationThing:relationThing.reducer,
+      getBuyers:getBuyers.reducer
       user:user.reducer,
       thing:thing.reducer
+
     }
 });

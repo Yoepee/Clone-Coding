@@ -20,6 +20,7 @@ import ChatPage from "../pages/ChatPage";
 import Location from "../pages/Location";
 
 import SalesList from "../components/mypage/SalesList";
+import SaleDonePage from "../pages/SaleDonePage";
 
 // 페이지별 기능은 페이지 폴더에 방문하여 확인해주세요.
 const Router = () => {
@@ -55,6 +56,7 @@ const Router = () => {
             <Route path="/edit" element={<EditFile/>}/>
             <Route path="/location" element={<Location/>}/>
             <Route path="/saleslist" element={<SalesList/>}/>
+            <Route path="/saledone" element={<SaleDonePage/>}/>
         </Routes>
         </>
     )

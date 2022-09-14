@@ -2,8 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {__putChangeIng } from "../../redux/modules/salesList";
+
+import {__putChangeIng, __putChangeDone } from "../../redux/modules/salesList";
+import { useSelector } from 'react-redux';
+
 import { useState } from "react";
+import SaleDoneList from "./SaleDoneList";
 
 
 const Sales = ({ list }) => {
@@ -15,6 +19,7 @@ const Sales = ({ list }) => {
 const post = {list}
 // console.log(post?.list?.status)
 const id = post?.list?.id
+console.log(id)
 
 const changeState = () => {
   setChange(!change)
@@ -23,13 +28,31 @@ const changeState = () => {
 
 //예약중으로 변경
 
+const data = useSelector((state)=>state.salesList)
+// console.log(data)
+
 const ChangeReserveStatus = () => {
   dispatch(__putChangeIng({id:id, status:"예약중"}))
 }
 //판매중으로 변경
 const ChangeIngStatus = () => {
   dispatch(__putChangeIng({id:id, status:"판매중"}))
+
 }
+
+const toSaleDonePage = () => {
+  navigate('/saledone',{
+    state: {
+      id:id,
+      post:post
+    },
+  });
+
+}
+
+
+
+
 
 
   return (
@@ -50,17 +73,27 @@ const ChangeIngStatus = () => {
       </Container>
       <ChangeBox>
         <IngBox >
-          {list.status === "판매중"?
+
+          {list.status == "판매중"
+          
+          ?
+
           <div 
           onClick={()=>{ChangeReserveStatus();changeState()}} 
-          style={{alignItems:"center",justifyContent:"center", cursor:"pointer"}}>예약중으로 변경</div>: 
-          <div style={{alignItems:"center",justifyContent:"center", cursor:"pointer"}} 
-          onClick={()=>{ChangeIngStatus();changeState()}}>판매중으로 변경</div>}
+          style={{alignItems:"center",justifyContent:"center"}}>예약중으로 변경
+          </div>
+          
+          : 
+
+          <div onClick={()=>{ChangeIngStatus();changeState()}}>판매중으로 변경
+          </div>
+          }
           
         </IngBox>
         <DoneBox>
-          <div style={{alignItems:"center",justifyContent:"center", cursor:"pointer"}}
-          // onClick={()=>{changeStatusDone()}}
+          <div 
+          onClick={toSaleDonePage}
+
           >거래완료로 변경</div>
         </DoneBox>
       </ChangeBox>
