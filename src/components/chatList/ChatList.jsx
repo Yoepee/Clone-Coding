@@ -15,22 +15,26 @@ const ChatList = () => {
         dispatch(__getChat());
     },[dispatch])
 
-    console.log(chat);
+    console.log(chat?.data?.data);
     return (
         <>
         <Chatdiv>
             <div style={{height:"60px"}}/>
-            <TradeContainer>
-                <ChatImg
-                    width={70}
-                    src="https://t1.daumcdn.net/cfile/tistory/202FA7334ED73EDD10"
-                ></ChatImg>
-                <div style={{marginLeft:"40px"}} onClick={()=>{navigate("/chatdetail/:id")}}>
-                    <h3>당근이</h3>
-                    <p>코찡님, 노암동 근처에서 다양한 물품들이 ...</p>
-                </div>
-            </TradeContainer>
-            
+            {chat?.data?.data?.map((item)=>{
+                return (<TradeContainer>
+                    <ChatImg
+                        width={70}
+                        src="https://t1.daumcdn.net/cfile/tistory/202FA7334ED73EDD10"
+                    ></ChatImg>
+                    <div style={{marginLeft:"40px"}} onClick={()=>{navigate(`/chatdetail/${item.id}`)}}>
+                        <h3>{item.nickName}</h3>
+                        <p>{item.message}</p>
+                        <p >{item.lastTime}</p>
+                    </div>
+                </TradeContainer>
+                )
+            })
+            }
         </Chatdiv>
         </>
     )
@@ -39,7 +43,6 @@ const ChatList = () => {
 export default ChatList;
 
 const Chatdiv = styled.div`
-border-bottom: 1.5px solid grey;
 `
 const TradeContainer = styled.div`
   display: flex;
@@ -47,6 +50,7 @@ const TradeContainer = styled.div`
   padding: 20px;
   max-width: 100%;
   height: 100px;
+  border-bottom: 1.5px solid grey;
 `;
 
 const ChatImg = styled.img`

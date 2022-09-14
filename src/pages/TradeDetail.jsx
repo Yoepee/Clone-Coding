@@ -6,7 +6,7 @@ const TradeDetail = () => {
     return  (
         <div>
             <TradeDetailCard />
-
+            <div style={{height:"50px"}}></div>
 
         </div>
     )

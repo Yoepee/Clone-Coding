@@ -9,6 +9,7 @@ import comment from "./modules/commnet"
 import detailThing from "./modules/detailThing"
 import thing from "./modules/thing"
 import chat from "./modules/chat";
+import chatContent from "./modules/chatContent"
 
 import salesList from "./modules/salesList";
 import sellerThing from "./modules/sellerThing";
@@ -22,8 +23,10 @@ export default configureStore({
       detailThing:detailThing.reducer,
       salesList:salesList.reducer,
       chat: chat.reducer,
+      chatContent: chatContent.reducer,
       sellerThing:sellerThing.reducer,
       like: like.reducer,
       relationThing:relationThing.reducer,
+
     }
 });

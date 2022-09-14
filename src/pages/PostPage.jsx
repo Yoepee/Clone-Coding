@@ -9,6 +9,7 @@ const PostPage = () => {
             <Header head={"post"}/>
             <Post />
             <Footer foot={1}/>
+            <div style={{height:"50px"}}></div>
         </div>
     )
 }
