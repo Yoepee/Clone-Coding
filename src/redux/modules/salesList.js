@@ -12,36 +12,35 @@ export const __getSalesList = createAsyncThunk(
                 authorization: localStorage.getItem('Authorization'),
                 refreshtoken: localStorage.getItem('RefreshToken'),
           }});
-          // console.log(data)
+          console.log(data)
           return thunkAPI.fulfillWithValue(data.data);
-          // console.log(data.data)
         } catch (error) {
           return thunkAPI.rejectWithValue(error);
         }
   }
 );
-export const __putChangeReserve = createAsyncThunk(
-  "api/post/status/${id}",
-  async (payload, thunkAPI) => {
-      try {
-          const data =  await axios.put(`http://3.34.5.30/api/post/status/${payload}`,{status: "예약중"},{
-            headers: {
-              Authorization: localStorage.getItem("Authorization"),
-              RefreshToken: localStorage.getItem("RefreshToken"),
-            }} );
-            console.log(data.data)
-          return thunkAPI.fulfillWithValue(data.data.data);
-        } catch (error) {
-          return thunkAPI.rejectWithValue(error);
-        }
-  }
-);
+// export const __putChangeReserve = createAsyncThunk(
+//   "api/post/status/${id}",
+//   async (payload, thunkAPI) => {
+//       try {
+//           const data =  await axios.put(`http://3.34.5.30/api/post/status/${payload}`,{status: "예약중"},{
+//             headers: {
+//               Authorization: localStorage.getItem("Authorization"),
+//               RefreshToken: localStorage.getItem("RefreshToken"),
+//             }} );
+//             console.log(data.data)
+//           return thunkAPI.fulfillWithValue(payload);
+//         } catch (error) {
+//           return thunkAPI.rejectWithValue(error);
+//         }
+//   }
+// );
 
 export const __putChangeIng = createAsyncThunk(
   "api/post/status/${id}",
   async (payload, thunkAPI) => {
       try {
-          const data =  await axios.put(`http://3.34.5.30/api/post/status/${payload}`,{status: "판매중"},{
+          const data =  await axios.put(`http://3.34.5.30/api/post/status/${payload.id}`,{status: payload.status},{
             headers: {
               Authorization: localStorage.getItem("Authorization"),
               RefreshToken: localStorage.getItem("RefreshToken"),
@@ -54,22 +53,22 @@ export const __putChangeIng = createAsyncThunk(
   }
 );
 
-// export const __putChangeDone = createAsyncThunk(
-//   "api/post/status/${id}",
-//   async (payload, thunkAPI) => {
-//       try {
-//           const data =  await axios.put(`http://3.34.5.30/api/post/status/done/${payload}`,{status: "판매완료"},{
-//             headers: {
-//               Authorization: localStorage.getItem("Authorization"),
-//               RefreshToken: localStorage.getItem("RefreshToken"),
-//             }} );
-//             // console.log(data)
-//           return thunkAPI.fulfillWithValue(data.data);
-//         } catch (error) {
-//           return thunkAPI.rejectWithValue(error);
-//         }
-//   }
-// );
+export const __putChangeDone = createAsyncThunk(
+  "api/post/status/${id}",
+  async (payload, thunkAPI) => {
+      try {
+          const data =  await axios.put(`http://3.34.5.30/api/post/status/done/${payload}`,{status: "판매완료"},{
+            headers: {
+              Authorization: localStorage.getItem("Authorization"),
+              RefreshToken: localStorage.getItem("RefreshToken"),
+            }} );
+            // console.log(data)
+          return thunkAPI.fulfillWithValue(data.data);
+        } catch (error) {
+          return thunkAPI.rejectWithValue(error);
+        }
+  }
+);
 
 // 리덕스를 통한 댓글의 자연스러운 state변화 출력하도록 생성
 // createSlice를 통한 redux 생성 - store에서 사용할 수 있는 내용들을 담고 있음
@@ -102,22 +101,6 @@ export const salesList = createSlice({
         state.error = action.payload; 
       },
       
-      //예약중으로 변경
-      [__putChangeReserve.pending]: (state) => {
-        state.isLoading = true; 
-      },
-      [__putChangeReserve.fulfilled]: (state, action) => {
-        state.isLoading = false; 
-        state.data = {success: true, data: '예약중'}
-        console.log(state.data)
-        console.log(action.payload)
-        // console.log(state)
-        // state.data = action.payload; 
-      },
-      [__putChangeReserve.rejected]: (state, action) => {
-        state.isLoading = false; 
-        state.error = action.payload; 
-      },
 
       //판매중으로 변경
       [__putChangeIng.pending]: (state) => {
@@ -125,11 +108,8 @@ export const salesList = createSlice({
       },
       [__putChangeIng.fulfilled]: (state, action) => {
         state.isLoading = false; 
-        console.log(state.data)
-        console.log(action.payload)
-        // state.data = {success: true, data: '판매중'}
-        // console.log(state)
-        // state.data = action.payload; 
+        let index = state.data.data.findIndex(sale=>sale.id === action.payload.id)
+        state.data.data.splice(index,1,{...state.data.data[index], status:action.payload.status})
       },
       [__putChangeIng.rejected]: (state, action) => {
         state.isLoading = false; 

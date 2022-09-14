@@ -27,11 +27,11 @@ const changeState = () => {
 const data = useSelector((state)=>state)
 
 const ChangeReserveStatus = () => {
-  dispatch(__putChangeReserve(id))
+  dispatch(__putChangeIng({id:id, status:"예약중"}))
 }
 //판매중으로 변경
 const ChangeIngStatus = () => {
-  dispatch(__putChangeIng(id))
+  dispatch(__putChangeIng({id:id, status:"판매중"}))
 }
 
 
