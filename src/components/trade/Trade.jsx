@@ -9,11 +9,12 @@ import { __getThing } from "../../redux/modules/thing";
 const Trade = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
   const thing = useSelector((state) => state.thing.data)
 
   useEffect(() => {
     dispatch(__getThing());
-  }, [dispatch])
+  }, [])
   
   console.log(thing?.data)
   return (

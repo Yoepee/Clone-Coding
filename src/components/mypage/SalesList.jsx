@@ -14,8 +14,10 @@ import CompleteCard from "./CompleteCard";
 
 const SalesList = () => {
   const salesList = useSelector((state) => state.salesList);
+
   console.log(salesList);
   console.log(salesList?.data.data);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

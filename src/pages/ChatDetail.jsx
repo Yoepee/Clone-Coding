@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __getChatContent } from "../redux/modules/chatContent";
+import styled from "styled-components";
 // import './Chatting.css'
 
 
@@ -12,19 +13,18 @@ const ChatDetail = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const content = useSelector((state)=>state.chatContent);
+    const { id } = useParams();
+    const content = useSelector((state) => state.chatContent);
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(__getChatContent(id))
-    },[dispatch])
+    }, [dispatch])
 
-    useEffect(()=>{
+    useEffect(() => {
         onClickConnectBtn();
-    },[])
+    }, [])
 
     console.log(content)
-
-    const { id } = useParams();
     const initialState = {
         roomId: Number(id),
         sender: localStorage.getItem("name"),
@@ -87,104 +87,82 @@ const ChatDetail = () => {
             return (
                 <div key={index}>
                     {name === localStorage.getItem("name") ?
-                        <div key={index} style={{ width:"100%" }}>
-                            <div style={{ margin: "10px", maxWidth: "50%", marginLeft: "auto" }}>
-                            <p style={{ width: "100%", float: "right", textAlign:"right" }}>{name}</p>
-                            <p style={{
-                                backgroundColor: "#FF7E36",
-                                color: "white",
-                                maxWidth: "100%",
-                                width: "fit-content",
-                                borderRadius: "10px",
-                                padding: "10px",
-                                float: "right"
-                            }}
-                            >{message}</p>
+                        <div key={index} >
+                            <div style={{ backgroundColor: "white"}}>
+                                <p style={{backgroundColor:"white", marginRight:"10px", textAlign:"right"}}>{name}</p>
+                            </div>
+                            <div style={{backgroundColor:"white", display:"flex", justifyContent:"flex-end"}}>
+                                <p style={{backgroundColor:"#FF7E36",width:"fit-content",textAlign:"right" , padding:"10px", borderRadius:"10px"}}>{message}</p>
                             </div>
                         </div>
-                        :<div key={index} style={{ width:"100%" }}> 
-                        <div key={index} style={{ margin: "10px", maxWidth: "50%" }}>
-                            <p style={{ margin: "10px" }}>{name}</p>
-                            <p style={{
-                                backgroundColor: "#e0e0e0",
-                                color: "black",
-                                maxWidth: "100%",
-                                width: "fit-content",
-                                borderRadius: "10px",
-                                padding: "10px"
-                            }}
-                            >{message}</p>
-                        </div>
+                        : <div key={index} >
+                            <div style={{ backgroundColor: "white" }} >
+                                <p style={{backgroundColor:"white", marginLeft:"10px"}}>{name}</p>
+                            </div>
+                            <div style={{backgroundColor:"white"}}>
+                                <p style={{backgroundColor:"#e0e0e0",width:"fit-content", padding:"10px", borderRadius:"10px", marginLeft:"10px"}}>{message}</p>
+                            </div>
                         </div>
                     }
                 </div>
             )
         });
-        
+
     }
     return (
-        <>
+        <div>
             <ChattingHeader onClickDisconnectBtn={onClickDisconnectBtn} />
-            <div className="chatting_container">
-                {
-                    live &&
-                    <>
-                    <div style={{textAlign:"center"}}>
-                        {localStorage.getItem("name")}님이 입장하셨습니다.</div>
-                    <div>
-                    <div>
-                        {content?.data?.data?.map((a, i)=>{
-                            return (
-                                <div key={i}>
-                                    {a.type === "구매자" ?
-                                        // <div style={{ width:"100%" }}>
-                                            <div style={{ margin: "10px", maxWidth: "100%", marginLeft: "auto" }}>
-                                            <p style={{ width: "100%", float: "right", textAlign:"right" }}>{a.nickname}</p>
-                                            <p style={{
-                                                backgroundColor: "#FF7E36",
-                                                color: "white",
-                                                maxWidth: "100%",
-                                                width: "fit-content",
-                                                borderRadius: "10px",
-                                                padding: "10px",
-                                                float: "right"
-                                            }}
-                                            >{a.message}</p>
+            <div>
+                <div>
+                    {
+                        live &&
+                        <div>
+                            <div style={{ textAlign: "center" }}>
+                                {localStorage.getItem("name")}님이 입장하셨습니다.</div>
+                            <div style={{ backgroundColor: "white", height: "100%", width: "100%" }}>
+                                <div>
+                                    {content?.data?.data?.slice().reverse().map((a, i) => {
+                                        return (
+                                            <div key={i} >
+                                                {a.nickname === localStorage.getItem("name") ?
+                                                    <div>
+                                                        <div style={{ backgroundColor: "white"}}>
+                                                            <p style={{backgroundColor:"white", marginRight:"10px", textAlign:"right"}}>{a.nickname}</p>
+                                                        </div>
+                                                        <div style={{backgroundColor:"white", display:"flex", justifyContent:"flex-end"}}>
+                                                            <p style={{backgroundColor:"#FF7E36",textAlign:"right",width:"fit-content", padding:"10px", borderRadius:"10px", textAlign:"right"}}>{a.message}</p>
+                                                        </div>
+                                                    </div>
+                                                    : <div >
+                                                        <div style={{ backgroundColor: "white" }}>
+                                                            <p style={{backgroundColor:"white", marginLeft:"10px"}}>{a.nickname}</p>
+                                                        </div>
+                                                        <div style={{backgroundColor:"white"}}>
+                                                            <p style={{backgroundColor:"#e0e0e0",width:"fit-content", padding:"10px", borderRadius:"10px", marginLeft:"10px"}}>{a.message}</p>
+                                                        </div>
+                                                    </div>
+                                                }
                                             </div>
-                                        // </div>
-                                        :<div  style={{ width:"100%" }}> 
-                                        <div style={{ margin: "10px", maxWidth: "50%" }}>
-                                            <p style={{ margin: "10px" }}>{a.nickname}</p>
-                                            <p style={{
-                                                backgroundColor: "#e0e0e0",
-                                                color: "black",
-                                                maxWidth: "100%",
-                                                width: "fit-content",
-                                                borderRadius: "10px",
-                                                padding: "10px"
-                                            }}
-                                            >{a.message}</p>
-                                        </div>
-                                        </div>
+                                        )
+                                    })
+
                                     }
                                 </div>
-                            )
-                        })
-
-                        }
-                    </div>
-                        <div>
-                            <div>{renderChat()}</div>
+                                <div>
+                                    <div>{renderChat()}</div>
+                                </div>
+                                <div style={{ height: "50px", backgroundColor: "red", width: "100%" }}></div>
+                            </div>
                         </div>
-                        <br />
-                        
-                    </div>
-                    </>
-                }
+                    }
+                </div>
                 <ChatFooter inputMessage={inputMessage} onEnter={onEnter} message={message} sendMessage={sendMessage} />
-                <div style={{height:"50px"}}></div>
             </div>
-        </>)
+        </div>)
 };
 
 export default ChatDetail;
+
+const MyChat = styled.p`
+text-align:right;
+`

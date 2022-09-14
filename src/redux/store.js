@@ -32,6 +32,6 @@ export default configureStore({
       user:user.reducer,
       thing:thing.reducer,
       getPost:getPost.reducer,
-
+      comment:comment.reducer
     }
 });

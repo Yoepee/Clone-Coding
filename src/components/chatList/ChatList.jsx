@@ -20,12 +20,12 @@ const ChatList = () => {
         <Chatdiv>
             <div style={{height:"60px"}}/>
             {chat?.data?.data?.map((item,i)=>{
-                return (<TradeContainer key={i}>
+                return (<TradeContainer key={i} onClick={()=>{navigate(`/chatdetail/${item.id}`)}}>
                     <ChatImg
                         width={70}
                         src="https://t1.daumcdn.net/cfile/tistory/202FA7334ED73EDD10"
                     ></ChatImg>
-                    <div style={{marginLeft:"40px"}} onClick={()=>{navigate(`/chatdetail/${item.id}`)}}>
+                    <div style={{marginLeft:"40px"}}>
                         <h3>{item.nickName}</h3>
                         <p>{item.message}</p>
                         <p >{item.lastTime}</p>
