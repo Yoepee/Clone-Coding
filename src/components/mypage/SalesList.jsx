@@ -13,10 +13,10 @@ import styled from "styled-components";
 
 const SalesList = () => {
   const salesList = useSelector((state) => state.salesList);
-
+// console.log(salesList)
+// console.log(salesList?.data.data)
   const dispatch = useDispatch();
   const navigate = useNavigate()
-
   useEffect(() => {
     dispatch(__getSalesList());
   }, [dispatch]);
@@ -26,6 +26,18 @@ const SalesList = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  let filterdIngList = salesList?.data?.data?.filter(function (x) {
+    return x.status== "판매중"||"예약중";
+  });
+  console.log(filterdIngList)
+
+  let filterdDoneList = salesList?.data?.data?.filter(function (x) {
+    return x.status== "판매완료";
+  });
+  
+  // console.log(filterdIngList)
+
   return (
     <div>
      <Box sx={{ width: '100%', typography: 'body1' }}>
@@ -42,16 +54,19 @@ const SalesList = () => {
           </Tabs>
         </Box>
         <TabPanel value="1">
-        {salesList?.data?.success?
-          salesList?.data?.data?.map((list) => {
+       {salesList?.data?.success?
+          filterdIngList.map((list) => {
         return <Sales list={list} key={list?.id} />;
       })
       :<p>{salesList?.data?.data}</p>}
+
       </TabPanel>
         <TabPanel value="2">
         {salesList?.data?.success?
-          <p>상태가 거래완료인 thing 찾아서 map</p>
-        :<p>{salesList?.data?.data}</p>}
+          filterdDoneList.map((list) => {
+        return <Sales list={list} key={list?.id} />;
+      })
+      :<p>{salesList?.data?.data}</p>}
       </TabPanel>
         <TabPanel value="3">
         {salesList?.data?.success?

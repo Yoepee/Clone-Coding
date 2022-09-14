@@ -9,6 +9,7 @@ import { __getChatContent } from "../redux/modules/chatContent";
 
 // 실시간 채팅 페이지
 const ChatDetail = () => {
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const content = useSelector((state)=>state.chatContent);

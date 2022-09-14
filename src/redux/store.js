@@ -13,6 +13,7 @@ import chatContent from "./modules/chatContent"
 
 import salesList from "./modules/salesList";
 import sellerThing from "./modules/sellerThing";
+import relationThing from "./modules/relationThing";
 
 import like from "./modules/like";
 
@@ -25,5 +26,7 @@ export default configureStore({
       chatContent: chatContent.reducer,
       sellerThing:sellerThing.reducer,
       like: like.reducer,
+      relationThing:relationThing.reducer,
+
     }
 });

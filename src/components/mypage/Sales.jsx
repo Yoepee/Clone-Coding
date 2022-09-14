@@ -1,11 +1,40 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { __putChangeReserve, __putChangeIng, __putChangeDone } from "../../redux/modules/salesList";
+import { useSelector } from 'react-redux';
+import { useState } from "react";
 
 
 const Sales = ({ list }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const [change, setChange] = useState(true)
   // console.log(list);
+//클릭하면 status를 변경시켜주는 함수를 만들기
+const post = {list}
+// console.log(post?.list?.status)
+const id = post?.list?.id
+
+const changeState = () => {
+  setChange(!change)
+}
+
+
+//예약중으로 변경
+const data = useSelector((state)=>state)
+
+const ChangeReserveStatus = () => {
+  dispatch(__putChangeReserve(id))
+}
+//판매중으로 변경
+const ChangeIngStatus = () => {
+  dispatch(__putChangeIng(id))
+}
+
+
   return (
     <div>
       <Container>
@@ -18,15 +47,23 @@ const Sales = ({ list }) => {
         }} >
           <div>{list.title}</div>
           {/* <div>명륜2동 시간</div> */}
+          {list.status}
           <div>{list.price}원</div>
         </ContentBox>
       </Container>
       <ChangeBox>
         <IngBox >
-          <div style={{alignItems:"center",justifyContent:"center"}}>예약중으로 변경</div>
+          {list.status == "판매중"?
+          <div 
+          onClick={()=>{ChangeReserveStatus();changeState()}} 
+          style={{alignItems:"center",justifyContent:"center"}}>예약중으로 변경</div>: 
+          <div onClick={()=>{ChangeIngStatus();changeState()}}>판매중으로 변경</div>}
+          
         </IngBox>
         <DoneBox>
-          <div>거래완료로 변경</div>
+          <div 
+          // onClick={()=>{changeStatusDone()}}
+          >거래완료로 변경</div>
         </DoneBox>
       </ChangeBox>
     </div>
