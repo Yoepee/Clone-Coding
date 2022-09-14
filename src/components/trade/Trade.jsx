@@ -5,26 +5,23 @@ import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __getThing } from "../../redux/modules/thing";
-import { PostAddTwoTone } from "@material-ui/icons";
 
 const Trade = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const thing = useSelector((state) => state.thing)
+  const thing = useSelector((state) => state.thing.data)
 
   useEffect(() => {
     dispatch(__getThing());
   }, [dispatch])
-
-  // console.log(thing)
-
-  // console.log(thing?.data);
-
+  
+  console.log(thing?.data)
   return (
     <>
       <div style={{ display: "relative" }}>
         <div style={{ height: "60px" }} />
-        {thing?.data?.data?.map((post) => {
+        {/* {Array.isArray(thing)&& */}
+          {thing?.data?.map((post) => {
           return (
             <TradeContainer key={post.id} onClick={() => {
               navigate(`/tradedetail/${post.id}`);                  //임시 라우터
@@ -40,19 +37,22 @@ const Trade = () => {
                 <InfoBox>
                   {post.status==="판매중"?
                   <p>{post.address} {post.time}</p>
-                  :<p>{post.state} {post.address} {post.time}</p>
+                  :<>
+                  <StatusP bg={post.status==="예약중"?"#00B493":"gray"}>{post.status}</StatusP> 
+                  <p>{post.address} {post.time}</p>
+                  </>
                   }
                   <div style={{ fontWeight: "600" }}>{post.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원</div>
                 </InfoBox>
-              </div>
               <LikeBox>
                 {post.numOfChat !== 0 ?
-                  <p>💬{post.numOfWish}</p> : null}
+                  <p>💬{post?.numOfChat}</p> : null}
                 {post.numOfWish !== 0 ?
-                  <p>🤍{post.numOfWish}</p> : null}
+                  <p>🤍{post?.numOfWish}</p> : null}
                 {post.numOfChat===0 && post.numOfWish===0?
                 <p>　</p>:null}
               </LikeBox>
+              </div>
               </div>
             </TradeContainer>
           )
@@ -74,6 +74,7 @@ max-height: auto;
 display: grid;
 grid-template-columns: 1fr 2fr;
 border-bottom: 1px solid #dee2e6;
+cursor:pointer;
 `
 const Contet = styled.div`
   grid-area: content;
@@ -115,4 +116,12 @@ width: 50px;
 height: 50px;
 color:white;
 cursor:pointer;
+`
+
+const StatusP = styled.p`
+background-color:${props=>props.bg}; 
+width:fit-content;
+padding: 2px;
+border-radius:5px;
+color:white
 `
