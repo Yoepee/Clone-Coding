@@ -12,7 +12,7 @@ const Profile = () => {
         <Infodiv>
             <div style={{height:"80px"}}/>
 
-            <TradeContainer onClick={()=>{navigate("/")}}>
+            <div style={{display:"flex"}}>
 
                 <ChatImg width={200}src="https://t1.daumcdn.net/cfile/tistory/202FA7334ED73EDD10"></ChatImg>
 
@@ -21,8 +21,7 @@ const Profile = () => {
                 </div>
 
 
-              <p style={{marginLeft:"auto"}}><ArrowForwardIosIcon/></p>
-            </TradeContainer>
+            </div>
 
 
 
