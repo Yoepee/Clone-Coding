@@ -16,7 +16,7 @@ const Trade = () => {
     dispatch(__getThing());
   }, [dispatch])
 
-  console.log(thing)
+  // console.log(thing)
 
   // console.log(thing?.data);
 
@@ -89,7 +89,7 @@ const ImageBox = styled.img`
 
 const LikeBox = styled.div`
 grid-area: likeBox;
-width:100%
+width:100%;
 display:flex;
 float:right;
 margin-right:10px;

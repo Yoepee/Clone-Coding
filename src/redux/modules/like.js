@@ -13,7 +13,7 @@ export const __getLike = createAsyncThunk(
                   authorization: localStorage.getItem('Authorization'),
                   refreshtoken: localStorage.getItem('RefreshToken'),
             }});
-            console.log(data)
+            // console.log(data)
             return thunkAPI.fulfillWithValue(data.data);
           } catch (error) {
             return thunkAPI.rejectWithValue(error);

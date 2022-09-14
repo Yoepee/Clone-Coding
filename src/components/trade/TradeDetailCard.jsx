@@ -5,7 +5,6 @@ import styled from "styled-components";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SellerThingList from "./SellerThingList";
 import { useNavigate, useParams } from "react-router-dom";
-import RelationCard from "./RelationCard";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import HomeIcon from "@mui/icons-material/Home";
 import ShareIcon from "@mui/icons-material/Share";
@@ -16,6 +15,7 @@ import { DetailsSharp } from "@material-ui/icons";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { __getLike, __Like, __UnLike, ThingLike } from "../../redux/modules/like";
+import RelationThingList from "./RelationThingList";
 
 const TradeDetailCard = () => {
   const navigate = useNavigate();
@@ -29,10 +29,10 @@ const TradeDetailCard = () => {
 
   useEffect(()=>{
     dispatch(__getDetailThing(id));
-    let a= setTimeout(()=>dispatch(__getLike(id)),1000);
-    return(()=>{
-      clearTimeout(a);
-    })
+    // let a= setTimeout(()=>dispatch(__getLike(id)),1000);
+    // return(()=>{
+    //   clearTimeout(a);
+    // })
   },[dispatch])
 
   const postUpdate = () =>{ 
@@ -95,7 +95,6 @@ const TradeDetailCard = () => {
       alert(a?.data?.data);
     }
   }
-  console.log(like?.data);
   return (
     <div>
       <MenuContainer>
@@ -178,14 +177,14 @@ const TradeDetailCard = () => {
         <div style={{ fontWeight: "bolder", fontSize: "19px" }}>
           OO님의 판매상품
         </div>
-        <SellerThingList id={detail?.data?.data?.sellerId} />                     
+        <SellerThingList id={detail?.data?.data?.sellerId} />        
       </Container>
 
       <Container>
         <div style={{ fontWeight: "bolder", fontSize: "19px" }}>
           OO님, 이건 어때요?
         </div>
-        <RelationCard />
+        <RelationThingList />
       </Container>
       <Plus>
         {like?.data?.data?

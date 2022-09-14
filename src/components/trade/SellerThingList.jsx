@@ -1,31 +1,29 @@
-import React from 'react'
-import SellerCard from './SellerCard';
+import React from "react";
+import SellerCard from "./SellerCard";
 import { __getSellerThing } from "../../redux/modules/sellerThing";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
-const SellerThingList = ({id}) => {
-const user = {id}
-console.log(id)
-const sellerId = user.id
-console.log(sellerId)
+const SellerThingList = ({ id }) => {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.sellerThing.data);
+  useEffect(() => {
+    if (id !== undefined) {
+      dispatch(__getSellerThing(id));
+    }
+  }, [id]);
 
-const data = useState((state)=>state)
-// console.log(data)
+  // console.log(data);
+  const dataiList = data?.data?.slice(0,4)
+  console.log(dataiList)
 
-  const dispatch = useDispatch()
-
-  useEffect(()=>{
-    console.log(sellerId)
-    setTimeout(()=>{dispatch(__getSellerThing(sellerId))},1000) 
-  },[id])
-  
   return (
-    <div>
-      {/* <SellerCard data = {data} key ={data.id} /> */}
+    <div style={{ display: "flex" }}>
+      {dataiList?.map((data) => {
+        return <SellerCard data={data} key={data?.id} />;
+      })}
     </div>
-  )
-}
+  );
+};
 
-export default SellerThingList
+export default SellerThingList;
