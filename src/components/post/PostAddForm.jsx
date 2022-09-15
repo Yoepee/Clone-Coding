@@ -34,7 +34,7 @@ const PostAddForm = () => {
 
     for (let i = 0; i < img.length; i++) {
       formData.append("image", img[i]); // 반복문을 활용하여 파일들을 formData 객체에 추가한다
-      a = await axios.post(process.env.REACT_APP_DANG_GEUN+"/api/post/image", formData, {
+      a = await axios.post(process.env.REACT_APP_DANG_GEUN + "/api/post/image", formData, {
         headers: {
           Authorization: localStorage.getItem("Authorization"),
           RefreshToken: localStorage.getItem("RefreshToken"),
@@ -49,7 +49,7 @@ const PostAddForm = () => {
 
 
   const onSubmit = () => {
-    dispatch(__addtPost({imageUrl,content}));
+    dispatch(__addtPost({ imageUrl, content }));
     navigate("/post")
   }
 
@@ -61,17 +61,18 @@ const PostAddForm = () => {
           flexDirection: "row",
           alignItems: "center",
           borderBottom: "1px solid #dee2e6",
+          justifyContent:"space-between"
         }}
       >
-        <ArrowBackIcon
-          onClick={() => {
-            navigate(-1);
-          }}
-        />
-        <h4>동네생활 글쓰기</h4>
-        <div style={{fontSize:"18px", color:"gray"}} 
-        onClick={onSubmit}
-        >완료</div>
+        <div style={{ display: "flex", fontSize: "20px", fontWeight: "bold" }}>
+          <p onClick={() => {navigate(-1);}}><ArrowBackIcon/></p>
+          <p>동네생활 글쓰기</p>
+        </div>
+        <div style={{float:"right", display:"inline-block"}}>
+          <p style={{ fontSize: "18px", color: "gray"}}
+            onClick={onSubmit}
+          >완료</p>
+        </div>
       </Content>
       <Content
         style={{
@@ -85,7 +86,7 @@ const PostAddForm = () => {
           name="content"
           type="text"
           ip="content"
-          onChange={(e)=>{setContent(e.target.value)}}
+          onChange={(e) => { setContent(e.target.value) }}
           placeholder="OO동에 올릴 게시글 내용을 작성해주세요."
           multiline
           variant="standard"
@@ -96,20 +97,20 @@ const PostAddForm = () => {
           // style={{display:"block"}}
           id="fullWidth"
         />
-        </Content>
-        <Imgbox >
+      </Content>
+      <Imgbox >
         <div>
           <IconButton aria-label="upload picture" component="label">
-            <input hidden 
-            multiple 
-            accept="image/*" type="file" onChange={onChange}/>
+            <input hidden
+              multiple
+              accept="image/*" type="file" onChange={onChange} />
             <AddAPhotoIcon />
-          <img width={50} src={imageUrl}></img>
+            <img width={50} src={imageUrl}></img>
           </IconButton>
-          
+
         </div>
-        </Imgbox>
-      
+      </Imgbox>
+
     </form>
   );
 };
