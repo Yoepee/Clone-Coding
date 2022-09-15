@@ -18,6 +18,8 @@ import relationThing from "./modules/relationThing";
 import like from "./modules/like";
 
 import getBuyers from "./modules/saleDone";
+import purchase from "./modules/purchase";
+import wish from "./modules/wish"
 
 export default configureStore({
     reducer: {
@@ -32,6 +34,8 @@ export default configureStore({
       user:user.reducer,
       thing:thing.reducer,
       getPost:getPost.reducer,
-      comment:comment.reducer
+      comment:comment.reducer,
+      purchase: purchase.reducer,
+      wish:wish.reducer,
     }
 });

@@ -59,14 +59,14 @@ const TradeDetailCard = () => {
     } else { return false; }
   }
   const createChat = async() => {
-    let search = await axios.get(`http://3.34.5.30/api/chat/${id}`, {
+    let search = await axios.get(process.env.REACT_APP_DANG_GEUN+`/api/chat/${id}`, {
       headers: {
           authorization: localStorage.getItem('Authorization'),
           refreshtoken: localStorage.getItem('RefreshToken'),
     }}).then(async(search)=>{
       console.log(search)
       if(search?.data?.data === 0){
-        let create = await axios.post(`http://3.34.5.30/api/chat/${id}`,{roomName:localStorage.getItem("name")},{
+        let create = await axios.post(process.env.REACT_APP_DANG_GEUN+`/api/chat/${id}`,{roomName:localStorage.getItem("name")},{
           headers: {
               authorization: localStorage.getItem('Authorization'),
               refreshtoken: localStorage.getItem('RefreshToken'),

@@ -22,14 +22,12 @@ const PostAddForm = () => {
   let a;
   const [imageUrl, setImageUrl] = useState();
   const [content, setContent] = useState();
-  // console.log(imageUrl)
-  // console.log(content)
+
 
 
   const onChange = async (e) => {
     // input file에서 선택된 file을 img로 지정
     const img = e.target.files;
-    console.log(img);
     // 폼데이터 형식 선언
     const formData = new FormData();
     // api에서 요구하는 key값과 value값 지정 (key : "image", value: 이미지파일)
@@ -37,7 +35,7 @@ const PostAddForm = () => {
 
     for (let i = 0; i < img.length; i++) {
       formData.append("image", img[i]); // 반복문을 활용하여 파일들을 formData 객체에 추가한다
-      a = await axios.post("http://3.34.5.30/api/post/image", formData, {
+      a = await axios.post(process.env.REACT_APP_DANG_GEUN + "/api/post/image", formData, {
         headers: {
           Authorization: localStorage.getItem("Authorization"),
           RefreshToken: localStorage.getItem("RefreshToken"),
@@ -45,9 +43,6 @@ const PostAddForm = () => {
         },
       });
     }
-    console.log(a);
-    console.log(formData);
-
     setImageUrl(a.data?.data);
     // 사진을 선택하고 사진선택기능 숨기기
     // 폼데이터 들어가는 형식을 보기위한 내용
@@ -55,6 +50,7 @@ const PostAddForm = () => {
 
 
   const onSubmit = () => {
+
     if(content == null ) {
       alert("내용을 입력해주세요")
     } else{
@@ -71,21 +67,20 @@ const PostAddForm = () => {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          borderBottom: "1px solid #dee2e6"
+
+          borderBottom: "1px solid #dee2e6",
+          justifyContent:"space-between"
         }}
       >
-        <div style={{display:"flex", float: "left", alignItems:"center"}}>
-          <ArrowBackIcon
-          onClick={() => {
-            navigate(-1);
-          }}
-        />
-        <h4 >동네생활 글쓰기</h4>
+        <div style={{ display: "flex", fontSize: "20px", fontWeight: "bold" }}>
+          <p onClick={() => {navigate(-1);}}><ArrowBackIcon/></p>
+          <p>동네생활 글쓰기</p>
         </div>
-        
-        <div style={{fontSize:"18px", color:"gray", float:"right", display:"inlineBlock"}} 
-        onClick={onSubmit}
-        >완료</div>
+        <div style={{float:"right", display:"inline-block"}}>
+          <p style={{ fontSize: "18px", color: "gray"}}
+            onClick={onSubmit}
+          >완료</p>
+        </div>
       </Content>
       <Content
         style={{
@@ -100,7 +95,7 @@ const PostAddForm = () => {
           name="content"
           type="text"
           ip="content"
-          onChange={(e)=>{setContent(e.target.value)}}
+          onChange={(e) => { setContent(e.target.value) }}
           placeholder="OO동에 올릴 게시글 내용을 작성해주세요."
           multiline
           variant="standard"
@@ -111,20 +106,20 @@ const PostAddForm = () => {
           // style={{display:"block"}}
           id="fullWidth"
         />
-        </Content>
-        <Imgbox >
+      </Content>
+      <Imgbox >
         <div>
           <IconButton aria-label="upload picture" component="label">
-            <input hidden 
-            multiple 
-            accept="image/*" type="file" onChange={onChange}/>
+            <input hidden
+              multiple
+              accept="image/*" type="file" onChange={onChange} />
             <AddAPhotoIcon />
-          <img width={50} src={imageUrl}></img>
+            <img width={50} src={imageUrl}></img>
           </IconButton>
-          
+
         </div>
-        </Imgbox>
-      
+      </Imgbox>
+
     </form>
   );
 };

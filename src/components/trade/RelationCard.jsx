@@ -11,7 +11,7 @@ const RelationCard = ({data}) => {
 
       <div style ={{marginLeft:"15px"}}>
         <div>{data?.title}</div>
-        <div>가격</div>
+        <div>{data?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</div>
       </div>
     </div>
 

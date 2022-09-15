@@ -16,7 +16,6 @@ const Trade = () => {
     dispatch(__getThing());
   }, [])
   
-  console.log(thing?.data)
   return (
     <>
       <div style={{ display: "relative" }}>

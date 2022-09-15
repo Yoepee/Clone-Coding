@@ -50,7 +50,7 @@ const ChatDetail = () => {
     }, [receivedData])
 
     const onClickConnectBtn = () => {
-        const sock = new WebSocket('ws://3.34.5.30:8080/ws/chat');
+        const sock = new WebSocket(process.env.REACT_APP_CHAT_HOST);
         sock.onmessage = function (e) {
             setReceivedData(e.data)
         }
@@ -74,15 +74,14 @@ const ChatDetail = () => {
     const sendMessage = () => {
         if (message === '') return;
         // setChat([...chat, { name: "testUser", message: message }])
-        console.log(message)
-        console.log(sockjs)
-        console.log(JSON.stringify(mal))
+        // console.log(message)
+        // console.log(sockjs)
+        // console.log(JSON.stringify(mal))
         sockjs.send(JSON.stringify(mal));
         // sockjs.send(message);
         setMessage('');
     }
     const renderChat = () => {
-        console.log(chat)
         return chat.map(({ name, message }, index) => {
             return (
                 <div key={index}>
@@ -116,7 +115,7 @@ const ChatDetail = () => {
                 <div>
                     {
                         live &&
-                        <div>
+                        <div style={{flexDirection:"column-reverse", overflowY:"auto", height:"90vh", }}>
                             <div style={{ textAlign: "center" }}>
                                 {localStorage.getItem("name")}님이 입장하셨습니다.</div>
                             <div style={{ backgroundColor: "white", height: "100%", width: "100%" }}>

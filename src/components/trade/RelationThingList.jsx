@@ -12,14 +12,12 @@ const RelationThingList = () => {
   const data = useSelector((state) => state.relationThing);
   // console.log(data.data)
   useEffect(() => {
-    console.log(id)
     if (id !== undefined) {
       dispatch(__getRelationThing(id));
     }
   }, [id]);
 
   const dataiList = data?.data?.data?.slice(0,10)
-  console.log(dataiList)
 
   return (
     <div style={{ display: "flex" }}>

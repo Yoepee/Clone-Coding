@@ -17,7 +17,7 @@ const Comment = () => {
     },[dispatch])
 
     const addComment = async() => {
-        let a = await (await axios.post(`http://3.34.5.30:8080/api/towncomment/${id}`))
+        let a = await (await axios.post(process.env.REACT_APP_DANG_GEUN+`/api/towncomment/${id}`))
         .then((response)=>{
             console.log(response)
             dispatch(createComment(response.data));

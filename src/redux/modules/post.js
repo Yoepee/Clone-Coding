@@ -27,7 +27,7 @@ export const __addtPost = createAsyncThunk(
   async (payload, thunkAPI) => {
 
       try {
-          const data =  await axios.post("http://3.34.5.30:8080/api/townpost",payload, {
+          const data =  await axios.post(process.env.REACT_APP_DANG_GEUN+`/api/townpost`,payload, {
             headers: {
                 authorization: localStorage.getItem('Authorization'),
                 refreshtoken: localStorage.getItem('RefreshToken'),

@@ -6,10 +6,14 @@ import { useDispatch } from "react-redux";
 import { __getBuyers } from "../../redux/modules/saleDone";
 import { useSelector } from "react-redux";
 import { __putChangeIng } from "../../redux/modules/salesList";
+
 import { AppBar, Toolbar, IconButton, Typography, Box } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import styled from "styled-components";
+
+import BackHeader from "../header/BackHeader";
+
 
 const SaleDoneList = () => {
   //게시글 id와 정보를 props로 전달받음
@@ -43,6 +47,7 @@ const SaleDoneList = () => {
 
   return (
     <div>
+
       <Box sx={{ flexGrow: 1 }}>
         <ThemeProvider theme={whiteTheme}>
           <AppBar
@@ -103,6 +108,7 @@ const SaleDoneList = () => {
               {post.list.title}
             </div>
             {post.list.price}원
+
           </div>
         </div>
         {buyers?.map((data) => {
@@ -112,6 +118,7 @@ const SaleDoneList = () => {
           <button onClick={ChangeDoneStatus}>구매자 없이 거래완료</button>
         ) : null}
       </div>
+
     </div>
   );
 };

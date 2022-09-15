@@ -8,7 +8,7 @@ export const __getThing = createAsyncThunk(
     "/api/view/post",
     async (payload, thunkAPI) => {
         try {
-            const data =  await axios.get(`http://3.34.5.30:8080/api/view/post`, {
+            const data =  await axios.get(process.env.REACT_APP_DANG_GEUN+`/api/view/post`, {
               headers: {
                   authorization: localStorage.getItem('Authorization'),
                   refreshtoken: localStorage.getItem('RefreshToken'),
@@ -31,16 +31,16 @@ export const thing = createSlice({
         isLoading: false
       },
     reducers:{
-        // 댓글 작성
+        // 판매글
         createThing(state, action){
           state.data.data.push(action.payload);
         },
-        // 댓글 삭제
+        // 판매글 삭제
         removeThing(state, action){
           let  index = state.data.data.findIndex(post =>  post.id === action.payload);
 			    state.data.data.splice(index,1);
         },
-        // 댓글 수정
+        // 판매글 수정
         updateThing(state, action){
           let  index = state.data.data.findIndex(post =>  post.id === action.payload.id);
 			    state.data.data.splice(index, 1, action.payload);

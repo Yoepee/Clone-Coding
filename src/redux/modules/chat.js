@@ -8,7 +8,7 @@ export const __getChat = createAsyncThunk(
     "/api/chat",
     async (payload, thunkAPI) => {
         try {
-            const data =  await axios.get(`http://3.34.5.30/api/chat`, {
+            const data =  await axios.get(process.env.REACT_APP_DANG_GEUN+`/api/chat`, {
               headers: {
                   authorization: localStorage.getItem('Authorization'),
                   refreshtoken: localStorage.getItem('RefreshToken'),
@@ -31,20 +31,6 @@ export const chat = createSlice({
         isLoading: false
       },
     reducers:{
-        // 댓글 작성
-        createChat(state, action){
-          state.data.data.push(action.payload);
-        },
-        // 댓글 삭제
-        removeChat(state, action){
-          let  index = state.data.data.findIndex(post =>  post.id === action.payload);
-			    state.data.data.splice(index,1);
-        },
-        // 댓글 수정
-        updateChat(state, action){
-          let  index = state.data.data.findIndex(post =>  post.id === action.payload.id);
-			    state.data.data.splice(index, 1, action.payload);
-        },
     },
     // 내부에서 동작하는 함수 외 외부에서 선언해준 함수 동작을 보조하는 기능
     extraReducers: {

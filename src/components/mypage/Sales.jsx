@@ -13,6 +13,7 @@ const Sales = ({ list }) => {
   const dispatch = useDispatch();
   const [change, setChange] = useState(true);
   // console.log(list);
+
   //클릭하면 status를 변경시켜주는 함수를 만들기
   const post = { list };
   // console.log(post);
@@ -44,6 +45,7 @@ const Sales = ({ list }) => {
       },
     });
   };
+
 
   return (
     <div>

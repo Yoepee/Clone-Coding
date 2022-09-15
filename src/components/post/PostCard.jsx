@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 
 const PostCard = ({post}) => {
-
-  // console.log(post)
   return (
 
 

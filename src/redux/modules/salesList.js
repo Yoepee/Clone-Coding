@@ -59,7 +59,7 @@ export const __putChangeDone = createAsyncThunk(
 
 
         // console.log(payload)
-          const data =  await axios.put(`http://3.34.5.30/api/post/status/done/${payload}`,{status: "판매완료"},{
+          const data =  await axios.put(process.env.REACT_APP_DANG_GEUN+`/api/post/status/done/${payload}`,{status: "판매완료"},{
 
             headers: {
               Authorization: localStorage.getItem("Authorization"),
