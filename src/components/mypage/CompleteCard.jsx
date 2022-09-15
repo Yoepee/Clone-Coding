@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
 const CompleteCard = ({ list }) => {
+
   const navigate = useNavigate();
   return (
     <div>
@@ -11,6 +12,7 @@ const CompleteCard = ({ list }) => {
         navigate(`/tradedetail/${list.id}`);
       }}>
         <ImgBox src={list.imgUrl} />
+
         <ContentBox>
           {list.title}
           <div style={{ color: "gray", fontSize: "13px" }}>
@@ -23,9 +25,11 @@ const CompleteCard = ({ list }) => {
             <div>{list.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</div>
           </div>
           <LikeBox>
-          {list.numOfChatroom !== 0 ? (<p>💬{list?.numOfChatroom}</p> ) : null}
+            {list.numOfChatroom !== 0 ? <p>💬{list?.numOfChatroom}</p> : null}
             {list.numOfWish !== 0 ? <p>🤍{list?.numOfWish}</p> : null}
-            {list.numOfChatroom === 0 && list.numOfWish === 0 ? (<p>　</p>) : null}
+            {list.numOfChatroom === 0 && list.numOfWish === 0 ? (
+              <p>　</p>
+            ) : null}
           </LikeBox>
         </ContentBox>
       </Container>

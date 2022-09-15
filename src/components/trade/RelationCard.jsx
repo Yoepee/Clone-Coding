@@ -1,5 +1,7 @@
+
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+
 
 const RelationCard = ({data}) => {
   const navigate = useNavigate();

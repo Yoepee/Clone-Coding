@@ -49,18 +49,18 @@ const Sales = ({ list }) => {
 
   return (
     <div>
-      <Container
-      onClick={() => {
-        navigate(`/tradedetail/${list.id}`);
-      }}>
+
+      <Container 
+          onClick={() => {
+            navigate(`/tradedetail/${list.id}`);
+          }}>
         <ImgBox
           src={list.imgUrl}
         />
-        <ContentBox
-        >
+        <ContentBox>
           {list.title}
           <div style={{ color: "gray", fontSize: "13px" }}>
-            {post.list.address} {post.list.time}
+            {post.list.address}·{post.list.time}
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <StatusP v bg={list.status === "예약중" ? "#00B493" : "gray"}>

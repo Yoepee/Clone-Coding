@@ -23,7 +23,7 @@ const SaleDoneList = () => {
 
   //buyers정보 조회
   const buyers = useSelector((state) => state.getBuyers.data.data);
-  console.log(buyers);
+  // console.log(buyers);
 
   console.log(post);
   console.log(id);
@@ -35,9 +35,9 @@ const SaleDoneList = () => {
   }, [dispatch]);
 
   //구매자 선택없이 판매완료
-  const ChangeDoneStatus = (postId) => {
+  const ChangeDoneStatus = (postID) => {
     if (window.confirm("판매확정합니까?")) {
-      dispatch(__putChangeIng({ id: postId, status: "판매완료" }));
+      dispatch(__putChangeIng({ id: postID, status: "판매완료" }));
       alert("구매확정되었습니다.");
       navigate("/saleslist");
     } else {
@@ -76,7 +76,6 @@ const SaleDoneList = () => {
                 component="div"
                 sx={{ flexGrow: 1, alignSelf: "center" }}
               >
-                {" "}
                 구매자선택
               </Typography>
             </Toolbar>
@@ -115,7 +114,9 @@ const SaleDoneList = () => {
           return <SaleDone postId={id} data={data} key={data.roomId} />;
         })}
         {buyers?.length === 0 ? (
-          <button onClick={()=>ChangeDoneStatus(id)}>구매자 없이 거래완료</button>
+
+          <button onClick={()=>{ChangeDoneStatus(id)}}>구매자 없이 거래완료</button>
+
         ) : null}
       </div>
 
