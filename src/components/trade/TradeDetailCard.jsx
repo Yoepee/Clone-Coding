@@ -133,7 +133,7 @@ const TradeDetailCard = () => {
         />
         <div style={{ flexDitrection: "colummn" }}>
           <div style={{ fontWeight: "bolder", fontSize: "18px" }}>{detail?.data?.data?.nickname}</div>
-          <div>원주 태장1동</div>
+          <div>{detail?.data?.data?.address}</div>
         </div>
         <div style={{position:"absolute", right:"10px"}}>매너온도 : {detail?.data?.data?.temperature}</div>
       </Container>
