@@ -5,10 +5,14 @@ import { useDispatch } from "react-redux";
 
 const CompleteCard = ({ list }) => {
   // console.log(list);
+  const navigate = useNavigate();
+
   return (
     <div>
-      <Container>
-        <ImgBox src={list.imgUrl} />
+      <Container onClick={() => {
+            navigate(`/tradedetail/${list.id}`);
+          }}>
+        <ImgBox src={list.imgUrl}/>
         <ContentBox>
           {list.title}
           <div style={{ color: "gray", fontSize: "13px" }}>
@@ -18,12 +22,14 @@ const CompleteCard = ({ list }) => {
             <StatusP v bg={list.status === "예약중" ? "#00B493" : "gray"}>
               {list.status}
             </StatusP>
-            <div>{list.price}원</div>
+            <div>{list.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</div>
           </div>
           <LikeBox>
-          {list.numOfChatroom !== 0 ? (<p>💬{list?.numOfChatroom}</p> ) : null}
+            {list.numOfChatroom !== 0 ? <p>💬{list?.numOfChatroom}</p> : null}
             {list.numOfWish !== 0 ? <p>🤍{list?.numOfWish}</p> : null}
-            {list.numOfChatroom === 0 && list.numOfWish === 0 ? (<p>　</p>) : null}
+            {list.numOfChatroom === 0 && list.numOfWish === 0 ? (
+              <p>　</p>
+            ) : null}
           </LikeBox>
         </ContentBox>
       </Container>

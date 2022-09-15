@@ -49,27 +49,23 @@ const Sales = ({ list }) => {
 
   return (
     <div>
-      <Container>
+      <Container 
+          onClick={() => {
+            navigate(`/tradedetail/${list.id}`);
+          }}>
         <ImgBox
           src={list.imgUrl}
-          onClick={() => {
-            navigate(`/tradedetail/${list.id}`);
-          }}
         />
-        <ContentBox
-          onClick={() => {
-            navigate(`/tradedetail/${list.id}`);
-          }}
-        >
+        <ContentBox>
           {list.title}
           <div style={{ color: "gray", fontSize: "13px" }}>
-            {post.list.address} {post.list.time}
+            {post.list.address}·{post.list.time}
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <StatusP v bg={list.status === "예약중" ? "#00B493" : "gray"}>
               {list.status}
             </StatusP>
-            <div>{list.price}원</div>
+            <div>{list.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</div>
           </div>
           <LikeBox>
             {post.list.numOfChatroom !== 0 ? (<p>💬{post.list?.numOfChatroom}</p> ) : null}

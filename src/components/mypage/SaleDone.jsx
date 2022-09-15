@@ -31,7 +31,7 @@ const SaleDone = ({ data, postId }) => {
 
   return (
     <>
-    <div onClick={onChangeDone}>
+    <div onClick={()=>{onChangeDone()}}>
       <div style={{ display: "flex",alignItems:"center",borderBottom:"1px solid grey",height:"70px", margin:"10px" }}>
         <AccountCircleIcon
           style={{ width: "60px", height: "60px", marginRight: "10px" }}
