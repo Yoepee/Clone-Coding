@@ -11,7 +11,7 @@ const ProEditHeader = ({ name }) => {
   const navigate = useNavigate();
 
   const changeName = async () => {
-    let data = await axios.put("http://3.34.5.30:8080/api/user/nickname", { value: name }, {
+    let data = await axios.put(process.env.REACT_APP_DANG_GEUN+"/api/user/nickname", { value: name }, {
       headers: {
         authorization: localStorage.getItem('Authorization'),
         refreshtoken: localStorage.getItem('RefreshToken'),

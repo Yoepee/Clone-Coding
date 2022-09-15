@@ -8,7 +8,7 @@ export const __getBuyers = createAsyncThunk(
   async (payload, thunkAPI) => {
     // console.log(payload)
       try {
-          const data =  await axios.get(`http://3.34.5.30:8080/api/post/getchatlist/${payload}`, {
+          const data =  await axios.get(process.env.REACT_APP_DANG_GEUN+`/api/post/getchatlist/${payload}`, {
             headers: {
                 authorization: localStorage.getItem('Authorization'),
                 refreshtoken: localStorage.getItem('RefreshToken'),

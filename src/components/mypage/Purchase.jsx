@@ -13,7 +13,7 @@ const Purchase = () => {
         dispatch(__getPurchase());
     },[])
 
-    if(purchase.data.length===0){
+    if(purchase?.data?.length===0){
         return (
             <div style={{textAlign:"center", marginTop:"50%"}}>
             <div>구매 내역이 없어요.</div>

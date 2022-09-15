@@ -36,7 +36,7 @@ const SignUp = () => {
     }, [pw])
 
     const checkPhone = async () => {
-        let a = await axios.post("http://3.34.5.30/api/member/chkPhonenum", { value: user.phoneNumber });
+        let a = await axios.post(process.env.REACT_APP_DANG_GEUN+"/api/member/chkPhonenum", { value: user.phoneNumber });
         if (a?.data?.success === true) {
             alert(a?.data?.data);
         } else {
@@ -45,7 +45,7 @@ const SignUp = () => {
     }
 
     const checkName = async () => {
-        let a = await axios.post("http://3.34.5.30/api/member/chkNickname", { value: user.nickname });
+        let a = await axios.post(process.env.REACT_APP_DANG_GEUN+"/api/member/chkNickname", { value: user.nickname });
         if (a?.data?.success === true) {
             alert(a?.data?.data);
         } else {
@@ -55,7 +55,7 @@ const SignUp = () => {
 
     const signUp = async () => {
         // if (chkphone && chkname && chkpw) {
-            let a = await axios.post("http://3.34.5.30/api/member/signup", {...user, address:addr});
+            let a = await axios.post(process.env.REACT_APP_DANG_GEUN+"/api/member/signup", {...user, address:addr});
             if(a?.data?.success){
                 alert(a?.data?.data)
                 navigate("/login");

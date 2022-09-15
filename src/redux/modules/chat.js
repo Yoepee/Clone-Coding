@@ -8,7 +8,7 @@ export const __getChat = createAsyncThunk(
     "/api/chat",
     async (payload, thunkAPI) => {
         try {
-            const data =  await axios.get(`http://3.34.5.30/api/chat`, {
+            const data =  await axios.get(process.env.REACT_APP_DANG_GEUN+`/api/chat`, {
               headers: {
                   authorization: localStorage.getItem('Authorization'),
                   refreshtoken: localStorage.getItem('RefreshToken'),

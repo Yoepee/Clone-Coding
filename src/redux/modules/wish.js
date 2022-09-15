@@ -7,7 +7,7 @@ export const __getWish = createAsyncThunk(
     "/api/user/wishlist",
     async (payload, thunkAPI) => {
         try {
-            const data =  await axios.get(`http://3.34.5.30:8080/api/user/wishlist`, {
+            const data =  await axios.get(process.env.REACT_APP_DANG_GEUN+`/api/user/wishlist`, {
               headers: {
                   authorization: localStorage.getItem('Authorization'),
                   refreshtoken: localStorage.getItem('RefreshToken'),

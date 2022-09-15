@@ -87,7 +87,7 @@ const TradeAddForm = () => {
 
     for (let i = 0; i < img.length; i++) { 
       formData.append("image", img[i]); // 반복문을 활용하여 파일들을 formData 객체에 추가한다
-      a = await axios.post("http://3.34.5.30/api/post/image", formData, {
+      a = await axios.post(process.env.REACT_APP_DANG_GEUN+"/api/post/image", formData, {
         headers: {
           Authorization: localStorage.getItem("Authorization"),
           RefreshToken: localStorage.getItem("RefreshToken"),
@@ -111,7 +111,7 @@ const Selecthandler = (category)=>{
 
 const submit = async() =>{
   if(id===undefined){
-    let b = await axios.post("http://3.34.5.30/api/post", post, {
+    let b = await axios.post(process.env.REACT_APP_DANG_GEUN+"/api/post", post, {
     headers: {
       Authorization: localStorage.getItem("Authorization"),
       RefreshToken: localStorage.getItem("RefreshToken"),
@@ -122,7 +122,7 @@ const submit = async() =>{
   }else{
     if(!post.imageUrl)
       setPost({...post,imageUrl:detail?.data?.data?.imageUrl})
-    let b = await axios.put(`http://3.34.5.30/api/post/${id}`, post, {
+    let b = await axios.put(process.env.REACT_APP_DANG_GEUN+`/api/post/${id}`, post, {
     headers: {
       Authorization: localStorage.getItem("Authorization"),
       RefreshToken: localStorage.getItem("RefreshToken"),

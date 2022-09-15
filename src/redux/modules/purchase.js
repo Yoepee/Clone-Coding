@@ -7,7 +7,7 @@ export const __getPurchase = createAsyncThunk(
     "/api/user/purchasepost",
     async (payload, thunkAPI) => {
         try {
-            const data =  await axios.get(`http://3.34.5.30:8080/api/user/purchasepost`, {
+            const data =  await axios.get(process.env.REACT_APP_DANG_GEUN+`/api/user/purchasepost`, {
               headers: {
                   authorization: localStorage.getItem('Authorization'),
                   refreshtoken: localStorage.getItem('RefreshToken'),

@@ -8,7 +8,7 @@ export const __getRelationThing = createAsyncThunk(
   async (payload, thunkAPI) => {
     // console.log(payload)
       try {
-          const data =  await axios.get(`http://3.34.5.30:8080/api/view/categorylist/${payload}`, {
+          const data =  await axios.get(process.env.REACT_APP_DANG_GEUN+`/api/view/categorylist/${payload}`, {
             headers: {
                 authorization: localStorage.getItem('Authorization'),
                 refreshtoken: localStorage.getItem('RefreshToken'),

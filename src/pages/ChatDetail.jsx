@@ -50,7 +50,7 @@ const ChatDetail = () => {
     }, [receivedData])
 
     const onClickConnectBtn = () => {
-        const sock = new WebSocket('ws://3.34.5.30:8080/ws/chat');
+        const sock = new WebSocket(process.env.REACT_APP_CHAT_HOST);
         sock.onmessage = function (e) {
             setReceivedData(e.data)
         }

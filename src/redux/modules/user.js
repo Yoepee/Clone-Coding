@@ -7,7 +7,7 @@ export const __getUser = createAsyncThunk(
     "/api/user",
     async (payload, thunkAPI) => {
         try {
-            const data =  await axios.get(`http://3.34.5.30:8080/api/user`, {
+            const data =  await axios.get(process.env.REACT_APP_DANG_GEUN+`/api/user`, {
               headers: {
                   authorization: localStorage.getItem('Authorization'),
                   refreshtoken: localStorage.getItem('RefreshToken'),

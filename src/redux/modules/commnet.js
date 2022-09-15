@@ -7,7 +7,7 @@ export const __getComment = createAsyncThunk(
     "/api/towncomment/{id}",
     async (payload, thunkAPI) => {
         try {
-            const data =  await axios.get(`http://3.34.5.30:8080/api/towncomment/${payload}`, {
+            const data =  await axios.get(process.env.REACT_APP_DANG_GEUN+`/api/towncomment/${payload}`, {
               headers: {
                   authorization: localStorage.getItem('Authorization'),
                   refreshtoken: localStorage.getItem('RefreshToken'),
