@@ -4,21 +4,30 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
 const CompleteCard = ({ list }) => {
-
+  // console.log(list);
   return (
     <div>
       <Container>
         <ImgBox src={list.imgUrl} />
         <ContentBox>
-          <div>{list.title}</div>
-          {/* <div>명륜2동 시간</div> */}
-          {list.status}
-          <div>{list.price}원</div>
+          {list.title}
+          <div style={{ color: "gray", fontSize: "13px" }}>
+            {list.address} {list.time}
+          </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <StatusP v bg={list.status === "예약중" ? "#00B493" : "gray"}>
+              {list.status}
+            </StatusP>
+            <div>{list.price}원</div>
+          </div>
+          <LikeBox>
+          {list.numOfChatroom !== 0 ? (<p>💬{list?.numOfChatroom}</p> ) : null}
+            {list.numOfWish !== 0 ? <p>🤍{list?.numOfWish}</p> : null}
+            {list.numOfChatroom === 0 && list.numOfWish === 0 ? (<p>　</p>) : null}
+          </LikeBox>
         </ContentBox>
       </Container>
-      <ChangeBox>
-        거래후기 보내기
-      </ChangeBox>
+      <ChangeBox>거래후기 보내기</ChangeBox>
     </div>
   );
 };
@@ -51,8 +60,24 @@ const ContentBox = styled.div`
 `;
 
 const ChangeBox = styled.div`
-  align-items: center;
-  justify-content: center;
   border-bottom: 1px solid #dee2e6;
   height: 35px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+`;
+const StatusP = styled.div`
+  background-color: ${(props) => props.bg};
+  padding: 2px;
+  border-radius: 5px;
+  color: white;
+  margin-right: 5px;
+`;
+const LikeBox = styled.div`
+  grid-area: likeBox;
+  width: 100%;
+  display: flex;
+  float: right;
+  margin-right: 10px;
+  justify-content: flex-end;
 `;

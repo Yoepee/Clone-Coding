@@ -22,8 +22,8 @@ const PostAddForm = () => {
   let a;
   const [imageUrl, setImageUrl] = useState();
   const [content, setContent] = useState();
-  console.log(imageUrl)
-  console.log(content)
+  // console.log(imageUrl)
+  // console.log(content)
 
 
   const onChange = async (e) => {
@@ -55,8 +55,13 @@ const PostAddForm = () => {
 
 
   const onSubmit = () => {
-    dispatch(__addtPost({imageUrl,content}));
-    navigate("/post")
+    if(content == null ) {
+      alert("내용을 입력해주세요")
+    } else{
+      dispatch(__addtPost({imageUrl,content}));
+      navigate("/post")
+    }
+
   }
 
   return (
@@ -66,16 +71,19 @@ const PostAddForm = () => {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          borderBottom: "1px solid #dee2e6",
+          borderBottom: "1px solid #dee2e6"
         }}
       >
-        <ArrowBackIcon
+        <div style={{display:"flex", float: "left", alignItems:"center"}}>
+          <ArrowBackIcon
           onClick={() => {
             navigate(-1);
           }}
         />
-        <h4>동네생활 글쓰기</h4>
-        <div style={{fontSize:"18px", color:"gray"}} 
+        <h4 >동네생활 글쓰기</h4>
+        </div>
+        
+        <div style={{fontSize:"18px", color:"gray", float:"right", display:"inlineBlock"}} 
         onClick={onSubmit}
         >완료</div>
       </Content>
@@ -88,6 +96,7 @@ const PostAddForm = () => {
       </Content>
       <Content>
         <TextField
+        required
           name="content"
           type="text"
           ip="content"
@@ -128,7 +137,9 @@ const Content = styled.div`
 `;
 const Imgbox = styled.div`
   display: flex;
-  min-height: auto;
-  margin-top: 110%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 10%;
   border-top: 1px solid black;
 `;
