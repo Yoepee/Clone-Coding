@@ -13,7 +13,7 @@ const SellerCard = ({data}) => {
 
       <div style ={{marginLeft:"15px"}}>
         <div>{data.title}</div>
-        <div>{data.price}</div>
+        <div>{data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</div>
       </div>
     </div>
 
