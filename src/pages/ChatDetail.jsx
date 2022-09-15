@@ -115,7 +115,7 @@ const ChatDetail = () => {
                 <div>
                     {
                         live &&
-                        <div>
+                        <div style={{flexDirection:"column-reverse", overflowY:"auto", height:"90vh", }}>
                             <div style={{ textAlign: "center" }}>
                                 {localStorage.getItem("name")}님이 입장하셨습니다.</div>
                             <div style={{ backgroundColor: "white", height: "100%", width: "100%" }}>

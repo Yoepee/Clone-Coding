@@ -13,8 +13,17 @@ const Wishlist = () => {
         dispatch(__getWish());
     },[])
 
+    if(wishlist.data.length===0){
+        return (
+            <div style={{textAlign:"center",marginTop:"50%"}}>
+            <div>아직 관심 목록이 없어요.</div>
+            </div>
+        )
+    }
+
     return (
         <>
+
         {wishlist?.data?.map((wish,i)=>{
             return(
             <div style={{ display: "flex", borderBottom:"2px solid #e0e0e0", cursor:"pointer" }} key={i}

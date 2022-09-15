@@ -13,6 +13,15 @@ const Purchase = () => {
         dispatch(__getPurchase());
     },[])
 
+    if(purchase.data.length===0){
+        return (
+            <div style={{textAlign:"center", marginTop:"50%"}}>
+            <div>구매 내역이 없어요.</div>
+            <div>동네 이웃과 따뜻한 거래를 해보세요.</div>
+            </div>
+        )
+    }
+
     return (
         <>
         {purchase?.data?.map((buy,i)=>{
