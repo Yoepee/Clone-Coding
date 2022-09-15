@@ -51,7 +51,7 @@ const Trade = () => {
                 {post.numOfWish !== 0 ?
                   <p>🤍{post?.numOfWish}</p> : null}
                 {post.numOfChat===0 && post.numOfWish===0?
-                <p>　</p>:null}
+                  <p>　</p>:null}
               </LikeBox>
               </div>
               </div>
@@ -95,6 +95,7 @@ width:100%;
 display:flex;
 float:right;
 margin-right:10px;
+justify-content:flex-end;
 `;
 
 const InfoBox = styled.div`
