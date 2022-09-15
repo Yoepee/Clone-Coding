@@ -29,22 +29,8 @@ const SaleDone = ({ data, postId }) => {
 };
 
 
-//구매자 선택없이 판매완료
-const ChangeDoneStatus = () => {
-  if (window.confirm("판매확정합니까?")) {
-    dispatch(__putChangeIng({id:postId, status:"판매완료"}));
-    alert("구매확정되었습니다.");
-    navigate("/saleslist")
-} else {
-    alert("취소합니다.");
-}
-
- 
-}
-
-
   return (
-    <> 
+    <>
     <div onClick={onChangeDone}>
       <div style={{ display: "flex",alignItems:"center",borderBottom:"1px solid grey",height:"70px" }}>
         <AccountCircleIcon
@@ -60,7 +46,7 @@ const ChangeDoneStatus = () => {
         </div>
       </div>
     </div>
-    <button onClick={ChangeDoneStatus}>구매자 없이 거래완료</button>
+    {/* <button onClick={ChangeDoneStatus}>구매자 없이 거래완료</button> */}
     </>
    
   );

@@ -151,7 +151,7 @@ const ChatDetail = () => {
                                 <div>
                                     <div>{renderChat()}</div>
                                 </div>
-                                <div style={{ height: "50px", backgroundColor: "red", width: "100%" }}></div>
+                                <div style={{ height: "50px", backgroundColor: "white", width: "100%" }}></div>
                             </div>
                         </div>
                     }

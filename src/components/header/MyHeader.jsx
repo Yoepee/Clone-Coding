@@ -11,7 +11,7 @@ const MyHeader = () => {
 
   const logout = async () => {
     if (window.confirm("로그아웃 하시겠습니까?") === true) {
-      let a = await axios.post("http://3.34.5.30/api/logout", null ,{
+      let a = await axios.post("http://3.34.5.30/api/member/logout", null ,{
         headers: {
             authorization: localStorage.getItem('Authorization'),
             refreshtoken: localStorage.getItem('RefreshToken'),
