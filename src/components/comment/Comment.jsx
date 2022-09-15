@@ -52,9 +52,9 @@ const Comment = () => {
                 </div>
             )
         })}
-
+        <div style={{height:"50px"}}></div>
     </div>
-    <div style={{display:"flex", position:"fixed", bottom:"0", padding:"10px", borderTop:"1px solid #e0e0e0", width:"100%"}}>
+    <div style={{display:"flex", position:"fixed", bottom:"0", padding:"10px", borderTop:"1px solid #e0e0e0", width:"100%", backgroundColor:"#e2e2e2"}}>
         <input placeholder="댓글을 입력하세요" style={{borderRadius:"5px",width:"90%", marginLeft:"20px"}}
         value={content}
         onChange={(e)=>{setContent(e.target.value)}}/>
