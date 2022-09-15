@@ -32,6 +32,9 @@ const PostDetailCard = () =>{
             </div>
             <div style={{borderBottom:"1px solid #e2e2e2"}}>
                 <p style={{margin:"15px"}}>{post?.data?.data?.content}</p>
+                <div style={{width:"100%", height:"100%"}}>
+                    <img src={post?.data?.data?.imgUrl}/>
+                </div>
                 <div style={{display:"flex", margin:"15px"}}>
                     <p style={{color:"#9e9e9e"}}>조회 {post?.data?.data?.numOfWatch}</p>
                 </div>

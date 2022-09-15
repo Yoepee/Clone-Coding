@@ -39,7 +39,7 @@ const Comment = () => {
         </div>
         {comment?.data?.data?.map((ment)=>{
             return(
-                <div style={{display:"flex"}}>
+                <div style={{display:"flex"}} key={ment.id}>
                     <div style={{margin:"15px"}}>
                     <ChatImg
                     width={70}
