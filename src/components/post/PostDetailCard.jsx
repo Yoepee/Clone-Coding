@@ -14,7 +14,6 @@ const PostDetailCard = () =>{
         dispatch(__getDetailPost(id));
     },[dispatch])
 
-    console.log(post)
     return (
         <div>
             <p style={{backgroundColor:"#e0e0e0", width:"fit-content", padding:"2px", borderRadius:"3px", margin:"10px"}}>동네질문</p>

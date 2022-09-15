@@ -23,8 +23,7 @@ const ChatDetail = () => {
     useEffect(() => {
         onClickConnectBtn();
     }, [])
-
-    console.log(content)
+    
     const initialState = {
         roomId: Number(id),
         sender: localStorage.getItem("name"),

@@ -18,22 +18,6 @@ export const __getSalesList = createAsyncThunk(
         }
   }
 );
-// export const __putChangeReserve = createAsyncThunk(
-//   "api/post/status/${id}",
-//   async (payload, thunkAPI) => {
-//       try {
-//           const data =  await axios.put(`http://3.34.5.30/api/post/status/${payload}`,{status: "예약중"},{
-//             headers: {
-//               Authorization: localStorage.getItem("Authorization"),
-//               RefreshToken: localStorage.getItem("RefreshToken"),
-//             }} );
-//             console.log(data.data)
-//           return thunkAPI.fulfillWithValue(payload);
-//         } catch (error) {
-//           return thunkAPI.rejectWithValue(error);
-//         }
-//   }
-// );
 
 export const __putChangeIng = createAsyncThunk(
   "api/post/status/${id}",
@@ -57,9 +41,6 @@ export const __putChangeDone = createAsyncThunk(
   "api/post/status/done/${id}",
   async (payload, thunkAPI) => {
       try {
-
-
-        console.log(payload)
           const data =  await axios.put(process.env.REACT_APP_DANG_GEUN+`/api/post/status/done/${payload}`,{status: "판매완료"},{
 
             headers: {

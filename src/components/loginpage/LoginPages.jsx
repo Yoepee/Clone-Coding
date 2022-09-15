@@ -32,7 +32,6 @@ export default function SignIn() {
         localStorage.setItem("Authorization", a.headers.authorization);
         localStorage.setItem("RefreshToken", a.headers.refreshtoken);
         localStorage.setItem("name", a.data.data);
-        console.log(a);
         navigate("/")
   };
 

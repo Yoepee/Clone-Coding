@@ -6,7 +6,6 @@ import axios from 'axios'
 export const __getPost = createAsyncThunk(
   "/api/townpost_get",
   async (payload, thunkAPI) => {
-
       try {
           const data =  await axios.get("http://3.34.5.30:8080/api/townpost", {
             headers: {
@@ -25,7 +24,6 @@ export const __getPost = createAsyncThunk(
 export const __addtPost = createAsyncThunk(
   "/api/townpost_post",
   async (payload, thunkAPI) => {
-        console.log(payload)
       try {
           const data =  await axios.post(process.env.REACT_APP_DANG_GEUN+`/api/townpost`,payload, {
             headers: {
@@ -39,9 +37,6 @@ export const __addtPost = createAsyncThunk(
         }
   }
 );
-
-
-
 
 
 // 리덕스를 통한 댓글의 자연스러운 state변화 출력하도록 생성

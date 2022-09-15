@@ -30,7 +30,6 @@ const Comment = () => {
         })
         setContent("")
     }
-    console.log(comment)
     return  (<>
     <div>
         <div style={{display:"flex"}}>

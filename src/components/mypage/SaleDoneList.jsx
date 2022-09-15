@@ -25,9 +25,6 @@ const SaleDoneList = () => {
   const buyers = useSelector((state) => state.getBuyers.data.data);
   // console.log(buyers);
 
-  console.log(post);
-  console.log(id);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
