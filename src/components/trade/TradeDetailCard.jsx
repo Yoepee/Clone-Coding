@@ -50,7 +50,6 @@ const TradeDetailCard = () => {
             authorization: localStorage.getItem('Authorization'),
             refreshtoken: localStorage.getItem('RefreshToken'),
       }});
-      console.log(a);
       if (a?.data?.success === false) {
         alert(a?.data?.data)
         return
@@ -64,7 +63,6 @@ const TradeDetailCard = () => {
           authorization: localStorage.getItem('Authorization'),
           refreshtoken: localStorage.getItem('RefreshToken'),
     }}).then(async(search)=>{
-      console.log(search)
       if(search?.data?.data === 0){
         let create = await axios.post(process.env.REACT_APP_DANG_GEUN+`/api/chat/${id}`,{roomName:localStorage.getItem("name")},{
           headers: {
