@@ -23,13 +23,11 @@ export const __putChangeIng = createAsyncThunk(
   "api/post/status/${id}",
   async (payload, thunkAPI) => {
       try {
-        console.log(payload)
           const data =  await axios.put(`http://3.34.5.30/api/post/status/${payload.id}`,{status: payload.status},{
             headers: {
               Authorization: localStorage.getItem("Authorization"),
               RefreshToken: localStorage.getItem("RefreshToken"),
             }} );
-            console.log(data)
           return thunkAPI.fulfillWithValue(payload);
         } catch (error) {
           return thunkAPI.rejectWithValue(error);
@@ -47,7 +45,6 @@ export const __putChangeDone = createAsyncThunk(
               Authorization: localStorage.getItem("Authorization"),
               RefreshToken: localStorage.getItem("RefreshToken"),
             }} );
-            console.log(data)
 
           return thunkAPI.fulfillWithValue(payload);
 
