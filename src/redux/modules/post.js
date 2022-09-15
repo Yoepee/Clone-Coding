@@ -25,14 +25,14 @@ export const __getPost = createAsyncThunk(
 export const __addtPost = createAsyncThunk(
   "/api/townpost_post",
   async (payload, thunkAPI) => {
-
+        console.log(payload)
       try {
           const data =  await axios.post(process.env.REACT_APP_DANG_GEUN+`/api/townpost`,payload, {
             headers: {
                 authorization: localStorage.getItem('Authorization'),
                 refreshtoken: localStorage.getItem('RefreshToken'),
           }});
-
+          console.log(data)
           return thunkAPI.fulfillWithValue(data.data);
         } catch (error) {
           return thunkAPI.rejectWithValue(error);
@@ -75,7 +75,8 @@ export const getPost = createSlice({
       },
       [__addtPost.fulfilled]: (state, action) => {
         state.isLoading = false;
-        state.data.data.push(action.payload);
+        console.log(action.payload)
+        state.data.data.push(action.payload.data);
       },
       [__addtPost.rejected]: (state, action) => {
         state.isLoading = false; 
