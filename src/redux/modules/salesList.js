@@ -39,6 +39,7 @@ export const __putChangeIng = createAsyncThunk(
   "api/post/status/${id}",
   async (payload, thunkAPI) => {
       try {
+        console.log(payload)
           const data =  await axios.put(`http://3.34.5.30/api/post/status/${payload.id}`,{status: payload.status},{
             headers: {
               Authorization: localStorage.getItem("Authorization"),
@@ -58,7 +59,7 @@ export const __putChangeDone = createAsyncThunk(
       try {
 
 
-        // console.log(payload)
+        console.log(payload)
           const data =  await axios.put(process.env.REACT_APP_DANG_GEUN+`/api/post/status/done/${payload}`,{status: "판매완료"},{
 
             headers: {

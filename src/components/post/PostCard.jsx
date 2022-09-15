@@ -6,11 +6,12 @@ import { useNavigate } from "react-router-dom";
 
 
 const PostCard = ({post}) => {
-  return (
-
-
-    
-    <Container key = {post.id}>
+  const navigate = useNavigate();
+  return (    
+    <Container key = {post.id}
+    onClick={()=>{
+      navigate(`/postdetail/${post.id}`)
+    }}>
       <LocationBox>동네질문</LocationBox>
       <ContentBox>
         <div style={{color:"orange"}}>Q.</div>

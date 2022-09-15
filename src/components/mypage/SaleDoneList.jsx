@@ -106,7 +106,7 @@ const SaleDoneList = () => {
             </StatusP>
               {post.list.title}
             </div>
-            {post.list.price}원
+            {post.list.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원
 
           </div>
         </div>
@@ -114,7 +114,9 @@ const SaleDoneList = () => {
           return <SaleDone postId={id} data={data} key={data.roomId} />;
         })}
         {buyers?.length === 0 ? (
+
           <button onClick={()=>{ChangeDoneStatus(id)}}>구매자 없이 거래완료</button>
+
         ) : null}
       </div>
 

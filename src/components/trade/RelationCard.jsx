@@ -1,8 +1,15 @@
-import React from 'react';
+
+import React from 'react'
+import { useNavigate } from 'react-router-dom';
+
 
 const RelationCard = ({data}) => {
+  const navigate = useNavigate();
   return (
-    <div style={{display:"flex", alignItems:"center",  margin:"10px"  }}>
+    <div style={{display:"flex", alignItems:"center",  margin:"10px"  }}
+    onClick={() => {
+      navigate(`/tradedetail/${data.id}`);
+    }}>
     <div>
       <img
         style={{width:"170px", height:"100px"}}

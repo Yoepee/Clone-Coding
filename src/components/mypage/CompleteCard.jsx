@@ -4,15 +4,15 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 
 const CompleteCard = ({ list }) => {
-  // console.log(list);
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   return (
     <div>
       <Container onClick={() => {
-            navigate(`/tradedetail/${list.id}`);
-          }}>
-        <ImgBox src={list.imgUrl}/>
+        navigate(`/tradedetail/${list.id}`);
+      }}>
+        <ImgBox src={list.imgUrl} />
+
         <ContentBox>
           {list.title}
           <div style={{ color: "gray", fontSize: "13px" }}>

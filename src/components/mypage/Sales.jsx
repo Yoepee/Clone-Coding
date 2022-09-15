@@ -49,6 +49,7 @@ const Sales = ({ list }) => {
 
   return (
     <div>
+
       <Container 
           onClick={() => {
             navigate(`/tradedetail/${list.id}`);
@@ -96,7 +97,7 @@ const Sales = ({ list }) => {
           )}
         </IngBox>
         <DoneBox>
-          <div onClick={toSaleDonePage}>거래완료로 변경</div>
+          <div onClick={()=>{toSaleDonePage()}}>거래완료로 변경</div>
         </DoneBox>
       </ChangeBox>
     </div>
