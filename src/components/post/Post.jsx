@@ -23,7 +23,6 @@ const Post = () => {
         <div>
             <div style={{height:"60px"}}/>
             {post?.map((post, i)=>{return <PostCard post={post} key= {i}/>})}
-            
             <Plus onClick ={()=>{navigate("/postadd")}}>
                 <IconBtn><AddIcon  /></IconBtn>
             </Plus>

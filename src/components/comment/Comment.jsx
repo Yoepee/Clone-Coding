@@ -25,8 +25,7 @@ const Comment = () => {
                 refreshtoken: localStorage.getItem('RefreshToken'),
           }})
         .then((response)=>{
-            console.log(response)
-            dispatch(createComment(response.data));
+            dispatch(createComment(response?.data?.data));
         })
         setContent("")
     }

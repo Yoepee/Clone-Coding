@@ -8,7 +8,7 @@ import styled from "styled-components";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import IconButton from "@mui/material/IconButton";
 import { useDispatch } from "react-redux";
-import { __addtPost } from "../../redux/modules/post";
+import { __addPost } from "../../redux/modules/post";
 
 const PostAddForm = () => {
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ const PostAddForm = () => {
     if(content == null ) {
       alert("내용을 입력해주세요")
     } else{
-      dispatch(__addtPost({imageUrl,content}));
+      dispatch(__addPost({imageUrl,content}));
       navigate("/post")
     }
 

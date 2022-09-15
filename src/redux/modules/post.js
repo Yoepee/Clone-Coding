@@ -21,10 +21,11 @@ export const __getPost = createAsyncThunk(
 );
 
 
-export const __addtPost = createAsyncThunk(
+export const __addPost = createAsyncThunk(
   "/api/townpost_post",
   async (payload, thunkAPI) => {
       try {
+        console.log(payload);
           const data =  await axios.post(process.env.REACT_APP_DANG_GEUN+`/api/townpost`,payload, {
             headers: {
                 authorization: localStorage.getItem('Authorization'),
@@ -65,15 +66,14 @@ export const getPost = createSlice({
         state.error = action.payload; // catch 된 error 객체를 state.error에 넣습니다.
       },
 
-      [__addtPost.pending]: (state) => {
+      [__addPost.pending]: (state) => {
         state.isLoading = true; 
       },
-      [__addtPost.fulfilled]: (state, action) => {
+      [__addPost.fulfilled]: (state, action) => {
         state.isLoading = false;
-
         state.data.data.push(action.payload.data);
       },
-      [__addtPost.rejected]: (state, action) => {
+      [__addPost.rejected]: (state, action) => {
         state.isLoading = false; 
         state.error = action.payload;
       },

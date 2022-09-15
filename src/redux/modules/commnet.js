@@ -50,6 +50,6 @@ export const comment = createSlice({
       },
 })
 
-export let {createComment} = comment.actions
+export let { createComment } = comment.actions
 
 export default comment;
