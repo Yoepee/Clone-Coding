@@ -36,13 +36,19 @@ const Trade = () => {
                 <Contet style={{ fontSize: "20px" }}>{post.title}</Contet>
                 <InfoBox>
                   {post.status==="판매중"?
+                  <>
                   <p>{post.address} {post.time}</p>
-                  :<>
-                  <StatusP bg={post.status==="예약중"?"#00B493":"gray"}>{post.status}</StatusP> 
+                  <div style={{ fontWeight: "600" }}>{post.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원</div>
+                  </>
+                  :<> 
                   <p>{post.address} {post.time}</p>
+                  <div style={{display:"flex" }}>
+                  <StatusP bg={post.status==="예약중"?"#00B493":"gray"}>{post.status} </StatusP>
+                    <p> {post.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원</p>
+                  </div>
                   </>
                   }
-                  <div style={{ fontWeight: "600" }}>{post.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원</div>
+      
                 </InfoBox>
               <LikeBox>
                 {post.numOfChat !== 0 ?
@@ -124,5 +130,6 @@ background-color:${props=>props.bg};
 width:fit-content;
 padding: 2px;
 border-radius:5px;
-color:white
+color:white;
+margin-right: 10px;
 `

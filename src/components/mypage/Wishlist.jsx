@@ -29,7 +29,7 @@ const Wishlist = () => {
             <div style={{ display: "flex", borderBottom:"2px solid #e0e0e0", cursor:"pointer" }} key={i}
             onClick={()=>{navigate(`/tradedetail/${wish.id}`)}}>
             <img width={80} height={80} src={wish.imgUrl} style={{margin:"10px", borderRadius:"5px"}} />
-            <div style ={{marginTop:"15px"}}>
+            <div style ={{marginTop:"15px", width:"100%"}}>
                 <div>{wish.title}</div>
                 <div style={{ color: "gray", fontSize: "13px" }}>{wish.address}</div>
                 <div style={{ display: "flex" }}>
@@ -43,13 +43,14 @@ const Wishlist = () => {
                     <p> 　{wish.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
                     
                 </div>
-                <LikeBox>
-            {wish.numOfChatroom !== 0 ? <>💬{wish?.numOfChatroom}</> : null}
-            {wish.numOfWish !== 0 ? <>🤍{wish?.numOfWish}</> : null}
-            {wish.numOfChatroom === 0 && wish.numOfWish === 0 ? (
-              <>　</>
-            ) : null}
-          </LikeBox>
+            <LikeBox>
+                {wish.numOfChatroom !== 0 ?
+                  <p>💬{wish?.numOfChatroom}</p> : null}
+                {wish.numOfWish !== 0 ?
+                  <p>🤍{wish?.numOfWish}</p> : null}
+                {wish.numOfChatroom === 0 && wish.numOfWish === 0?
+                  <p>　</p>:null}
+              </LikeBox>
             </div>
         </div>
         )})}
@@ -66,16 +67,8 @@ padding: 2px;
 border-radius:5px;
 color:white;
 `
-// const LikeBox = styled.div`
-//   grid-area: likeBox;
-//   width: 100%;
-//   display: flex;
-//   float: right;
-//   margin-right: 10px;
-//   justify-content: flex-end;
-// `;
 const LikeBox = styled.div`
 display: flex;
 justify-content:flex-end;
-width: 290px;
+margin-right:15px;
 `;
