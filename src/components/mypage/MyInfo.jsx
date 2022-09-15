@@ -18,7 +18,6 @@ const MyInfo = () => {
     useEffect(()=>{
         dispatch(__getUser());
     },[dispatch])
-    console.log(user);
     return (
         <Infodiv>
             <div style={{height:"60px"}}/>

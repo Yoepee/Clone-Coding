@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { __getWish} from "../../redux/modules/wish"
+import styled from "styled-components";
 
 const Wishlist = () => {
     const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const Wishlist = () => {
     useEffect(()=>{
         dispatch(__getWish());
     },[])
+
     return (
         <>
         {wishlist?.data?.map((wish,i)=>{
@@ -24,8 +26,8 @@ const Wishlist = () => {
                     {wish.status==="판매중"?
                   null
                   :<>
-                  <p style={{backgroundColor:"#bdbdbd", color:"white", borderRadius:"5px", padding:"2px"}}
-                    bg={wish.status==="예약중"?"#00B493":"gray"}>{wish.status}</p> 
+                  <StatusP style={{ color:"white", borderRadius:"5px", padding:"2px"}}
+                    bg={wish.status ==="예약중"?"#00B493":"gray"}>{wish.status}</StatusP> 
                   </>
                   }
                     <p> 　{wish.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</p>
@@ -38,3 +40,11 @@ const Wishlist = () => {
 }
 
 export default Wishlist;
+
+const StatusP = styled.p`
+background-color:${props=>props.bg}; 
+width:fit-content;
+padding: 2px;
+border-radius:5px;
+color:white
+`
