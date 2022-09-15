@@ -91,7 +91,7 @@ const ChatDetail = () => {
                                 <p style={{backgroundColor:"white", marginRight:"10px", textAlign:"right"}}>{name}</p>
                             </div>
                             <div style={{backgroundColor:"white", display:"flex", justifyContent:"flex-end"}}>
-                                <p style={{backgroundColor:"#FF7E36",width:"fit-content",textAlign:"right" , padding:"10px", borderRadius:"10px"}}>{message}</p>
+                                <p style={{backgroundColor:"#FF7E36",width:"fit-content",textAlign:"right" , padding:"10px", borderRadius:"10px", color:"white"}}>{message}</p>
                             </div>
                         </div>
                         : <div key={index} >
@@ -129,7 +129,7 @@ const ChatDetail = () => {
                                                             <p style={{backgroundColor:"white", marginRight:"10px", textAlign:"right"}}>{a.nickname}</p>
                                                         </div>
                                                         <div style={{backgroundColor:"white", display:"flex", justifyContent:"flex-end"}}>
-                                                            <p style={{backgroundColor:"#FF7E36",textAlign:"right",width:"fit-content", padding:"10px", borderRadius:"10px", textAlign:"right"}}>{a.message}</p>
+                                                            <p style={{backgroundColor:"#FF7E36",textAlign:"right",width:"fit-content", padding:"10px", borderRadius:"10px", textAlign:"right", color:"white"}}>{a.message}</p>
                                                         </div>
                                                     </div>
                                                     : <div >
