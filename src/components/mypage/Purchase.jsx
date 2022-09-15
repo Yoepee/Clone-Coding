@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { __getPurchase } from "../../redux/modules/purchase";
 
 
 const Purchase = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const purchase = useSelector((state)=>state?.purchase?.data)
 
     useEffect(()=>{
@@ -15,7 +17,8 @@ const Purchase = () => {
         <>
         {purchase?.data?.map((buy,i)=>{
             return(
-            <div style={{ display: "flex", borderBottom:"2px solid #e0e0e0" }} key={i}>
+            <div style={{ display: "flex", borderBottom:"2px solid #e0e0e0", cursor:"pointer"}} key={i}
+            onClick={()=>{navigate(`/tradedetail/${buy.id}`)}}>
             <img width={50} src={buy.imgUrl} style={{margin:"10px"}} />
             <div>
                 <p>{buy.title}</p>
