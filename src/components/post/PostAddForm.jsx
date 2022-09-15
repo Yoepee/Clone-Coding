@@ -24,6 +24,7 @@ const PostAddForm = () => {
   const [content, setContent] = useState();
 
 
+
   const onChange = async (e) => {
     // input file에서 선택된 file을 img로 지정
     const img = e.target.files;
@@ -49,8 +50,14 @@ const PostAddForm = () => {
 
 
   const onSubmit = () => {
-    dispatch(__addtPost({ imageUrl, content }));
-    navigate("/post")
+
+    if(content == null ) {
+      alert("내용을 입력해주세요")
+    } else{
+      dispatch(__addtPost({imageUrl,content}));
+      navigate("/post")
+    }
+
   }
 
   return (
@@ -60,6 +67,7 @@ const PostAddForm = () => {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
+
           borderBottom: "1px solid #dee2e6",
           justifyContent:"space-between"
         }}
@@ -83,6 +91,7 @@ const PostAddForm = () => {
       </Content>
       <Content>
         <TextField
+        required
           name="content"
           type="text"
           ip="content"
@@ -123,7 +132,9 @@ const Content = styled.div`
 `;
 const Imgbox = styled.div`
   display: flex;
-  min-height: auto;
-  margin-top: 110%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 10%;
   border-top: 1px solid black;
 `;

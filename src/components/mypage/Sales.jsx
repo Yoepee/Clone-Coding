@@ -3,89 +3,104 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import {__putChangeIng} from "../../redux/modules/salesList";
-import { useSelector } from 'react-redux';
+import { __putChangeIng } from "../../redux/modules/salesList";
+import { useSelector } from "react-redux";
 
 import { useState } from "react";
 
-
 const Sales = ({ list }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
-  const [change, setChange] = useState(true)
+  const dispatch = useDispatch();
+  const [change, setChange] = useState(true);
   // console.log(list);
-//클릭하면 status를 변경시켜주는 함수를 만들기
-const post = {list}
-// console.log(post?.list?.status)
-const id = post?.list?.id
 
-const changeState = () => {
-  setChange(!change)
-}
+  //클릭하면 status를 변경시켜주는 함수를 만들기
+  const post = { list };
+  // console.log(post);
+  const id = post?.list?.id;
+  // console.log(id)
 
+  const changeState = () => {
+    setChange(!change);
+  };
 
-//예약중으로 변경
+  //예약중으로 변경
 
-const data = useSelector((state)=>state.salesList)
-// console.log(data)
+  const data = useSelector((state) => state.salesList);
+  // console.log(data)
 
-const ChangeReserveStatus = () => {
-  dispatch(__putChangeIng({id:id, status:"예약중"}))
-}
-//판매중으로 변경
-const ChangeIngStatus = () => {
-  dispatch(__putChangeIng({id:id, status:"판매중"}))
+  const ChangeReserveStatus = () => {
+    dispatch(__putChangeIng({ id: id, status: "예약중" }));
+  };
+  //판매중으로 변경
+  const ChangeIngStatus = () => {
+    dispatch(__putChangeIng({ id: id, status: "판매중" }));
+  };
 
-}
+  const toSaleDonePage = () => {
+    navigate("/saledone", {
+      state: {
+        id: id,
+        post: post,
+      },
+    });
+  };
 
-const toSaleDonePage = () => {
-  navigate('/saledone',{
-    state: {
-      id:id,
-      post:post
-    },
-  });
-
-}
 
   return (
     <div>
       <Container>
-        <ImgBox src={list.imgUrl} 
-        onClick={() => {
-          navigate(`/tradedetail/${list.id}`); 
-        }} />
-        <ContentBox onClick={() => {
-          navigate(`/tradedetail/${list.id}`); 
-        }} >
-          <div>{list.title}</div>
-          {/* <div>명륜2동 시간</div> */}
-          {list.status}
-          <div>{list.price}원</div>
+        <ImgBox
+          src={list.imgUrl}
+          onClick={() => {
+            navigate(`/tradedetail/${list.id}`);
+          }}
+        />
+        <ContentBox
+          onClick={() => {
+            navigate(`/tradedetail/${list.id}`);
+          }}
+        >
+          {list.title}
+          <div style={{ color: "gray", fontSize: "13px" }}>
+            {post.list.address} {post.list.time}
+          </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <StatusP v bg={list.status === "예약중" ? "#00B493" : "gray"}>
+              {list.status}
+            </StatusP>
+            <div>{list.price}원</div>
+          </div>
+          <LikeBox>
+            {post.list.numOfChatroom !== 0 ? (<p>💬{post.list?.numOfChatroom}</p> ) : null}
+            {post.list.numOfWish !== 0 ? <p>🤍{post.list?.numOfWish}</p> : null}
+            {post.list.numOfChatroom === 0 && post.list.numOfWish === 0 ? (<p>　</p>) : null}
+          </LikeBox>
         </ContentBox>
       </Container>
       <ChangeBox>
-        <IngBox >
-
-          {list.status == "판매중" ?
-
-          <div 
-          onClick={()=>{ChangeReserveStatus();changeState()}} 
-          style={{alignItems:"center",justifyContent:"center"}}>예약중으로 변경
-          </div>
-          
-          : 
-
-          <div onClick={()=>{ChangeIngStatus();changeState()}}>판매중으로 변경
-          </div>
-          }
-          
+        <IngBox>
+          {list.status == "판매중" ? (
+            <div
+              onClick={() => {
+                ChangeReserveStatus();
+                changeState();
+              }}>
+              예약중으로 변경
+            </div>
+          ) : (
+            <div
+              onClick={() => {
+                ChangeIngStatus();
+                changeState();
+              }}
+            >
+              판매중으로 변경
+            </div>
+          )}
         </IngBox>
         <DoneBox>
-          <div 
-          onClick={toSaleDonePage}
-
-          >거래완료로 변경</div>
+          <div onClick={toSaleDonePage}>거래완료로 변경</div>
         </DoneBox>
       </ChangeBox>
     </div>
@@ -125,16 +140,33 @@ const ChangeBox = styled.div`
   grid-template-areas: "ing done";
   border-bottom: 1px solid #dee2e6;
   height: 35px;
+  align-items: center;
+  justify-content: center;
 `;
 
 const IngBox = styled.div`
+  display: gird;
   grid-area: ing;
   border-right: 1px solid #dee2e6;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 `;
 const DoneBox = styled.div`
   grid-area: done;
   align-items: center;
-  justify-content: center;
+  text-align: center;
+`;
+const StatusP = styled.div`
+  background-color: ${(props) => props.bg};
+  padding: 2px;
+  border-radius: 5px;
+  color: white;
+  margin-right: 5px;
+`;
+const LikeBox = styled.div`
+  grid-area: likeBox;
+  width: 100%;
+  display: flex;
+  float: right;
+  margin-right: 10px;
+  justify-content: flex-end;
 `;

@@ -13,6 +13,7 @@ const Post = () => {
     const navigate = useNavigate()
     const post = useSelector((state =>state?.getPost?.data?.data))
 
+
     useEffect(() => {
           dispatch(__getPost());
       }, [dispatch]);

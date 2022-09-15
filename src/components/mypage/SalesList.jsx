@@ -15,6 +15,7 @@ import CompleteCard from "./CompleteCard";
 const SalesList = () => {
   const salesList = useSelector((state) => state.salesList);
 
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -27,6 +28,7 @@ const SalesList = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
 
   // let filterdIngList = salesList?.data?.data?.filter(function (x) {
   //   return x.status == "판매중" || x.status ==  "예약중";

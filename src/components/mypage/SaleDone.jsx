@@ -32,17 +32,17 @@ const SaleDone = ({ data, postId }) => {
   return (
     <>
     <div onClick={onChangeDone}>
-      <div style={{ display: "flex",alignItems:"center",borderBottom:"1px solid grey",height:"70px" }}>
+      <div style={{ display: "flex",alignItems:"center",borderBottom:"1px solid grey",height:"70px", margin:"10px" }}>
         <AccountCircleIcon
-          style={{ width: "60px", height: "50px", marginRight: "10px" }}
+          style={{ width: "60px", height: "60px", marginRight: "10px" }}
         />
         <div>
           <div style={{display:"flex"}}>
             <div style={{paddingRight:"10px",marginBottom:"5px"}}>{buyer.data.buyerNickname}</div>
-            <div>주소</div>
+            <div style={{ color: "#adb5bd", fontSize: "13px" }}>{buyer.data.address}</div>
           </div>
 
-          <div>시간</div>
+          <div style={{ color: "gray", fontSize: "15px" }}>마지막 대화 {buyer.data.time}</div>
         </div>
       </div>
     </div>
