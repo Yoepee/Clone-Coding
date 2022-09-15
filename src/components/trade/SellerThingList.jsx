@@ -15,7 +15,6 @@ const SellerThingList = ({ id }) => {
 
   // console.log(data);
   const dataiList = data?.data?.slice(0,4)
-  console.log(dataiList)
 
   return (
     <div style={{ display: "flex" }}>

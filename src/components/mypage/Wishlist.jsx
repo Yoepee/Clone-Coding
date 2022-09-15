@@ -11,8 +11,6 @@ const Wishlist = () => {
     useEffect(()=>{
         dispatch(__getWish());
     },[])
-
-    console.log(wishlist?.data)
     return (
         <>
         {wishlist?.data?.map((wish,i)=>{

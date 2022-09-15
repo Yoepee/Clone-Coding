@@ -74,15 +74,14 @@ const ChatDetail = () => {
     const sendMessage = () => {
         if (message === '') return;
         // setChat([...chat, { name: "testUser", message: message }])
-        console.log(message)
-        console.log(sockjs)
-        console.log(JSON.stringify(mal))
+        // console.log(message)
+        // console.log(sockjs)
+        // console.log(JSON.stringify(mal))
         sockjs.send(JSON.stringify(mal));
         // sockjs.send(message);
         setMessage('');
     }
     const renderChat = () => {
-        console.log(chat)
         return chat.map(({ name, message }, index) => {
             return (
                 <div key={index}>

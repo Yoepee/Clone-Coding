@@ -30,9 +30,6 @@ export const purchase = createSlice({
         isLoading: false
       },
     reducers:{
-        createComment(state, action){
-            state.data.data.push(action.payload);
-          },
     },
     // 내부에서 동작하는 함수 외 외부에서 선언해준 함수 동작을 보조하는 기능
     extraReducers: {

@@ -12,7 +12,6 @@ const Post = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const post = useSelector((state =>state?.getPost?.data?.data))
-    console.log(post)
 
     useEffect(() => {
           dispatch(__getPost());

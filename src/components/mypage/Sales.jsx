@@ -18,7 +18,6 @@ const Sales = ({ list }) => {
 const post = {list}
 // console.log(post?.list?.status)
 const id = post?.list?.id
-console.log(id)
 
 const changeState = () => {
   setChange(!change)

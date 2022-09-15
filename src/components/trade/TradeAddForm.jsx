@@ -74,7 +74,6 @@ const TradeAddForm = () => {
   const onChange = async (e) => {
     // input file에서 선택된 file을 img로 지정
     const img = e.target.files;
-    console.log(img)
     // 이미지 파일이 아니면 이후 동작을 생략하고 경고문구 출력
     // if (!img?.name.match(fileForm)) {
     //   alert("이미지파일(.jpg, .png, .bmp)만 올려주세요.");
@@ -96,15 +95,13 @@ const TradeAddForm = () => {
         },
       });
     } 
-    console.log(a);
-    console.log(formData);
    
     setPost({ ...post, imageUrl: a.data?.data });
     // 사진을 선택하고 사진선택기능 숨기기
     // 폼데이터 들어가는 형식을 보기위한 내용
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    // for (var pair of formData.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
 
 }
 const Selecthandler = (category)=>{
@@ -130,7 +127,6 @@ const submit = async() =>{
       Authorization: localStorage.getItem("Authorization"),
       RefreshToken: localStorage.getItem("RefreshToken"),
     }});
-    console.log(b);
     if(b?.data?.success===false){
       alert(b?.data?.data);
       return

@@ -13,7 +13,6 @@ const Profile = () => {
         dispatch(__getUser());
     },[dispatch])
 
-    console.log(user)
     return (
         <div>
             <div style={{height:"80px"}}/>

@@ -22,14 +22,11 @@ const PostAddForm = () => {
   let a;
   const [imageUrl, setImageUrl] = useState();
   const [content, setContent] = useState();
-  console.log(imageUrl)
-  console.log(content)
 
 
   const onChange = async (e) => {
     // input file에서 선택된 file을 img로 지정
     const img = e.target.files;
-    console.log(img);
     // 폼데이터 형식 선언
     const formData = new FormData();
     // api에서 요구하는 key값과 value값 지정 (key : "image", value: 이미지파일)
@@ -45,9 +42,6 @@ const PostAddForm = () => {
         },
       });
     }
-    console.log(a);
-    console.log(formData);
-
     setImageUrl(a.data?.data);
     // 사진을 선택하고 사진선택기능 숨기기
     // 폼데이터 들어가는 형식을 보기위한 내용

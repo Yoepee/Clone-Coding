@@ -14,7 +14,6 @@ const ChatList = () => {
         dispatch(__getChat());
     },[dispatch])
 
-    console.log(chat?.data?.data);
     return (
         <>
         <Chatdiv>
