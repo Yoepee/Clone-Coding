@@ -48,13 +48,13 @@ const MyInfo = () => {
                     <p>판매내역</p>
                     </label>
                 </Btn>
-                <Btn>
+                <Btn onClick={()=>{navigate("/purchase")}}>
                     <label>
                     <IconBtn><ShoppingBagRoundedIcon/></IconBtn>
                     <p>구매내역</p>
                     </label>
                 </Btn>
-                <Btn>
+                <Btn onClick={()=>{navigate("/wish")}}>
                 <label>
                     <IconBtn><FavoriteIcon/></IconBtn>
                     <p>관심목록</p>

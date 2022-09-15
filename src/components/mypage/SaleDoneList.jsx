@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { __getBuyers } from "../../redux/modules/saleDone";
 import { useSelector } from "react-redux";
 import { __putChangeIng } from "../../redux/modules/salesList";
+import BackHeader from "../header/BackHeader";
 
 const SaleDoneList = () => {
   //게시글 id와 정보를 props로 전달받음
@@ -40,6 +41,7 @@ const ChangeDoneStatus = (postId) => {
 
   return (
     <div>
+      <BackHeader/>
       <div style={{ display: "flex" }}>
         <img width={50} src={post.list.imgUrl} />
         <div style={{display:"flex", flexDirection:"column"}}>
@@ -52,7 +54,7 @@ const ChangeDoneStatus = (postId) => {
         
       </div>
       {buyers?.map((data)=>{ return <SaleDone postId ={id} data = {data} key={data.roomId} />})}
-      {buyers.length===0?
+      {buyers?.length===0?
       <button onClick={ChangeDoneStatus}>구매자 없이 거래완료</button>:null
       }
       
